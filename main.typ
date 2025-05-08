@@ -19,7 +19,7 @@
 
 = Riemann Integration
 
-== Part A
+== Review: Riemann Integral
 
 #problem[
   Suppose $f: [a, b] -> RR$ is a bounded function such that
@@ -365,7 +365,7 @@
   L(f_n, P, [a, b]) <= epsilon/(5(b-a))$. QED.
 ]
 
-== Part B
+== Riemann Integral Is Not Good Enough
 
 #problem[
   Define $f: [0, 1] -> RR$ as follows:
@@ -500,7 +500,7 @@
 
 = Measures
 
-== Part A
+== Outer Measure on $RR$
 
 #problem[
   Prove that if $A$ and $B$ are subsets of $RR$ and $|B| = 0$, then $|A union B|

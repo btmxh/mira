@@ -3401,3 +3401,103 @@ in (a, b)$ such that:
   clearly yield a contradiction: $(a, b)$ can't be in $E$ (it contains $v$) or
   in $RR without E$ (it contains $u$).
 ]
+
+= Product Measures
+
+#let ox = math.times.circle
+
+== Product of Measure Spaces
+
+#problem[
+  Suppose $(X, Sc)$ and $(Y, Tc)$ are measurable spaces. Prove that if $A$ is a
+  nonempty subset of $X$ and $B$ is a nonempty subset of $Y$ such that $A times
+  B in Sc ox Tc$, then $A in Sc$ and $B in Tc$.
+]
+
+#solution[
+  Let $a in A$ and $b in B$. Then, the cross-sections $A$ = $[A times B]^b$ and
+  $B = [A times B]_a$ are $Sc$-measurable and $Tc$-measurable, respectively.
+]
+
+#problem[
+  Suppose $(X, Sc)$ is a measurable space. Prove that if $E in Sc ox Sc$, then
+  $ {x in X: (x, x) in E} in Sc. $
+]
+
+#solution[
+  Let $Tc$ be the set of all subsets $E subset.eq X times X$ such that ${x in
+  X: (x, x) in E} in Sc$.
+
+  Then, $Tc$ contains all $A times B$ where $A in Sc$ and $B in Sc$:
+  $ {x in X: (x, x) in A times B} = A sect B in Sc. $
+
+  Finally, to finish the proof, we need to prove that $Tc$ is a
+  $sigma$-algebra, i.e. it is closed under complementation and countable union:
+  - *Complementation*: If $E in Tc$ then ${x in X: (x, x) in (X times X)
+    without E} = X without {x in X: (x, x) in E} in Sc$, so $X times X) without
+    E in Tc$.
+  - *Countable union*: If $E_k in Tc$ for $k = 1, 2, ...$ then $ {x in X: (x, x)
+    in union.big_(k=1)^infinity E_k} = union.big_(k=1)^infinity {x in X: (x, x)
+    in E_k} in Sc$, so $union.big_(k=1)^infinity E_k in Tc$.
+]
+
+#problem[
+  Let $cal(B)$ denote the $sigma$-algebra of Borel subsets of $RR$. Show that
+  there exists a set $E subset.eq RR times RR$ such that $[E]_a in cal(B)$ and
+  $[E]^a in cal(B)$ for every $a in RR$, but $E in.not cal(B) times cal(B)$.
+]
+
+#solution[
+  Let $V$ be some non-Borel measurable set. Then, define $E = {(x, x): x in V}$.
+  The cross-sections of $E$ at any given point is either a singleton or the
+  empty set, which are both clearly measurable.
+
+  However, $E in.not cal(B) times cal(B)$. Assuming otherwise, since $f: x |->
+  (x, x)$ is a Borel measurable function from $RR$ to $RR times RR$, its
+  preimage of $E$ must also be measurable. However, the preimage itself is $V$,
+  which is a non-Borel measurable set, a contradiction.
+]
+
+#problem[
+  Suppose $(X, Sc)$ and $(Y, Tc)$ are measurable spaces. Prove that if $f: X ->
+RR$ is $Sc$-measurable and $g: Y -> RR$ is $Tc$-measurable then $h: X times Y ->
+RR$ defined by $h(x, y) = f(x)g(y)$, then $h$ is $(Sc ox Tc)$-measurable
+]
+
+#solution[
+  Define $hat(f)(x, y) = f(x)$. Then, $hat(f)^(-1) (E) = f^(-1) (E) times Y$,
+  which is $(Sc ox Tc)$-measurable as long as $f^(-1) (E)$ is $Sc$-measurable.
+  Hence, $hat(f)$ is $(Sc ox Tc)$-measurable. Similarly, define $hat(g)(x, y) = g(y)$,
+  which is also $(Sc ox Tc)$-measurable. Since $h$ is simply the product of
+  $hat(f)$ and $hat(g)$, it follows that $h$ is $(Sc ox Tc)$-measurable as well.
+]
+
+#problem[
+  Verify the assertion in Example 5.11 (MIRA) that the collection of finite
+  unions of intervals of $RR$ is closed under complementation.
+]
+
+#solution[
+  Assuming $E = union.big_(n = 1)^N I_n$, where $I_n$ are intervals.
+
+  Then, $RR without E = sect.big_(n=1)^N (RR without I_n)$.
+  Since every $RR without I_n$ can be written as the union of at most two
+  interval $I_n^0$ and $I_n^1$, we have:
+  $
+    RR without E = sect.big_(n=1)^N (I_n^0 union I_n^1) = union.big_(b in {0, 1}^N)
+    sect.big_(n=1)^N I_n^(b_n).
+  $
+
+  This is a finite union of intervals of $RR$, so clearly it belongs to the
+  algebra.
+]
+
+#problem[
+  Verify the assertion in Example 5.12 (MIRA) that the collection of countable
+  unions of intervals of $RR$ is not closed under complementation.
+]
+
+#solution[
+  The irrationals (complementation of $QQ$) can't be written as any countable
+  union of intervals, due to $QQ$ being dense in $RR$.
+]

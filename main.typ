@@ -9,13 +9,10 @@
 #let proof = thmplain("proof", "Proof").with(numbering: "1A.1")
 #let sect = math.inter
 
-#align(
-  center,
-  text(17pt)[
-    *Solutions to exercises of Axler's\
+#align(center, text(17pt)[
+  *Solutions to exercises of Axler's\
   "Measure, Integration and Real Analysis"*
-  ],
-)
+])
 
 = Riemann Integration
 
@@ -43,7 +40,7 @@
 
 #problem[
   Suppose $a <= s < t <= b$. Define $f: [a, b] -> RR$ by
-  $ f(x) = cases(1 "if" s < x < t,  0 "otherwise") $. Prove that $f$ is Riemann
+  $ f(x) = cases(1 "if" s < x < t, 0 "otherwise") $. Prove that $f$ is Riemann
   integrable on $[a, b]$, and that $integral_a^b f = t - s$.
 ]
 
@@ -53,8 +50,8 @@
 
   It is trivial to see that:
   $
-    L(f, P_epsilon, [a, b]) &= t - s - 2epsilon, \
-    "and" U(f, P_epsilon, [a, b]) &= t - s + 2epsilon
+          L(f, P_epsilon, [a, b]) & = t - s - 2epsilon, \
+    "and" U(f, P_epsilon, [a, b]) & = t - s + 2epsilon
   $
 
   Now, consider an arbitrary partition $P$ of $[a, b]$, we have:
@@ -68,7 +65,7 @@
   as $epsilon$ goes to zero. Hence, equality must hold: $sup_P L(f, P, [a, b]) = t - s$.
 
   Similarly, it is true that $inf_P U(f, P, [a, b]) = t - s$. Hence, $L(f, [a,
-  b]) = U(f, [a, b]) = t - s$, QED.
+      b]) = U(f, [a, b]) = t - s$, QED.
 ]
 
 #problem[
@@ -89,7 +86,7 @@
   $ U(f, P, [a, b]) <= I + epsilon' "and" L(f, P, [a, b]) >= I - epsilon. $
 
   Hence, $U(f, P, [a, b]) - L(f, P, [a, b]) <= 2epsilon'$, so by taking $epsilon' =
-  1/2 epsilon$, we have $U(f, P, [a, b]) - L(f, P, [a, b]) < epsilon$.
+  1 / 2 epsilon$, we have $U(f, P, [a, b]) - L(f, P, [a, b]) < epsilon$.
 
   Now, assuming the opposite, suppose for every $epsilon > 0$, there exists a
   partition $P$ such that $U(f, P, [a, b]) - L(f, P, [a, b]) < epsilon$. From
@@ -151,8 +148,8 @@
   epsilon < x_1 + epsilon < x_2 - epsilon < x_2 + epsilon < ... < x_n - epsilon
   < x_n + epsilon < b$ will yields the following result
   $
-    U(f, P, [a, b]) &= 2epsilon sum_(i = 1)^n max{0, g(x_i)}, \
-    "and" L(f, P, [a, b]) &= 2epsilon sum_(i = 1)^n min{0, g(x_i)}.
+          U(f, P, [a, b]) & = 2epsilon sum_(i = 1)^n max{0, g(x_i)}, \
+    "and" L(f, P, [a, b]) & = 2epsilon sum_(i = 1)^n min{0, g(x_i)}.
   $
   Letting $epsilon -> 0$ shows that $U(f, [a, b]) <= 0 <= L(f, [a, b])$, so we
   must have $ integral_a^b g = 0 $.
@@ -176,7 +173,7 @@
 
 #solution[
   The sequence $l_n = L(f, P_n, [a, b])$ is non-decreasing, so $lim_(n -> infinity)
-   L(f, P_n, [a, b])$ definitely exists. Denote this limit as $L$, so $L$ must
+  L(f, P_n, [a, b])$ definitely exists. Denote this limit as $L$, so $L$ must
   be at least as large as $L(f, [a, b])$. Our aim is to prove that equality
   actually holds here.
 
@@ -188,11 +185,11 @@
   Note that these two only differs at most $m$ elements (where $m$ is the
   number of partition points (excluding $a$ and $b$) of $Q$), so this difference
   is basically $O(m w delta)$, where $w$ is the maximum width of a partitioned
-  interval (which is $(b-a)/2^n)$, $delta$ is the maximum difference between two
+  interval (which is $(b-a) / 2^n)$, $delta$ is the maximum difference between two
   values of $f(x)$ and $f(y)$ for some $x, y in [a, b]$.
 
   $m$ is bounded (since $Q$ stays constant), $delta$ is also bounded by
-  $sup_[a, b] f  - inf_[a, b] f$ (which is finite since $f$ is bounded) while
+  $sup_[a, b] f - inf_[a, b] f$ (which is finite since $f$ is bounded) while
   $w -> 0$. Hence, this big-O term converges to $0$ as $n -> infinity$. This
   big-O thingy is not really rigorous, but it should be trivial to make it
   rigorous from here. Anyways, since $L(f, Q_n, [a, b]) - L(f, P_n, [a, b]) ->
@@ -278,9 +275,9 @@
     $ lim_(t -> a^+) integral_a^t f(t) = 0 $
     Denote $P$ as the trivial partition containing only $a$ and $t$, since
     $integral_a^t f(t) = U(f, [a, t]) <= U(f, P, [a, t]) = (t - a) sup_[a, t]
-      f <= (t - a) sup_[a, b] f -> 0$ as $t -> a^+$.
+    f <= (t - a) sup_[a, b] f -> 0$ as $t -> a^+$.
   - $f$ is right-continuous at $t = b$ and $f$ is continuous at every $y in (a,
-  b)$: this can be proven similarly as above.
+      b)$: this can be proven similarly as above.
 ]
 
 #problem[
@@ -298,11 +295,11 @@
   To prove the inequality, it suffices to note that $|f| plus.minus f$ is always
   non-negative, and therefore have non-negative Riemann integrals.
   Hence, $ integral_a^b |f| >= max{integral_a^b (|f| - f) + integral_a^b f,
-  integral_a^b (f + |f|) - integral_a^b f} >= abs(integral_a^b f) $.
+    integral_a^b (f + |f|) - integral_a^b f} >= abs(integral_a^b f) $.
 ]
 
 #problem[
-  Suppose $f: [a, b] -> RR$ is an increasing function, meaning that $c, d  in
+  Suppose $f: [a, b] -> RR$ is an increasing function, meaning that $c, d in
   [a, b]$ with $c < d$ implies $f(c) <= f(d)$. Prove that $f$ is Riemann
   integrable on $[a, b]$.
 ]
@@ -333,19 +330,23 @@
   $ lim_(n -> infinity) sup_[a, b] |f - f_n| = 0 $
 
   Let $u_n = sup_[a, b] |f-f_n|$, then for any interval $[c, d] subset.eq [a,
-  b]$, if $x_0$ is the value of $x in [c, d]$ such that $f (x_0) = sup_[c, d] f$,
+    b]$, if $x_0$ is the value of $x in [c, d]$ such that $f (x_0) = sup_[c, d] f$,
   we must have:
   $
-    abs(sup_[c, d] f - sup_[c, d] f_n) <= abs(f(x_0) - f_n (x_0)) + abs(f_n (x_0)
-    - sup_[c, d] f_n) <= u_n + sup_[c, d] f - inf_[c, d] f
+    abs(sup_[c, d] f - sup_[c, d] f_n) <= abs(f(x_0) - f_n (x_0)) + abs(
+      f_n (x_0)
+      - sup_[c, d] f_n
+    ) <= u_n + sup_[c, d] f - inf_[c, d] f
   $
   Then, for every partition $P$ of $[a, b]$ into $a = x_0 < x_1 < ... < x_n =
   b$, we have
   $
-    abs(U(f, P, [a, b]) - U(f_n, P, [a, b])) &= abs(sum_(j = 1)^n (x_j -
-    x_(j-1)) (sup_([x_(j - 1), x_j]) f_n - sup([x_(j - 1), x_j]) f)) \
-    &<= sum_(j = 1)^n (x_j - x_(j-1)) (u_n + sup_[a, b] f - inf_[a, b] f) \
-    &<= (b - a) u_n + (U(f_n, P, [a, b]) - L(f_n, P, [a, b])).
+    abs(U(f, P, [a, b]) - U(f_n, P, [a, b])) & = abs(
+                                                 sum_(j = 1)^n (x_j -
+                                                   x_(j-1)) (sup_([x_(j - 1), x_j]) f_n - sup([x_(j - 1), x_j]) f)
+                                               )                                                                    \
+                                             & <= sum_(j = 1)^n (x_j - x_(j-1)) (u_n + sup_[a, b] f - inf_[a, b] f) \
+                                             & <= (b - a) u_n + (U(f_n, P, [a, b]) - L(f_n, P, [a, b])).
   $
 
   Similarly, we have:
@@ -361,8 +362,8 @@
   $
 
   The right hand side expression can be made arbitrarily small by choosing $n$
-  such that $u_n <= epsilon/(5(b-a))$ and $P$ such that $U(f_n, P, [a, b]) -
-  L(f_n, P, [a, b]) <= epsilon/(5(b-a))$. QED.
+  such that $u_n <= epsilon / (5(b-a))$ and $P$ such that $U(f_n, P, [a, b]) -
+  L(f_n, P, [a, b]) <= epsilon / (5(b-a))$. QED.
 ]
 
 == Riemann Integral Is Not Good Enough
@@ -370,15 +371,17 @@
 #problem[
   Define $f: [0, 1] -> RR$ as follows:
   $
-    f(x) = cases(0 "if" x "is irrational", 1/n "if" x "is rational and"
-  n "is the smallest positive integer"\ "   such that" x =  m/n "for some integer m")
+    f(x) = cases(
+      0 "if" x "is irrational", 1 / n "if" x "is rational and"
+      n "is the smallest positive integer"\ "   such that" x = m / n "for some integer m"
+    )
   $
   Show that $f$ is Riemann integrable and compute $integral_0^1 f$.
 ]
 
 #solution[
   It is trivial to see $L(f, [0, 1]) = 0$. Now it suffices to prove that $U(f,
-  [0, 1]) = 0$.
+    [0, 1]) = 0$.
 
   Consider the uniform partition $P$ that divides $[0, 1]$ into $n(n-1) + 2$
   equal subintervals. Then, since every rational number lies in at most 2
@@ -388,11 +391,11 @@
   $
   where $q_1, q_2, ...$ is an enumeration of the rationals in $[0, 1]$,
   ordered by $f(q_1) < f(q_2) < ...$. In fact, by noting that $q_1 = 1, q_2 =
-  1/2, q_3 = 1/3, q_4 = 2/3, ...$ (here, if $f(p) = f(q)$ then we fallback to
+  1 / 2, q_3 = 1 / 3, q_4 = 2 / 3, ...$ (here, if $f(p) = f(q)$ then we fallback to
   default ordering to enumerate $p$ and $q$), it is possible to evaluate the sum as
   $ sum_(k = 1)^(n(n-1) / 2+1) f(q_k) = 1 + sum_(k = 2)^n (k - 1) / k <= n $
 
-  Hence, $U(f, [0, 1]) <= U(f, P, [0, 1]) <= (2n)/(n(n-1) + 2) -> 0$ as $n ->
+  Hence, $U(f, [0, 1]) <= U(f, P, [0, 1]) <= (2n) / (n(n-1) + 2) -> 0$ as $n ->
   infinity$. QED.
 ]
 
@@ -404,7 +407,7 @@
 
 #solution[
   This is a direct consequence of the fact that $L(-f, [a, b]) = -U(f, [a,
-  b])$ for all $f: [a, b] -> RR$.
+      b])$ for all $f: [a, b] -> RR$.
 ]
 
 #problem[
@@ -448,8 +451,10 @@
   and a sequence $x_n$ such that $[x_n-r_n, x_n+r_n] subset.eq [0, 1]$ for all
   $k = 1, 2, ...$ Then, define $f_n$ as
   $
-    f_n (x) = cases(1/r_n - abs(x_n - x)/r_n^2 "if" x in [x_n - r_n, x_n + r_n],
-  0 "otherwise"),
+    f_n (x) = cases(
+      1 / r_n - abs(x_n - x) / r_n^2 "if" x in [x_n - r_n, x_n + r_n],
+      0 "otherwise"
+    ),
   $
   we have
   $
@@ -469,27 +474,27 @@
 
   We will iteratively construct $x_n$ and $r_n$ as follows.
 
-  1. Divides $[0, 1]$ into two equal subintervals $(0, 1/2)$ and $(1/2, 1)$.
-    Then, let $(x_1 - r_1, x_1 + r_1) = (0, 1/2)$, i.e. $x_1 = 1/4$ and $r_1 = 1/4$.
-  2. For every $x in [0, 1/2]$, we will let $N = 1$, which means that $(x_n
-    - r_n, x_n + r_n) subset.eq (1/2, 1)$ for all $n > 1$. The idea is very
+  1. Divides $[0, 1]$ into two equal subintervals $(0, 1 / 2)$ and $(1 / 2, 1)$.
+    Then, let $(x_1 - r_1, x_1 + r_1) = (0, 1 / 2)$, i.e. $x_1 = 1 / 4$ and $r_1 = 1 / 4$.
+  2. For every $x in [0, 1 / 2]$, we will let $N = 1$, which means that $(x_n
+      - r_n, x_n + r_n) subset.eq (1 / 2, 1)$ for all $n > 1$. The idea is very
     simple: we just chop that interval into two subintervals again: $(x_2-r_2,
-    x_2+r_2) = [1/2, 3/4]$, and $(x_n-r_n, x_n+r_n) subset.eq [3/4, 1]$ for
-    all $n > 2$. Then, $x_2 = 5/8$ and $r_2 = 1/8$.
+      x_2+r_2) = [1 / 2, 3 / 4]$, and $(x_n-r_n, x_n+r_n) subset.eq [3 / 4, 1]$ for
+    all $n > 2$. Then, $x_2 = 5 / 8$ and $r_2 = 1 / 8$.
   3. Continue the steps above to infinity.
 
   More rigorously, we can define $x_n$ and $r_n$ explicitly as follows:
   $ r_n = 1 / 2^(n + 1) "and" x_n = 1 - 3 / 2^(n + 1). $
 
   Then, for every $x in [0, 1)$ ($x = 1$ does not lie on any $[x_n - r_n,
-  x_n + r_n]$, so we can ignore this case), there exists some $N$ such that
+    x_n + r_n]$, so we can ignore this case), there exists some $N$ such that
   $ 1 / 2^N <= 1 - x < 1 / 2^(N - 1). $
   So if,
   $
-    &x in (x_n - r_n, x_n + r_n) = (1 - 1 / 2^(n - 1), 1 - 1 / 2^n) \
-    &=> (1 - 1 / 2^(N - 1), 1 - 1 / 2^N] sect (1 - 1 / 2^(n - 1), 1 - 1 / 2^n) !=
-    emptyset \
-    &=> N = n
+    & x in (x_n - r_n, x_n + r_n) = (1 - 1 / 2^(n - 1), 1 - 1 / 2^n) \
+    & => (1 - 1 / 2^(N - 1), 1 - 1 / 2^N] sect (1 - 1 / 2^(n - 1), 1 - 1 / 2^n) !=
+      emptyset                                                       \
+    & => N = n
   $
 
   Hence, for every $n > N$, $x$ can not belong to $(x_n - r_n, x_n + r_n)$,
@@ -544,20 +549,20 @@
   $ F subset.eq RR = union.big_(n in ZZ^+) (-n, n). $
   Since $F$ has a finite subcover, denoted $(-n_1, n_1), (-n_2, n_2), ...,
   (-n_k, n_k)$, it must be contained in $(-max_(i = 1, ..., k) n_i, max_(i = 1,
-  ..., k) n_i)$. Hence, $F$ is bounded.
+    ..., k) n_i)$. Hence, $F$ is bounded.
 
   Denote $d(x, y) = |x - y|$ as the distance between two real numbers $x$ and
   $y$#footnote[This is to make it so that this argument generalizes well to
-  higher-dimensional spaces (and Hausdorff topological spaces in general)],
+    higher-dimensional spaces (and Hausdorff topological spaces in general)],
   $B(x, r) = (x-r, x+r)$ as the open ball centered at $x$ with radius $r$.
 
   Consider an arbitrary $x_0 in RR without F$, then
   $ cal(C) = {B(x, 1 / 2 d(x, x_0)) | x in C} $
   is an open cover of $F$. Hence, there exists finitely many $x_1, x_2, ...,
-  x_n$ such that $ F subset.eq union.big_(k = 1)^n B(x_k, 1/2 d(x_k, x_0)). $
+  x_n$ such that $ F subset.eq union.big_(k = 1)^n B(x_k, 1 / 2 d(x_k, x_0)). $
 
-  Now, consider $ N = B(x_0, 1/2 min_(k = 1, 2, ...n) d(x_k, x_0)), $
-  $N$ clearly does not intersect any of $B(x_k, 1/2 d(x_k, x_0))$, so $N$ does
+  Now, consider $ N = B(x_0, 1 / 2 min_(k = 1, 2, ...n) d(x_k, x_0)), $
+  $N$ clearly does not intersect any of $B(x_k, 1 / 2 d(x_k, x_0))$, so $N$ does
   not contain any element in $F$, i.e. $N subset.eq RR without F$.
 
   Hence, $RR without F$ is open, i.e. $F$ is closed.
@@ -590,7 +595,7 @@
 ]
 
 #problem[
-  Prove that if $a, b  in RR$ and $a < b$, then
+  Prove that if $a, b in RR$ and $a < b$, then
   $ |(a, b)| = |[a, b)| = |(a, b]| = b - a. $
 ]
 
@@ -607,7 +612,7 @@
 #solution[
   If $(a, b) sect (c, d) = diameter$, then WLOG assuming $a < b < c < d$, and
   then $ |(a, b)| + |(c, d)| >= |(a, b) union (c, d)| >= |(a, d) without (b,
-  c)|, $ and equivalently
+    c)|, $ and equivalently
   $ b - a + d - c >= |(a, b) union (c, d)| >= d - a - c + b. $
   This means $|(a, b) union (c, d)| = b - a + d - c$.
 
@@ -628,13 +633,13 @@
     this interval as $alpha(I)$.
   - For every $epsilon > 0$,
     $
-      (c, d) sect (RR without (-t, t)) &= ((c, d) sect (-infinity, -t]) union ((c,
-          d) sect [t, infinity))\
-      &subset.eq ((c, d) sect (-infinity, -t)) union ((c,
-          d) sect (t, infinity)) union {-t, t}\
-      &subset.eq (c, min{d, -t}) union (max{c, t}, d) union {-t, t}.
+      (c, d) sect (RR without (-t, t)) & = ((c, d) sect (-infinity, -t]) union ((c,
+                                             d) sect [t, infinity))                                    \
+                                       & subset.eq ((c, d) sect (-infinity, -t)) union ((c,
+                                             d) sect (t, infinity)) union {-t, t}                      \
+                                       & subset.eq (c, min{d, -t}) union (max{c, t}, d) union {-t, t}.
     $
-    Denote $beta(I) = (c, min{d, -t})$ and $ gamma(I) = (max{c, t}, d)$.
+    Denote $beta(I) = (c, min{d, -t})$ and $gamma(I) = (max{c, t}, d)$.
 
   It is trivial to see that $ell(I) = ell(alpha(I)) + ell(beta(I)) +
   ell(gamma(I))$, and if $I_1, I_2, ...$ is an open interval cover of $A$, the
@@ -642,15 +647,15 @@
   respectively:
   - $S = {alpha(I_1), alpha(I_2), ...}$ of $A sect (-t, t)$.
   - $T = {(t-epsilon, t+epsilon), (-t-epsilon, -t+epsilon), beta(I_1), beta(I_2),
-  ..., gamma(I_1), gamma(I_2), ...}$ of $A sect (RR without (-t, t))$.
+      ..., gamma(I_1), gamma(I_2), ...}$ of $A sect (RR without (-t, t))$.
 
   We have:
   $
-    sum_(n=1)^infinity ell(I_n) &= (sum_(n=1)^infinity ell(alpha(I_n))) +
-    (sum_(n=1)^infinity ell(beta(I_n, epsilon)) + sum_(n=1)^infinity
-      ell(gamma(I_n, epsilon))) \
-    &= sum_(I in S) ell(I) + sum_(I in T) ell(I) - 4 epsilon \
-    &>= |A sect (-t, t)| + |A sect (RR without (-t, t))| - 4epsilon.
+    sum_(n=1)^infinity ell(I_n) & = (sum_(n=1)^infinity ell(alpha(I_n))) +
+                                  (sum_(n=1)^infinity ell(beta(I_n, epsilon)) + sum_(n=1)^infinity
+                                    ell(gamma(I_n, epsilon)))                                     \
+                                & = sum_(I in S) ell(I) + sum_(I in T) ell(I) - 4 epsilon         \
+                                & >= |A sect (-t, t)| + |A sect (RR without (-t, t))| - 4epsilon.
   $
 
   Letting $epsilon -> 0$ and taking the infimum of left hand side, it must be
@@ -674,7 +679,7 @@
     Assuming that this limit is positive, i.e. there exists some $epsilon, t_0 > 0$
     such that $forall t > t_0, |A without (-t, t)| > epsilon$. This is equivalent to
     the fact that if $I_1, I_2, ...$ is an open interval cover of $A without (-t,
-    t)$, then $sum_(k = 1)^infinity ell(I_k) > epsilon$.
+      t)$, then $sum_(k = 1)^infinity ell(I_k) > epsilon$.
 
     Furthermore, if this series converges to some $S < +infinity$, then there
     exists some $k_0$ such that $sum_(k=1)^k_0 ell(I_k) > L - epsilon$ and
@@ -683,7 +688,7 @@
     $ t' = max{t, max_(1 <= k <= k_0) (max {-inf I_k, sup I_k})}, $
 
     then $I_(k_0+1), I_(k_0+2), ...$ is an open interval cover of $A without (-t',
-    t')$, but $sum_(k=k_0+1)^infinity ell(I_k) < epsilon$, a contradiction. Hence,
+      t')$, but $sum_(k=k_0+1)^infinity ell(I_k) < epsilon$, a contradiction. Hence,
     it must be the case that $sum_(k=1)^infinity ell(I_k) = +infinity$.
 
     However, this means that $|A|$ must be equal to $+infinity$, a
@@ -729,7 +734,7 @@
     $NN$ to $ZZ$.
 
     Then, we have $|A sect (-t, t)| = sum_(k in ZZ) |A sect (k, k + 1) sect (-t,
-    t)|$. Hence, $ lim_(t -> infinity) |A sect (-t, t)| = lim_(t -> infinity)
+      t)|$. Hence, $ lim_(t -> infinity) |A sect (-t, t)| = lim_(t -> infinity)
     sum_(k in ZZ) |A sect (k, k + 1) sect (-t, t)| < M. $
 
     However, for every $t in ZZ$, we have:
@@ -784,7 +789,7 @@
     numbers, $I$ must not be fully contained in $F$, a contradiction.
   + From subadditivity, we have
     $
-      |RR without F| <= sum_(k = 1)^infinity ell((r_k - 1/2^k, r_k + 1/2^k)) +
+      |RR without F| <= sum_(k = 1)^infinity ell((r_k - 1 / 2^k, r_k + 1 / 2^k)) +
       sum_(k = 1)^infinity 1 / 2^(k-1) = 1.
     $
     Hence it must be the case that $|F| = +infinity$.
@@ -843,13 +848,13 @@
 
 #problem[
   Suppose $Sc$ is the smallest $sigma$-algebra on $RR$ containing ${(r, s]: r, s
-  in QQ}$. Prove that $Sc$ is the collection of Borel subsets of $RR$.
+    in QQ}$. Prove that $Sc$ is the collection of Borel subsets of $RR$.
 ]
 
 #solution[
   #lemma[
     Suppose $Sc$ is the smallest $sigma$-algebra on $RR$ containing ${(r,
-    infinity): r in QQ}$. Prove that $Sc$ is the collection of Borel subsets of $RR$.
+        infinity): r in QQ}$. Prove that $Sc$ is the collection of Borel subsets of $RR$.
     This result also holds if $(r, infinity)$ is replaced by $[r, infinity)$.
   ] <common-sigma>
 
@@ -870,7 +875,7 @@
 
 #problem[
   Suppose $Sc$ is the smallest $sigma$-algebra on $RR$ containing ${(r, n]: r in
-  QQ, n in ZZ}$. Prove that $Sc$ is the collection of Borel subsets of $RR$.
+    QQ, n in ZZ}$. Prove that $Sc$ is the collection of Borel subsets of $RR$.
 ]
 
 #solution[
@@ -883,7 +888,7 @@
 
 #problem[
   Suppose $Sc$ is the smallest $sigma$-algebra on $RR$ containing ${(r, r+1): r in
-  QQ}$. Prove that $Sc$ is the collection of Borel subsets of $RR$.
+    QQ}$. Prove that $Sc$ is the collection of Borel subsets of $RR$.
 ]
 
 #solution[
@@ -893,7 +898,7 @@
 
 #problem[
   Suppose $Sc$ is the smallest $sigma$-algebra on $RR$ containing ${[r,
-  infinity): r, s in QQ}$. Prove that $Sc$ is the collection of Borel subsets of
+      infinity): r, s in QQ}$. Prove that $Sc$ is the collection of Borel subsets of
   $RR$.
 ]
 
@@ -978,7 +983,7 @@
 #let Yc = math.cal([Y])
 #problem[
   Suppose $Tc$ is a $sigma$-algebra on a set $Yc$ and $X in Tc$. Let $Sc = {E in
-  Tc : E subset.eq X}$.
+    Tc : E subset.eq X}$.
   + Show that $Sc = {F sect X: F in Tc}$.
   + Show that $Sc$ is a $sigma$-algebra on $X$.
 ]
@@ -1009,7 +1014,7 @@
 ]
 
 #solution[
-  + The predicate $P(K): $ "$|f(b) - f(c)| < 1/k, forall b, c in K$" can be
+  + The predicate $P(K):$ "$|f(b) - f(c)| < 1 / k, forall b, c in K$" can be
     trivially seen to be "monotonically decreasing", i.e. if $A subset.eq B$, then
     $P(B) => P(A)$. Hence, if $a in G_k$, i.e. there exists an open neighborhood
     $N$ of $a$ such that $P(N)$ holds, then for every $a' in N$, we can
@@ -1051,7 +1056,7 @@
     there exists some $j in NN$ such that $|f_s (x) - f_k (x)| < epsilon$ holds
     for all $s, k >= j$. We can set $s = j$ by using the triangle inequality.
 
-    Discretize $epsilon$ as $1/n$ as $n -> infinity$, we arrive at the desired
+    Discretize $epsilon$ as $1 / n$ as $n -> infinity$, we arrive at the desired
     result.
   + Trivial.
 ]
@@ -1059,7 +1064,7 @@
 #problem[
   Suppose $X$ is a set and $E_1, E_2, ...$ is a disjoint sequence of subsets of
   $X$ such that $union.big_(k = 1)^infinity E_k = X$. Let $Sc = {union_(k in K)
-  E_k : K subset.eq ZZ^+}$.
+    E_k : K subset.eq ZZ^+}$.
 
   + Show that $Sc$ is a $sigma$-algebra on $X$.
   + Prove that a function from $X$ to $RR$ is $Sc$-measurable if and only if the
@@ -1177,7 +1182,7 @@
     $S sect (-infinity, m)$ must be countable as well. Similarly, we can prove
     that $n = inf N in N$.
 
-    Now, if $m < n$, then we can pick $r = (m + n)/2 in RR without M without N$,
+    Now, if $m < n$, then we can pick $r = (m + n) / 2 in RR without M without N$,
     and define $A = S sect (-infinity, r)$, $B = S sect [r, infinity)$.
 
     Otherwise, if $m >= n$, then $M sect N$ is nonempty, a contradiction.
@@ -1187,15 +1192,14 @@
   into two uncountable subsets $A$ and $B$. Then, $f^(-1)(A)$ and $f^(-1)(B)$
   are both uncountable, so $f$ is not measurable, a contradiction.
 
-  Hence, $f(X)$ must be countable, i.e. there exists a partition $X_1, X_2, ...
-  $ of $X$ such that $f(X_i) = {y_i}$ are singletons and $y_i != y_j$ for all $i
+  Hence, $f(X)$ must be countable, i.e. there exists a partition $X_1, X_2, ...$ of $X$ such that $f(X_i) = {y_i}$ are singletons and $y_i != y_j$ for all $i
   != j$.
 
   Since $f^(-1)({y_i}) = X_i$, all $X_i$ must be countable or have a countable
   complement (cocountable). If there are two cocountable sets $X_1$ and $X_2$
   (without loss of generality, and we assume $y_1 < y_2$ here),
-  then $f^(-1)((-infinity, (y_1+y_2)/2)) supset.eq X_1$ and
-  $f^(-1)(((y_1+y_2)/2, infinity)) supset.eq X_2$, which are both uncountable,
+  then $f^(-1)((-infinity, (y_1+y_2) / 2)) supset.eq X_1$ and
+  $f^(-1)(((y_1+y_2) / 2, infinity)) supset.eq X_2$, which are both uncountable,
   so none of the preimages can be in the $Sc$. Hence,
 
   $ f "is non-constant on a countable set." $
@@ -1259,7 +1263,7 @@
   $diameter$. We can be sure that a rational $q$ is never marked twice, since
   the intervals $(f^-(x), f^+(x))$ does not intersect. Then, $mu$ is an
   surjective#footnote[This statement might not be true if there is no $q$ that
-  maps to $diameter$ but this is just a small and easily fixable detail.]
+    maps to $diameter$ but this is just a small and easily fixable detail.]
   mapping from $QQ$ to $D union {diameter}$, where $D$ is the set of
   discontinuities of $f$.
 
@@ -1297,7 +1301,7 @@
   #proof[
     $E$ can be written as the disjoint union of countably many open intervals
     $I_k$, so this effectively reduces the problem to the case where $E = (a,
-    b)$ for some $a, b in RR$.
+      b)$ for some $a, b in RR$.
 
     Denote $Y = RR without f((a, b))$. Define an equivalent relation $tilde$ as
     $x tilde y <==> [x, y] subset.eq Y$. Then, the equivalent classes $C_alpha$,
@@ -1362,8 +1366,10 @@
 
 #solution[
   $
-    g^(-1)((a, infinity)) = cases(f^(-1)((a, infinity)) "if" a >= 0, f^(-1)((a,
-  infinity)) sect B "otherwise").
+    g^(-1)((a, infinity)) = cases(
+      f^(-1)((a, infinity)) "if" a >= 0, f^(-1)((a,
+          infinity)) sect B "otherwise"
+    ).
   $
 ]
 
@@ -1384,17 +1390,19 @@
 #problem[
   Show that
   $
-    lim_(j -> infinity) (lim_(k -> infinity) (cos (j!pi x))^(2k)) = cases(1 "if"
-    x "is rational", 0 "if" x "is irrational").
+    lim_(j -> infinity) (lim_(k -> infinity) (cos (j!pi x))^(2k)) = cases(
+      1 "if"
+      x "is rational", 0 "if" x "is irrational"
+    ).
   $
 ]
 
 #solution[
-  If $x = p/q$ is a rational number, then $cos(j!pi x)^(2k) = 1$ for all
+  If $x = p / q$ is a rational number, then $cos(j!pi x)^(2k) = 1$ for all
   $j > q$.
 
   If $x$ is irrational, then $|cos(j!pi x)| < 1$ for all $j$. Hence, $(cos (j!
-  pi x))^(2k) -> 0$ as $k -> infinity$, so the limit is $0$.
+      pi x))^(2k) -> 0$ as $k -> infinity$, so the limit is $0$.
 ]
 
 == Measures and Their Properties
@@ -1442,7 +1450,7 @@
 
 #solution[
   $mu$ defined as
-  $ mu({k}) = cases(1/2^t "if" k = 2t, 3 "if" k = 2t + 1), ("here" t in ZZ). $
+  $ mu({k}) = cases(1 / 2^t "if" k = 2t, 3 "if" k = 2t + 1), ("here" t in ZZ). $
 ]
 
 #problem[
@@ -1482,7 +1490,7 @@
 
 #problem[
   Find all $c in [3, infinity)$ such that there exists a measurable space $(X,
-  Sc, mu)$ with
+    Sc, mu)$ with
   $ {mu(E): E in Sc} = [0, 1] union [3, c] $.
 ]
 
@@ -1518,7 +1526,7 @@
 
 #solution[
   $X = RR$, $Sc$ is the set of all Borel subsets of $RR$, $cal(A) = {(a,
-  +infinity) : a in RR}$. Now, we can define a class of measure $mu$ by scaling
+      +infinity) : a in RR}$. Now, we can define a class of measure $mu$ by scaling
   the outer measure with an arbitrary constant $t > 0$, but $mu(A) = infinity$
   for all $A in cal(A)$.
 ]
@@ -1612,10 +1620,10 @@
       Chop up $(0, 1)$ into $b^n$ equal intervals with the same $n$ digits after
       the decimal point, and by a simple counting argument, $(b-1)^n$ of these
       intervals does not contain the digit $d$ in the first $n$-th positions.
-      Hence, $|S_n| = (b-1)^n/b^n = (1 - 1/b)^n$.
+      Hence, $|S_n| = (b-1)^n / b^n = (1 - 1 / b)^n$.
 
       Since our set is the complement of $S$, the intersection of all $S_n$, it
-      must have a Lebesgue measure of at least $1 - (1 - 1/b)^n$ for all $n >
+      must have a Lebesgue measure of at least $1 - (1 - 1 / b)^n$ for all $n >
       0$. Letting $n$ approach infinity, we acquire the desired result.
     ]
 
@@ -1636,7 +1644,7 @@
   epsilon_0$.
 
   Hence, $|F| <= |A| - epsilon_0$. We can turn the $epsilon_0$ into an 1 by
-  simply scaling $A$ by a factor of $1/epsilon_0$.
+  simply scaling $A$ by a factor of $1 / epsilon_0$.
 ]
 
 #problem[
@@ -1736,26 +1744,26 @@
   Let $A$ be a Lebesgue measurable set.
 
   From @outer-measure-limit, there exists some $t > 0$ such that $|A without
-  (-t, t)| < epsilon/3$.
+  (-t, t)| < epsilon / 3$.
 
   Since $A$ is Lebesgue measurable, there exists open superset $E$ of $A$ such
-  that $|E without A| < epsilon/3$. Hence,
+  that $|E without A| < epsilon / 3$. Hence,
 
   By Theorem 0.59 of the MIRA supplement, we can write
   $E sect (-t, t)$ as the disjoint union of countably many open intervals $I_k
   subset.eq (-t, t)$, $k = 1, 2,
   ...$ Then, $|E| = sum_(k = 1)^infinity |I_k|$, there exists some $K > 0$ such that
-  $sum_(k = K + 1)^infinity |I_k| < epsilon/3$.
+  $sum_(k = K + 1)^infinity |I_k| < epsilon / 3$.
 
   Define $G = union.big_(k = 1)^K I_k$, then we have $G subset.eq (-t, t)$ and
   therefore
   $
-    |A without G| &= |(A without G) sect (-t, t)| + |(A without G) without (-t,
-      t)|\
-    &<= |(E without G) sect (-t, t)| + |A without (-t, t)|\
-    &<= |(E sect (-t, t)) without G| + |A without (-t, t)|\
-    &<= abs(union.big_(k = K + 1)^infinity I_k) + |A without (-t, t)|\
-    &< (2epsilon) / 3,
+    |A without G| & = |(A without G) sect (-t, t)| + |(A without G) without (-t,
+                      t)|                                                            \
+                  & <= |(E without G) sect (-t, t)| + |A without (-t, t)|            \
+                  & <= |(E sect (-t, t)) without G| + |A without (-t, t)|            \
+                  & <= abs(union.big_(k = K + 1)^infinity I_k) + |A without (-t, t)| \
+                  & < (2epsilon) / 3,
   $
   and
   $
@@ -1846,19 +1854,19 @@
     Then, we can define $C$ as
     $ C = B sect sect.big_(n = 1)^infinity cal(C) (1 / n). $
 
-    And we must have $|A| <= |C| <= |A| + 1/n$ for all $n in ZZ^+$. This trivially
+    And we must have $|A| <= |C| <= |A| + 1 / n$ for all $n in ZZ^+$. This trivially
     implies that $|C| = |A|$.
   ]
 
   Let $B$ be a Borel set such that $|A| = |B|$ and $A subset.eq B subset.eq (b,
-  c)$. Then, we have $|(b, c) without E| = |(b, c) without A|$.
+    c)$. Then, we have $|(b, c) without E| = |(b, c) without A|$.
 
   Let $B'$ be a Borel set such that $|(b, c) without A| = |B'|$ and $(b, c)
   without A subset.eq B'$. Then, similarly, $|A| = |(b, c) without B'|$.
 
   Hence, $|A| = |B| = |(b, c) without B'|$ and $(b, c) without B' subset.eq A
   subset.eq B$. This means $|A without ((b, c) without B')| <= |B without ((b,
-  c) without B')| = |B| - |(b, c) without B'| = 0$. By Theorem 2.71, $A$ must be
+      c) without B')| = |B| - |(b, c) without B'| = 0$. By Theorem 2.71, $A$ must be
   Lebesgue measurable.
 
   The other direction is trivial.
@@ -1878,19 +1886,19 @@
 ]
 
 #problem[
-  Show that $1/4$ and $9/13$ are both in the Cantor set.
+  Show that $1 / 4$ and $9 / 13$ are both in the Cantor set.
 ]
 
 #proof[
-  $1/4 = 0.overline(02)_(3)$ and $9/13 = 0.overline(200)_(3)$.
+  $1 / 4 = 0.overline(02)_(3)$ and $9 / 13 = 0.overline(200)_(3)$.
 ]
 
 #problem[
-  Show that $13/17$ is not in the Cantor set.
+  Show that $13 / 17$ is not in the Cantor set.
 ]
 
 #proof[
-  $13/17 = 0.202bold(1)..._(3)$.
+  $13 / 17 = 0.202bold(1)..._(3)$.
 ]
 
 #problem[
@@ -1903,19 +1911,19 @@
 ]
 
 #problem[
-  Let $C$ denote the Cantor set. Prove that ${1/2 x + 1/2 y: x, y in C} = [0, 1]$.
+  Let $C$ denote the Cantor set. Prove that ${1 / 2 x + 1 / 2 y: x, y in C} = [0, 1]$.
 ]
 
 #solution[
   For every number $z = 0.z_1 z_2 ..._(3)$, we can construct $x = 0.x_1
-  x_2..._(3)$ and $y = 0.y_1 y_2 ..._(3)$ such that $z = 1/2 x + 1/2 y$ as
+  x_2..._(3)$ and $y = 0.y_1 y_2 ..._(3)$ such that $z = 1 / 2 x + 1 / 2 y$ as
   follows:
 
   - If $z_k = 0$, then $x_k = y_k = 0$.
   - If $z_k = 2$, then $x_k = y_k = 2$.
   - If $z_k = 1$, then $x_k = 0$ and $y_k = 2$.
 
-  Then, we can see that $z_k = 1/2 (x_k + y_k)$ and $x_k, y_k in {0, 2}$ for all
+  Then, we can see that $z_k = 1 / 2 (x_k + y_k)$ and $x_k, y_k in {0, 2}$ for all
   $k > 0$. Hence $x, y in C$.
 ]
 
@@ -1953,19 +1961,19 @@
 
 #problem[
   Evaluate each of the following:
-  + $Lambda(9/13)$.
+  + $Lambda(9 / 13)$.
   + $Lambda(0.93)$.
 ]
 
 #solution[
-  + $Lambda(9/13) = Lambda(0.overline(200)_(3)) = 0.overline(100)_(2) = 4 / 7.$
+  + $Lambda(9 / 13) = Lambda(0.overline(200)_(3)) = 0.overline(100)_(2) = 4 / 7.$
   + $Lambda(0.93) = Lambda(0.221..._(3)) = 0.111_(2) = 7 / 8.$
 ]
 
 #problem[
   Find each of the following sets:
-  + $Lambda^(-1)({1/3})$;
-  + $Lambda^(-1)({5/16})$.
+  + $Lambda^(-1)({1 / 3})$;
+  + $Lambda^(-1)({5 / 16})$.
 ]
 
 #solution[
@@ -2043,17 +2051,17 @@
 ]
 
 #solution[
-  $f_n (x) = x/n$.
+  $f_n (x) = x / n$.
 ]
 
 #problem[
   Give an example of a sequence of continuous function $f_1, f_2, ...$ from $[0,
-  1]$ to $RR$ that converges pointwise to a function $f: [0, 1] -> RR$ that is
+    1]$ to $RR$ that converges pointwise to a function $f: [0, 1] -> RR$ that is
   not a bounded function.
 ]
 
 #solution[
-  $f_n (x) = (n x)/(n x^2 + 2)$.
+  $f_n (x) = (n x) / (n x^2 + 2)$.
 ]
 
 #problem[
@@ -2065,14 +2073,14 @@
 #solution[
   For any $n$, we have:
   $
-    0 <= &limsup_(delta -> 0^+) sup_(d(x, y) < delta) |f(x) - f(y)|\
-    <= &liminf_(n -> infinity) limsup_(delta -> 0^+) sup_(d(x, y) < delta)
-    (|f(x) - f_n (x)| + |f(y) - f_n (y)| + |f_n (x) - f_n (y)|)\
-    <= &liminf_(n -> infinity) limsup_(delta -> 0^+) sup_(d(x, y) < delta)
-    (2 sup_(z in A) |f(z) - f_n (z)| + |f_n (x) - f_n (y)|)\
-    <= &2 liminf_(n -> infinity) sup_(z in A) |f(z) - f_n (z)| + limsup_(n ->
-    infinity) liminf_(delta -> 0^+) sup_(d(x, y) < delta) |f_n (x) - f_n (y)|\
-    = &0.
+    0 <= & limsup_(delta -> 0^+) sup_(d(x, y) < delta) |f(x) - f(y)|                 \
+      <= & liminf_(n -> infinity) limsup_(delta -> 0^+) sup_(d(x, y) < delta)
+           (|f(x) - f_n (x)| + |f(y) - f_n (y)| + |f_n (x) - f_n (y)|)               \
+      <= & liminf_(n -> infinity) limsup_(delta -> 0^+) sup_(d(x, y) < delta)
+           (2 sup_(z in A) |f(z) - f_n (z)| + |f_n (x) - f_n (y)|)                   \
+      <= & 2 liminf_(n -> infinity) sup_(z in A) |f(z) - f_n (z)| + limsup_(n ->
+           infinity) liminf_(delta -> 0^+) sup_(d(x, y) < delta) |f_n (x) - f_n (y)| \
+       = & 0.
   $
 ]
 
@@ -2093,8 +2101,10 @@
   Suppose $(X, Sc, mu)$ is a measure space $mu(X) < infinity$. Suppose $f_1,
   f_2, ...$ is a sequence of $Sc$-measurable functions from $X$ to $RR$ such
   that $lim_(k -> infinity) f_k (x) = infinity$ for each $x in X$. Prove that
-  for every $epsilon > 0$, there exists a set $E in Sc$ such that $mu(X without
-  E) < epsilon$ and $f_1, f_2, ...$ converges uniformly to $infinity$ on $E$
+  for every $epsilon > 0$, there exists a set $E in Sc$ such that $mu(
+    X without
+    E
+  ) < epsilon$ and $f_1, f_2, ...$ converges uniformly to $infinity$ on $E$
   (meaning that for every $t > 0$, there exists $n in ZZ^+$ such that $f_k (x) >
   t$ for all integers $k >= n$ and all $x in E$).
 ]
@@ -2109,11 +2119,11 @@
 
   Define
   $ E = sect.big_(n = 1)^infinity S(n, epsilon / 2^n), $
-  then $ mu(X without E) <= sum_(n = 1)^infinity mu(X without S(n, epsilon/2^n))
+  then $ mu(X without E) <= sum_(n = 1)^infinity mu(X without S(n, epsilon / 2^n))
   < epsilon. $
 
-  For any $t > 0$, if $x in E$ then $x in S(ceil(t), epsilon/2^ceil(t))$, which
-  means $x in A_k (M)$ for all $k > N(ceil(t), epsilon/2^ceil(t))$. Hence $f_n$
+  For any $t > 0$, if $x in E$ then $x in S(ceil(t), epsilon / 2^ceil(t))$, which
+  means $x in A_k (M)$ for all $k > N(ceil(t), epsilon / 2^ceil(t))$. Hence $f_n$
   converges uniformly to $f$ on $E$.
 ]
 
@@ -2159,7 +2169,7 @@
   Suppose $F_1, ..., F_n$ are disjoint closed subsets of $RR$. Prove that if
   $ g: F_1 union ... union F_n -> RR $
   is a function such that $g|_F_k$ is a continuous function for each $k in {1,
-  ..., n}$, then $g$ is a continuous function.
+    ..., n}$, then $g$ is a continuous function.
 ]
 
 #solution[
@@ -2184,7 +2194,7 @@
 
 #solution[
   If $F$ is not closed, then there exists a sequence $alpha_n in F$ that converges
-  to some $alpha in.not F$. Let $f(x) = 1/abs(x - alpha)$ for $x in F$, then if
+  to some $alpha in.not F$. Let $f(x) = 1 / abs(x - alpha)$ for $x in F$, then if
   $f$ can be extended to a continuous function $tilde(f)$, then:
   $
     tilde(f)(alpha) = lim_(x -> alpha) tilde(f)(x) = lim_(n -> infinity)
@@ -2200,9 +2210,9 @@
 ]
 
 #solution[
-  Again, consider the function $f(x) = sin 1/abs(x - alpha)$, with $alpha$ being
+  Again, consider the function $f(x) = sin 1 / abs(x - alpha)$, with $alpha$ being
   an element in $"cl" F without F$. This function is continuous on $F$, but
-  is not on $RR$, as the limit $lim_(n -> infinity) sin 1/abs(alpha_n - alpha)$
+  is not on $RR$, as the limit $lim_(n -> infinity) sin 1 / abs(alpha_n - alpha)$
   does not exist.
 ]
 
@@ -2231,10 +2241,12 @@
 
 #problem[
   Suppose $b_1, b_2, ...$ is a sequence of real numbers. Define $f: RR -> [0,
-  infinity]$ by
+    infinity]$ by
   $
-    f(x) = cases(sum_(k = 1)^infinity 1/(4^k |x - b_k|) "if" x in.not {b_1, b_2,
-    ...}., infinity "if" x in {b_1, b_2, ...}.)
+    f(x) = cases(
+      sum_(k = 1)^infinity 1 / (4^k |x - b_k|) "if" x in.not {b_1, b_2,
+        ...}., infinity "if" x in {b_1, b_2, ...}.
+    )
   $
   Prove that $|{x in RR: f(x) < 1}| = infinity$.
 ] <prob-borel-fn>
@@ -2246,7 +2258,7 @@
   $
     f (x) = sum_(k = 1)^infinity 1 / (4^k |x - b_k|) < sum_(k = 1)^infinity 1 / 2^k = 1.
   $
-  Clearly $|A| <= sum_(k = 1)^infinity 1/2^(k + 1) = 2$, so $|RR without A| = infinity$.
+  Clearly $|A| <= sum_(k = 1)^infinity 1 / 2^(k + 1) = 2$, so $|RR without A| = infinity$.
 ]
 
 #problem[
@@ -2260,14 +2272,16 @@
   $ tilde(f) (x) = cases(f(x) "if" x in B, 0 "otherwise"). $
   Then, for every Lebesgue measurable set $X$, we have
   $
-    tilde(f)^(-1) (X) = cases(f^(-1)(X) union (RR without B) "if" 0 in B,
-  f^(-1)(X) "otherwise").
+    tilde(f)^(-1) (X) = cases(
+      f^(-1)(X) union (RR without B) "if" 0 in B,
+      f^(-1)(X) "otherwise"
+    ).
   $
   Hence, $tilde(f)$ is Lebesgue measurable. Hence, there exists some $g: B ->
   RR$ such that
   $ |{x in RR: tilde(g)(x) != tilde(f)(x)}| = 0. $
   Take $g = tilde(g)|_B$, then clearly $g$ is Borel measurable, and
-  $ |{x in B: g(x) != f(x)}| <= |{x in RR: tilde(g)(x) != tilde(f)(x)}| = 0$.
+  $|{x in B: g(x) != f(x)}| <= |{x in RR: tilde(g)(x) != tilde(f)(x)}| = 0$.
 ]
 
 = Integration
@@ -2326,7 +2340,7 @@
 
 #solution[
   Let $f$ be
-  $ f(x) = cases(1/n "if" x = m/n in QQ, 1 "otherwise"), $
+  $ f(x) = cases(1 / n "if" x = m / n in QQ, 1 "otherwise"), $
   We can prove that
   $ inf_(x in A) f(x) = 0, $
   for every non-degenerate interval $A subset.eq [0, 1]$, hence the result.
@@ -2355,7 +2369,7 @@
 
 #problem[
   Suppose $X$ is a set, $Sc$ is the $sigma$-algebra on $X$, and $w: X -> [0,
-  infinity]$ is a function. Define a measure $mu$ on $(X, Sc)$ by
+    infinity]$ is a function. Define a measure $mu$ on $(X, Sc)$ by
   $ mu(E) = sum_(x in E) w(x) $
   for $E subset.eq X$. Prove that if $f: X -> [0, infinity]$ is a function, then
   $ integral f dif mu = sum_(x in X) f(x) w(x). $
@@ -2380,7 +2394,7 @@
 #problem[
   Suppose $lambda$ denotes Lebesgue measure on $RR$. Give an example of sequence
   $f_1, f_2, ...$ of simple Borel measurable functions from $RR$ to $[0,
-  infinity)$ such that $lim_(k -> infinity) f_k (x) = 0$ for every $x in RR$ but
+    infinity)$ such that $lim_(k -> infinity) f_k (x) = 0$ for every $x in RR$ but
   $lim_(k -> infinity) integral f_k dif lambda = 1$.
 ]
 
@@ -2397,7 +2411,7 @@
 
 #problem[
   Suppose $mu$ is a measure on a measurable space $(X, Sc)$ and $f: X -> [0,
-  infinity]$ is a measurable function. Define $nu: Sc -> [0, infinity]$ by
+    infinity]$ is a measurable function. Define $nu: Sc -> [0, infinity]$ by
   $ nu(A) = integral chi_A f dif mu $.
   for $A in Sc$. Prove that $nu$ is a measure on $(X, Sc)$.
 ]
@@ -2410,7 +2424,7 @@
   Suppose $(X, Sc, mu)$ is a measure space and $f_1, f_2, ...$ is a sequence of
   nonnegative $Sc$-measurable functions. Define $f: X -> [0, infinity]$ by
   $f(x) = sum_(k = 1)^infinity f_k (x)$. Prove that
-  $integral f dif mu = sum_(k = 1)^infinity integral f_k dif mu $.
+  $integral f dif mu = sum_(k = 1)^infinity integral f_k dif mu$.
 ]
 
 #solution[
@@ -2453,13 +2467,15 @@
   where $q_1, q_2, ...$ is some enumeration of the rationals.
   This function can take the value $infinity$, so denote $X$ as the set of all
   $x in RR$ with $f(x) = infinity$. By @prob-borel-fn, we have $|{x
-  in RR: f(x) >= 1}| <= 2$. However, this result can be generalize by taking
+    in RR: f(x) >= 1}| <= 2$. However, this result can be generalize by taking
   $ A(beta) = union.big_(q_n in QQ) [q - beta^n, q + beta^n], $
   for some $beta in (0, 1)$. Then for every $x in.not A(beta)$,
   $ g(x) <= sum_(n = 1)^infinity 1 / ((4 beta)^n) = 1 / (4beta - 1) < infinity. $
 
-  Measuring the set $RR without A(beta)$ yields $lambda(RR without
-  A(alpha, beta)) <= 2 sum_(n = 1)^infinity beta^n = beta / (beta - 1)$.
+  Measuring the set $RR without A(beta)$ yields $lambda(
+    RR without
+    A(alpha, beta)
+  ) <= 2 sum_(n = 1)^infinity beta^n = beta / (beta - 1)$.
   Clearly, $X$ must be a subset of all $A(beta)$, so its measure must be smaller
   than $beta / (beta - 1)$ for all $beta > 0$. Hence, $|X| = 0$.
 
@@ -2504,13 +2520,12 @@
 
 #problem[
   Suppose $lambda$ is Lebesgue measure on $RR$ and $f: RR -> [-infinity,
-  infinity]$ is a Borel measurable function such that $integral f dif lambda$
+    infinity]$ is a Borel measurable function such that $integral f dif lambda$
   is defined.
   + For $t in RR$, define $f_t RR -> [-infinity, infinity]$ by $f_t (x) = f(x -
-    t)$. Prove that $integral f_t dif lambda = integral f dif lambda$ for all $t
+      t)$. Prove that $integral f_t dif lambda = integral f dif lambda$ for all $t
     in RR$.
-  + For $t in RR$, define $f_t RR -> [-infinity, infinity]$ by $f_t (x) = f(t x)
-    $. Prove that $integral f_t dif lambda = 1/abs(t) integral f dif lambda$ for
+  + For $t in RR$, define $f_t RR -> [-infinity, infinity]$ by $f_t (x) = f(t x)$. Prove that $integral f_t dif lambda = 1 / abs(t) integral f dif lambda$ for
     all $t in RR$.
 ]
 
@@ -2526,7 +2541,7 @@
   Suppose $Sc$ and $Tc$ are $sigma$-algebras on a set $X$ and $Sc subset.eq Tc$.
   Suppose $mu_1$ is a measure on $(X, Sc)$, $mu_2$ is a measure on $(X, Tc)$,
   and $mu_1 (E) = mu_2 (E)$ for all $E in Sc$. Prove that $f: X -> [0,
-  infinity]$ is $Sc$-measurable, then $integral f dif mu_1 = integral f dif
+    infinity]$ is $Sc$-measurable, then $integral f dif mu_1 = integral f dif
   mu_2$.
 ]
 
@@ -2537,12 +2552,12 @@
 
   Then,
   $
-    cal(L)(f, P) &= sum_(i = 1)^m c_i mu(A_i)\
-    &= sum_(i = 1)^m sum_(j = i)^m c_i mu(A_i sect f^(-1)([c_j, c_(j + 1))))\
-    &<= sum_(i = 1)^m sum_(j = i)^m c_j mu(A_i sect f^(-1)([c_j, c_(j + 1))))\
-    &= sum_(j = 1)^m c_j sum_(i = 1)^j mu(A_i sect f^(-1)([c_j, c_(j + 1))))\
-    &= sum_(j = 1)^m c_j mu(f^(-1)[c_j, c_(j + 1)))\
-    &= cal(L)(f, P'),
+    cal(L)(f, P) & = sum_(i = 1)^m c_i mu(A_i)                                              \
+                 & = sum_(i = 1)^m sum_(j = i)^m c_i mu(A_i sect f^(-1)([c_j, c_(j + 1))))  \
+                 & <= sum_(i = 1)^m sum_(j = i)^m c_j mu(A_i sect f^(-1)([c_j, c_(j + 1)))) \
+                 & = sum_(j = 1)^m c_j sum_(i = 1)^j mu(A_i sect f^(-1)([c_j, c_(j + 1))))  \
+                 & = sum_(j = 1)^m c_j mu(f^(-1)[c_j, c_(j + 1)))                           \
+                 & = cal(L)(f, P'),
   $
 
   where $P'$ is the $Sc$-partition of $X$ into $f^(-1)[c_i, c_(i + 1)]$ for $i =
@@ -2579,7 +2594,7 @@
     dif mu$ holds for all $k$, i.e.
     $ inf_(m >= k) integral_(m >= k) (f_m - h_k) dif mu >= 0. $
     This clearly holds true since $h_k (x) = inf_(m >= k) f_m (x)$.
-  + $f_n (x) = n chi_[0, 1/n] (x) exp(-n x)$, then $f = 0$ but $integral f_n
+  + $f_n (x) = n chi_[0, 1 / n] (x) exp(-n x)$, then $f = 0$ but $integral f_n
     dif lambda = 1$ for all $n$.
 ]
 
@@ -2673,7 +2688,7 @@
 
 #problem[
   Give an example of a sequence $f_1, f_2, ...$ of functions from $ZZ^+$ to $[0,
-  infinity)$ such that
+    infinity)$ such that
   $ lim_(k -> infinity) f_k (m) = 0 $
   for every $m in ZZ^+$ but $lim_(k -> infinity) integral f_k dif mu = 1$, where
   $mu$ is counting measure on $ZZ^+$.
@@ -2693,7 +2708,7 @@
 
 #solution[
   Let $Phi(x) = chi_[-1,1] (x) (1-|x|)$ with support $(-1, 1)$.
-  Then, consider $f_k (x) = 3^k Phi(2^k (x - (1 - 3/2^k)))$.
+  Then, consider $f_k (x) = 3^k Phi(2^k (x - (1 - 3 / 2^k)))$.
 ]
 
 #problem[
@@ -2722,7 +2737,7 @@
         "is an" Sc"-partition of" X}.
     $
   + Show that the conclusion of part 1 can fail if th hypothesis that $f$ is
-    bounded is replaced by the hypothesis that $integral f dif mu  < infinity$.
+    bounded is replaced by the hypothesis that $integral f dif mu < infinity$.
   + Show that the conclusion of part 1 can fail if the hypothesis that $mu(X) <
     infinity$ is deleted.
 ]
@@ -2738,16 +2753,16 @@
     $
     But it is also precisely equal to $M mu(X) - integral f dif mu$, hence QED.
 
-  + Take $f(x) = 1/sqrt(x)$
+  + Take $f(x) = 1 / sqrt(x)$
     with $X = (0, 1)$. If $A_1, ..., A_m$ forms a $Sc$-partition
     of $(0, 1)$. and in order to make
-    $ sum_(j = 1)^m mu(A_j) sup_A_j f < infinity$, we need $sup_A_j f <
+    $sum_(j = 1)^m mu(A_j) sup_A_j f < infinity$, we need $sup_A_j f <
     infinity$ for every $j$ such that $mu(A_j) > 0$. Denote $J = {j : mu(A_j) >
-    0}$, then let $M = max_(j in J) sup_A_j f < infinity$. Now, it turns out that
-    every $x in (0, 1/M^2)$ can not be in any $A_j$ such that $j in J$. Hence,
-    $0 = mu(union_(j in.not J) A_j) >= mu((0, 1/M^2)) > 0$, a contradiction.
-  + Take $f(x) = 1/x^2$ with $X = (1, infinity)$. If $A_1, ..., A_m$ forms a
-    $Sc$-partition of $(1, infinity)$. and in order to make $ sum_(j = 1)^m mu(A_j)
+      0}$, then let $M = max_(j in J) sup_A_j f < infinity$. Now, it turns out that
+    every $x in (0, 1 / M^2)$ can not be in any $A_j$ such that $j in J$. Hence,
+    $0 = mu(union_(j in.not J) A_j) >= mu((0, 1 / M^2)) > 0$, a contradiction.
+  + Take $f(x) = 1 / x^2$ with $X = (1, infinity)$. If $A_1, ..., A_m$ forms a
+    $Sc$-partition of $(1, infinity)$. and in order to make $sum_(j = 1)^m mu(A_j)
     sup_A_j f < infinity$, we need $sup_A_j f = 0$ or $f(A_j) = {0}$ for every $j$ such
     that $mu(A_j) = infinity$. However, clearly $f(x) > 0$ for all $x$, so this
     is impossible! Hence, all $A_j$ must have finite measure, so their union,
@@ -2776,26 +2791,26 @@
 #problem[
   Let $lambda$ denote Lebesgue measure on $RR$. Give an example of a continuous
   function $f: [0, infinity) -> RR$ such that $lim_(t -> infinity) integral_([0,
-  t]) f dif lambda$ exists (in $RR$) but $integral_([0, infinity)) f dif lambda$
+    t]) f dif lambda$ exists (in $RR$) but $integral_([0, infinity)) f dif lambda$
   is not defined.
 ] <prob-improper>
 
 #solution[
-  Consider $f(x) = sin(x)/x$ (at $x=0$ we let $f(x)=1$). Then,
+  Consider $f(x) = sin(x) / x$ (at $x=0$ we let $f(x)=1$). Then,
   $
-    integral_0^t (sin x) / x dif x &= "const" - integral_1^t (dif (cos x)) / x\
-    &= "const" - ((cos x) / x)|_1^t - integral_1^t (cos x) / x^2 dif x.
+    integral_0^t (sin x) / x dif x & = "const" - integral_1^t (dif (cos x)) / x                         \
+                                   & = "const" - ((cos x) / x)|_1^t - integral_1^t (cos x) / x^2 dif x.
   $
   As $t -> infinity$, we can see that the final expression is bounded (the
-  integral is dominated by $integral_1^infinity 1/x^2 dif x = 1$).
+  integral is dominated by $integral_1^infinity 1 / x^2 dif x = 1$).
 
   But,
   $
-    integral_0^(2pi N) abs((sin x) / x) dif x &= sum_(n = 0)^(N - 1) integral_(2 pi n)^(2 pi
-    (n + 1)) abs((sin x)/x) dif x\
-    &>=sum_(n = 0)^(N - 1) 1 / (2pi (n + 1)) integral_(2 pi n)^(2 pi (n + 1)) |sin
-    x|dif x\
-    &= sum_(n = 0)^(N - 1) 2 / (pi (n + 1)) -> infinity "as" N -> infinity.
+    integral_0^(2pi N) abs((sin x) / x) dif x & = sum_(n = 0)^(N - 1) integral_(2 pi n)^(2 pi
+                                                (n + 1)) abs((sin x) / x) dif x                                        \
+                                              & >=sum_(n = 0)^(N - 1) 1 / (2pi (n + 1)) integral_(2 pi n)^(2 pi (n + 1)) |sin
+                                                x|dif x                                                                \
+                                              & = sum_(n = 0)^(N - 1) 2 / (pi (n + 1)) -> infinity "as" N -> infinity.
   $
 
   Basically, the integral conditionally converges. Trivially this is a
@@ -2804,13 +2819,13 @@
 
 #problem[
   Let $lambda$ denote Lebesgue measure on $RR$. Give an example of a continuous
-  function $f: (0, 1) -> RR$ such that $lim_(n -> infinity) integral_((1/n,
-  1)) f dif lambda$ exists (in $RR$) but $integral_((0, 1)) f dif lambda$ is not
+  function $f: (0, 1) -> RR$ such that $lim_(n -> infinity) integral_((1 / n,
+    1)) f dif lambda$ exists (in $RR$) but $integral_((0, 1)) f dif lambda$ is not
   defined.
 ]
 
 #solution[
-  $f(x) = 1/x sin(1/x).$ By a change of variable ($u = 1/x$), this is precisely
+  $f(x) = 1 / x sin(1 / x).$ By a change of variable ($u = 1 / x$), this is precisely
   the integral in @prob-improper.
 ]
 
@@ -2833,8 +2848,8 @@
 #problem[
   + Suppose $(X, Sc, mu)$ is a measure space such that $mu(X) < infinity$.
     Suppose $p, r$ are positive numbers with $p < r$. Prove that if $f: X -> [0,
-  infinity)$ is an $Sc$-measurable function such that $integral f^r dif mu <
-  infinity$, then $integral f^p dif mu < infinity$.
+      infinity)$ is an $Sc$-measurable function such that $integral f^r dif mu <
+    infinity$, then $integral f^p dif mu < infinity$.
   + Give an example to show that the result in part 1 can be false without the
     hypothesis that $mu(X) < infinity$.
 ]
@@ -2842,12 +2857,12 @@
 #solution[
   + By the generalized AM-GM inequality, for every $alpha >= 0$,
     $ x^r + alpha dot 1 >= (alpha + 1) x^(r / (alpha + 1)), "for all" x >= 0. $
-    Letting $alpha$ = $r/p - 1 > 0$, we have:
+    Letting $alpha$ = $r / p - 1 > 0$, we have:
     $ x^r + (r / p - 1) >= r / p x^p. $
 
     Hence,
     $ infinity > integral f^r dif mu + (r / p-1)mu(X) >= r / p integral f^p dif mu. $
-  + $integral_1^infinity 1/x = infinity$ and $integral_1^infinity 1/x^2 = 1$.
+  + $integral_1^infinity 1 / x = infinity$ and $integral_1^infinity 1 / x^2 = 1$.
 ]
 
 #problem[
@@ -2859,16 +2874,16 @@
 #solution[
   $ {x in X: f(x) != 0} = union.big_(n = 1)^infinity { x in X: |f(x)| > 1 / n}. $
 
-  Clearly $mu({ x in X: |f(x)| > 1/n}) < n integral |f| dif mu < infinity$ for all $n$.
+  Clearly $mu({ x in X: |f(x)| > 1 / n}) < n integral |f| dif mu < infinity$ for all $n$.
 ]
 
 #problem[
-  Suppose $ f_k (x) = ((1-x)^k cos k/x)/sqrt(x). $
+  Suppose $ f_k (x) = ((1-x)^k cos k / x) / sqrt(x). $
   Prove that $lim_(k -> infinity) integral_0^1 f_k = 0$.
 ]
 
 #solution[
-  $|f_k (x)| <= 1/sqrt(x),$ so this trivially follows from the DCT.
+  $|f_k (x)| <= 1 / sqrt(x),$ so this trivially follows from the DCT.
 ]
 
 #problem[
@@ -2876,18 +2891,18 @@
   f_2, ...$ on $[0, 1]$ such that both the following conditions hold:
   - $lim_(k -> infinity) integral_0^1 f_k = 0$;
   - $sup_(k >= m) f_k (x) = infinity$ for every $m in ZZ^+$ and every $x in [0,
-    1]$.
+      1]$.
 ]
 
 #solution[
   Consider the following enumeration of $QQ sect (0, 1)$:
   $ 1 / 2, 1 / 3, 2 / 3, 1 / 4, 2 / 4, 3 / 4, 1 / 5, 2 / 5, 3 / 5, 4 / 5, ... $
-  Continuing the pattern, we have the sequence $q_k = n_k/d_k$, where $n_k$ and
+  Continuing the pattern, we have the sequence $q_k = n_k / d_k$, where $n_k$ and
   $d_k$ are:
 
   $
-    n_k&: 1, 1, 2, 1, 2, 3, 1, 2, 3, 4, ...\
-    d_k&: 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, ....
+    n_k & : 1, 1, 2, 1, 2, 3, 1, 2, 3, 4, ...  \
+    d_k & : 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, ....
   $
 
   Then, $d_k = O(sqrt(k))$. Define $f_k$ as:
@@ -2896,20 +2911,20 @@
   Now,
   $ integral_0^1 f_k = (2c_k) / d_k, $
   and for every $x$, we clearly see that if $c_k -> infinity$, then $sup_(k >=
-  m) f_k (x) = infinity$, since $[q_k - 1/d_k, q_k + 1/d_k]$ covers the range
+  m) f_k (x) = infinity$, since $[q_k - 1 / d_k, q_k + 1 / d_k]$ covers the range
   $[0, 1]$ infinitely many times as $k -> infinity$.
 
   Hence, we just need to find some $c_k$ such that:
-  - $c_k/sqrt(k) -> 0$ as $k -> infinity$ and
+  - $c_k / sqrt(k) -> 0$ as $k -> infinity$ and
   - $c_k -> infinity$ as $k -> infinity$,
-  which is very easy: $c_k = k^epsilon$ for any $epsilon in (0, 1/2)$.
+  which is very easy: $c_k = k^epsilon$ for any $epsilon in (0, 1 / 2)$.
 ]
 
 #problem[
   Let $lambda$ denote Lebesgue measure on $RR$.
-  + Let $f(x) = 1/sqrt(x)$. Prove that $integral_([0, 1]) f dif lambda = 2$.
-  + Let $f(x) = 1/(1+x^2)$. Prove that $integral_(RR) f dif lambda = pi$.
-  + Let $f(x) = (sin x)/x$. Show that the integral $integral_((0, infinity)) f
+  + Let $f(x) = 1 / sqrt(x)$. Prove that $integral_([0, 1]) f dif lambda = 2$.
+  + Let $f(x) = 1 / (1+x^2)$. Prove that $integral_(RR) f dif lambda = pi$.
+  + Let $f(x) = (sin x) / x$. Show that the integral $integral_((0, infinity)) f
     dif lambda$ si not defined but $lim_(t -> infinity) integral_([0, t]) f dif
     lambda$ exists in $RR$.
 ]
@@ -2968,10 +2983,10 @@
 
 #solution[
   $
-    1 / c^p integral |f|^p dif mu &>= 1 / c^p integral_({x in X: |h(x)| >= c}) |h|^p
-    dif mu\
-    &>= 1 / c^p integral_({x in X: |h(x)| >= c}) c^p dif mu\
-    &= mu({x in X: |h(x)| >= c}).
+    1 / c^p integral |f|^p dif mu & >= 1 / c^p integral_({x in X: |h(x)| >= c}) |h|^p
+                                    dif mu                                                 \
+                                  & >= 1 / c^p integral_({x in X: |h(x)| >= c}) c^p dif mu \
+                                  & = mu({x in X: |h(x)| >= c}).
   $
 ]
 
@@ -3029,18 +3044,20 @@
 
 #solution[
   Clearly $chi^*_1([0,1]) <= 1$ for all $x in RR$, with equality at $x in (0,
-  1)$. For $x <= 0$, we have:
+    1)$. For $x <= 0$, we have:
   $ 1 / (2t) integral_(x-t)^(x+t) chi^*_([0,1]) = 1 / (2t) max{0, min{1, x+t}}, $
   for all $t > -x$.
 
   This quantity is equal to:
   $
-    1 / (2t) min{1, x+t} = cases(0 "if" t < -x, 1/2 + x/(2t) "if" -x<=t <= 1-x,
-  1/(2t) "otherwise").
+    1 / (2t) min{1, x+t} = cases(
+      0 "if" t < -x, 1 / 2 + x / (2t) "if" -x<=t <= 1-x,
+      1 / (2t) "otherwise"
+    ).
   $
 
-  Ignoring the trivial $0$ branch, we see that the $1/(2t)$ branch is decreasing
-  and $1/2+x/(2t)$ is increasing, so it must peak at exactly $x = 1 - t$. Hence,
+  Ignoring the trivial $0$ branch, we see that the $1 / (2t)$ branch is decreasing
+  and $1 / 2+x / (2t)$ is increasing, so it must peak at exactly $x = 1 - t$. Hence,
   $ chi^*_([0, 1]) (x) = 1 / (2(1-x)). $
   Similarly, for all $x >= 1$, by symmetry, we have:
   $ chi^*_([0, 1]) (x) = 1 / (2x). $
@@ -3057,7 +3074,7 @@
 
 #problem[
   Find a formula for the Hardy-Littlewood maximal function of $h: RR -> [0,
-  infinity)$ defined by
+    infinity)$ defined by
   $ h(x) = cases(x "if" 0 <= x <= 1, 0 "otherwise"). $
 ]
 
@@ -3085,18 +3102,20 @@
 
   From this, if we have $A, B subset.eq (b-t,b+t)$ such that their symmetric
   difference $A Delta B$ has Lebesgue measure at most $2delta(epsilon)$, then
-  $ abs(integral_A g dif lambda - integral_B g dif lambda) <= abs(integral_(A
-  without B) g dif lambda) + abs(integral_(B without A) g dif lambda) < 2epsilon$.
+  $abs(integral_A g dif lambda - integral_B g dif lambda) <= abs(
+    integral_(A
+    without B) g dif lambda
+  ) + abs(integral_(B without A) g dif lambda) < 2epsilon$.
 
-  If we let $A = (b-t, b+t)$ and $epsilon = I/2$, then
+  If we let $A = (b-t, b+t)$ and $epsilon = I / 2$, then
   $ I - integral_B g dif lambda < I, $
   which implies $integral_B g dif lambda > 0$.
 
   Now, consider a neighborhood $(b-r, b+r)$ of $b$. For each $b'$, we pick the
   radius $r' < t$ such that $(b'-r', b'+r') subset.eq A = (b-t, b+t)$, while making
-  sure that $2abs(t-r') <= 2delta(I/2)$. In order to do so, it must be the case
+  sure that $2abs(t-r') <= 2delta(I / 2)$. In order to do so, it must be the case
   that:
-  - $t-r' <= delta(I/2)$, and
+  - $t-r' <= delta(I / 2)$, and
   - $r+r' <= t$.
   It is clear that these two conditions can be trivially satisfied.
 
@@ -3113,10 +3132,10 @@
 #solution[
   Given $x_1, x_2$ in $RR$ such that $x_1 < x_2$, we have:
   $
-    h^* (x_2) &= sup_(t > 0) integral_(x_2-t)^(x_2+t) h dif lambda\
-    &>= sup_(t > 0)integral_(x_2-t)^(x_2+t) g dif lambda\
-    &= sup_(t > 0)integral_(x_1-t)^(x_1+t) h dif lambda\
-    &= h^* (x_1),
+    h^* (x_2) & = sup_(t > 0) integral_(x_2-t)^(x_2+t) h dif lambda \
+              & >= sup_(t > 0)integral_(x_2-t)^(x_2+t) g dif lambda \
+              & = sup_(t > 0)integral_(x_1-t)^(x_1+t) h dif lambda  \
+              & = h^* (x_1),
   $
   where $g(x) = h(x + x_1 - x_2)$. Clearly $g <= h$ as $h$ is increasing.
 ]
@@ -3130,7 +3149,7 @@
 #solution[
   Let $h(x) = x$. Then, for every $b in RR$,
   $ integral_(b-t)^(b+t) h = 1 / 2 ((b+t)^2-(b-t)^2) = b t. $
-  Hence, $h^* (b) = b/2$ for all $b in RR$.
+  Hence, $h^* (b) = b / 2$ for all $b in RR$.
 ]
 
 #problem[
@@ -3172,12 +3191,12 @@
   for all $n in ZZ^+$.
 
   Now all that's left is to define $delta$. One such example is:
-  $ delta(x) = cases(1/sqrt(x) "if" 0 < abs(x) < 1, 0 "otherwise"). $
+  $ delta(x) = cases(1 / sqrt(x) "if" 0 < abs(x) < 1, 0 "otherwise"). $
 
   We have:
-  + $integral_(-infinity)^infinity delta = integral_(-1)^1 1/sqrt(x) dif x = 4$,
-  + $delta^* (0) = sup_(0 < t < 1) 1/(2t) integral_(-t)^t 1/sqrt(x) dif x =
-    sup_(0 < t < 1) 2/sqrt(t) = infinity$.
+  + $integral_(-infinity)^infinity delta = integral_(-1)^1 1 / sqrt(x) dif x = 4$,
+  + $delta^* (0) = sup_(0 < t < 1) 1 / (2t) integral_(-t)^t 1 / sqrt(x) dif x =
+    sup_(0 < t < 1) 2 / sqrt(t) = infinity$.
 ]
 
 #problem[
@@ -3189,16 +3208,18 @@
 #solution[
   By Hardy-Littlewood maximal inequality:
   $
-    abs({b in RR: h^* (b) >= c}) &= abs(sect.big_(n = 1)^infinity {b in RR: h^*
-  (b) > c - 1/n}) \
-    &< inf_(n in ZZ^+) 3 / abs(c-1/n) norm(h)_1 = 3 / c norm(h)_1.
+    abs({b in RR: h^* (b) >= c}) & = abs(
+                                     sect.big_(n = 1)^infinity {b in RR: h^*
+                                       (b) > c - 1 / n}
+                                   )                                                               \
+                                 & < inf_(n in ZZ^+) 3 / abs(c-1 / n) norm(h)_1 = 3 / c norm(h)_1.
   $
 ]
 
 == Derivatives of Integrals
 
 *For $f in cal(L)^1 (RR)$ and $I$ an interval of $RR$ with $0 < |I| < infinity$,
-let $f_I$ denote the average of $f$ on $I$. In other words, $f_I = 1/abs(I) integral_I f$.*
+let $f_I$ denote the average of $f$ on $I$. In other words, $f_I = 1 / abs(I) integral_I f$.*
 
 #problem[
   Suppose $f in cal(L)^1 (RR)$. Prove that
@@ -3244,10 +3265,12 @@ let $f_I$ denote the average of $f$ on $I$. In other words, $f_I = 1/abs(I) inte
 
   The two terms both approach $0$ as $t->0^+$ for almost every $b in RR$:
 
-  - $1/t sup_(I in J(b, t)) integral_I |f-f(b)| <= 1/t integral_(b-t)^(b+t)
+  - $1 / t sup_(I in J(b, t)) integral_I |f-f(b)| <= 1 / t integral_(b-t)^(b+t)
     abs(f-f(b)) -> 0$ for almost every $b in RR$.
-  - For every $I in J(b, t)$, we have $ abs(f_I - f(b)) = 1/t abs(integral_I
-    (f-f(b))) <= 1/t integral_I abs(f-f(b)) <= 1/t integral_(b-t)^(b+t)
+  - For every $I in J(b, t)$, we have $abs(f_I - f(b)) = 1 / t abs(
+      integral_I
+      (f-f(b))
+    ) <= 1 / t integral_I abs(f-f(b)) <= 1 / t integral_(b-t)^(b+t)
     abs(f-f(b)) -> 0$ for almost every $b in RR$.
 ]
 
@@ -3261,10 +3284,10 @@ let $f_I$ denote the average of $f$ on $I$. In other words, $f_I = 1/abs(I) inte
 #solution[
   We have:
   $
-    1 / (2t) integral_(b-t)^(b+t) abs(f-f(b))^2 &= 1 / (2t) integral_(b-t)^(b+t)
-    (f^2 - 2 f(b) f + f(b)^2)\
-    &= 1 / (2t) integral_(b-t)^(b+t) (f^2 - f^2(b)) + f(b) (f(b) - f_((b-t,
-        b+t))).
+    1 / (2t) integral_(b-t)^(b+t) abs(f-f(b))^2 & = 1 / (2t) integral_(b-t)^(b+t)
+                                                  (f^2 - 2 f(b) f + f(b)^2) \
+                                                & = 1 / (2t) integral_(b-t)^(b+t) (f^2 - f^2(b)) + f(b) (f(b) - f_((b-t,
+                                                      b+t))).
   $
   Both of the two terms approach $0$ as $t -> 0^+$ for almost every $b in RR$.
 ]
@@ -3294,7 +3317,7 @@ let $f_I$ denote the average of $f$ on $I$. In other words, $f_I = 1/abs(I) inte
 ]
 
 #solution[
-  Clearly $f^* (b) plus.minus f(b) = sup_(t > 0) 1/(2t) integral_(b-t)^(b+t)
+  Clearly $f^* (b) plus.minus f(b) = sup_(t > 0) 1 / (2t) integral_(b-t)^(b+t)
   (abs(f) plus.minus f) >= 0$ for all $b in RR$.
 ]
 
@@ -3312,24 +3335,24 @@ let $f_I$ denote the average of $f$ on $I$. In other words, $f_I = 1/abs(I) inte
 ]
 
 #solution[
-  Let $ E = union.big_(n = 0)^(infinity) [(1/3)^(2n+1), (1/3)^(2n)]. $
+  Let $ E = union.big_(n = 0)^(infinity) [(1 / 3)^(2n+1), (1 / 3)^(2n)]. $
 
   Then,
   $
-    abs(E sect (-(1/3)^(2k), (1/3)^(2k))) = sum_(n = k)^infinity
-    abs([(1/3)^(2n+1), (1/3)^(2n)]) = sum_(n=k)^infinity 2 / 3 dot (1 / 9)^n = 1 / (12
+    abs(E sect (-(1 / 3)^(2k), (1 / 3)^(2k))) = sum_(n = k)^infinity
+    abs([(1 / 3)^(2n+1), (1 / 3)^(2n)]) = sum_(n=k)^infinity 2 / 3 dot (1 / 9)^n = 1 / (12
     dot 9^k).
   $
 
   As $k -> infinity$, we have:
   $
-    lim_(k -> infinity) abs(E sect (-(1/3)^(2k), (1/3)^(2k))) / ((1 / 3)^(2k)) =
+    lim_(k -> infinity) abs(E sect (-(1 / 3)^(2k), (1 / 3)^(2k))) / ((1 / 3)^(2k)) =
     1 / 12.
   $
 
-  However, if one redo the calculation with $t = (1/3)^(2k+1)$, we have:
+  However, if one redo the calculation with $t = (1 / 3)^(2k+1)$, we have:
   $
-    lim_(k -> infinity) abs(E sect (-(1/3)^(2k), (1/3)^(2k))) / ((1 / 3)^(2k+1)) =
+    lim_(k -> infinity) abs(E sect (-(1 / 3)^(2k), (1 / 3)^(2k))) / ((1 / 3)^(2k+1)) =
     1 / 27.
   $
 
@@ -3337,23 +3360,23 @@ let $f_I$ denote the average of $f$ on $I$. In other words, $f_I = 1/abs(I) inte
 ]
 
 #problem[
-  Give an example of a Borel subset of $RR$ whose density at $0$ is $1/3$.
+  Give an example of a Borel subset of $RR$ whose density at $0$ is $1 / 3$.
 ]
 
 #solution[
-  For any $s in (0, 1)$, let $I_n = (1/(n+1), 1/(n+1) + s/(n(n+1)))$ and take
+  For any $s in (0, 1)$, let $I_n = (1 / (n+1), 1 / (n+1) + s / (n(n+1)))$ and take
   $E$ as the union of all such $I_n$'s.
-  Then, we can calculate $ d(t) = |E sect (-t, t)|$. Similarly to the previous
+  Then, we can calculate $d(t) = |E sect (-t, t)|$. Similarly to the previous
   example, we will only concern ourselves with the values of $d(t)$ when $t =
-  1/(n+1)$ and $t=1/(n+1) +s/(n(n+1))$. The other values of $t$ are squeezed
+  1 / (n+1)$ and $t=1 / (n+1) +s / (n(n+1))$. The other values of $t$ are squeezed
   between them, and it is provable (albeit somewhat tedious) that only the two
   cases mentioned matter here.
 
-  - $m(1/(n+1)) = sum_(k = n + 1)^infinity s/(k(k+1)) = s/(n+1)$.
+  - $m(1 / (n+1)) = sum_(k = n + 1)^infinity s / (k(k+1)) = s / (n+1)$.
   - $m(1 / (n+1) + s / (n(n+1))) = sum_(k = n)^infinity s / (k(k+1)) = s / n$.
 
-  Either way, the limit $(m(t))/t$ both approaches $s$ as $n -> infinity$, so by
-  letting $s = 1/3$, we have our desired example.
+  Either way, the limit $(m(t)) / t$ both approaches $s$ as $n -> infinity$, so by
+  letting $s = 1 / 3$, we have our desired example.
 ]
 
 #problem[
@@ -3387,7 +3410,7 @@ let $f_I$ denote the average of $f$ on $I$. In other words, $f_I = 1/abs(I) inte
   have $F'(x) = chi_E$ everywhere.
 
   For a given $b > a$, the Mean Value Theorem states that there exists some $c
-in (a, b)$ such that:
+  in (a, b)$ such that:
   $ chi_E (c) = F'(c) = (F(b)-F(a)) / (b-a) = (|E sect (a, b)|) / (b-a). $
 
   From this, either $abs(E sect (a, b)) = b - a$ or $0$ for every $b > a$.
@@ -3422,11 +3445,11 @@ in (a, b)$ such that:
 #problem[
   Suppose $(X, Sc)$ is a measurable space. Prove that if $E in Sc ox Sc$, then
   $ {x in X: (x, x) in E} in Sc. $
-]
+] <prob:borel-pair>
 
 #solution[
   Let $Tc$ be the set of all subsets $E subset.eq X times X$ such that ${x in
-  X: (x, x) in E} in Sc$.
+    X: (x, x) in E} in Sc$.
 
   Then, $Tc$ contains all $A times B$ where $A in Sc$ and $B in Sc$:
   $ {x in X: (x, x) in A times B} = A sect B in Sc. $
@@ -3434,11 +3457,11 @@ in (a, b)$ such that:
   Finally, to finish the proof, we need to prove that $Tc$ is a
   $sigma$-algebra, i.e. it is closed under complementation and countable union:
   - *Complementation*: If $E in Tc$ then ${x in X: (x, x) in (X times X)
-    without E} = X without {x in X: (x, x) in E} in Sc$, so $X times X) without
+      without E} = X without {x in X: (x, x) in E} in Sc$, so $X times X) without
     E in Tc$.
-  - *Countable union*: If $E_k in Tc$ for $k = 1, 2, ...$ then $ {x in X: (x, x)
-    in union.big_(k=1)^infinity E_k} = union.big_(k=1)^infinity {x in X: (x, x)
-    in E_k} in Sc$, so $union.big_(k=1)^infinity E_k in Tc$.
+  - *Countable union*: If $E_k in Tc$ for $k = 1, 2, ...$ then ${x in X: (x, x)
+      in union.big_(k=1)^infinity E_k} = union.big_(k=1)^infinity {x in X: (x, x)
+      in E_k} in Sc$, so $union.big_(k=1)^infinity E_k in Tc$.
 ]
 
 #problem[
@@ -3460,8 +3483,8 @@ in (a, b)$ such that:
 
 #problem[
   Suppose $(X, Sc)$ and $(Y, Tc)$ are measurable spaces. Prove that if $f: X ->
-RR$ is $Sc$-measurable and $g: Y -> RR$ is $Tc$-measurable then $h: X times Y ->
-RR$ defined by $h(x, y) = f(x)g(y)$, then $h$ is $(Sc ox Tc)$-measurable
+  RR$ is $Sc$-measurable and $g: Y -> RR$ is $Tc$-measurable then $h: X times Y ->
+  RR$ defined by $h(x, y) = f(x)g(y)$, then $h$ is $(Sc ox Tc)$-measurable
 ]
 
 #solution[
@@ -3522,17 +3545,17 @@ RR$ defined by $h(x, y) = f(x)g(y)$, then $h$ is $(Sc ox Tc)$-measurable
   + The measure $mu$ is $sigma$-finite.
   + There exists an increasing sequence $X_1 subset.eq X_2 subset.eq ...$ of
     sets in $Sc$ such that $X = union.big_(k=1)^infinity X_k$ and $mu(X_k) <
-  infinity$ for every $k in ZZ^+$.
+    infinity$ for every $k in ZZ^+$.
   + There exists an disjoint sequence $X_1, X_2, X_3, ...$ of
     sets in $Sc$ such that $X = union.big_(k=1)^infinity X_k$ and $mu(X_k) <
-  infinity$ for every $k in ZZ^+$.
+    infinity$ for every $k in ZZ^+$.
 ]
 
 #solution[
   2 and 3 are trivially equivalent. 2 (or 3) implies 1 by definition.
 
   1 implies 3 since if $X = union.big_(k=1)^infinity X_k$, where each $mu(X_k) <
-    infinity$, then
+  infinity$, then
   $ X'_k = X_k without union.big_(k' < k) X_(k'), mu(X'_k) <= mu(X_k) < infinity $
   is the disjoint sequence we need.
 ]
@@ -3559,7 +3582,7 @@ RR$ defined by $h(x, y) = f(x)g(y)$, then $h$ is $(Sc ox Tc)$-measurable
 
 #solution[
   Let $W$ be the set of all $E in Sc ox Tc$ such that $omega(E) = (mu times
-nu)(E) = integral_X integral_Y chi_E (x, y) dif nu(y) dif mu (x).$
+    nu)(E) = integral_X integral_Y chi_E (x, y) dif nu(y) dif mu (x).$
 
   Then, $W$ contains all finite unions of measurable rectangles, so we will show
   that it is a monotone class:
@@ -3571,13 +3594,224 @@ nu)(E) = integral_X integral_Y chi_E (x, y) dif nu(y) dif mu (x).$
       1)^infinity E_n).
   $
 
-  Similarly, if $E_1 supset.eq E_2 supset.eq ...$ such that $E_n in W$, then
+  However, for $E_1 supset.eq E_2 supset.eq ...$ such that $E_n in W$, it does
+  not generally hold that $lim_(n -> infinity) omega(E_n) =
+  omega(sect.big_(n=1)^infinity E_n)$, so we need some special handling here.
+  But note that if we are sure that $E_1$ has finite measure, then we have
   $
-    omega(sect.big_(n = 1)^infinity E_n) = (mu times nu)(sect.big_(n =
+    omega(sect.big_(n=1)^infinity E_n) = (mu times nu)(sect.big_(n =
       1)^infinity E_n).
+  $
+
+  Let $Z_n$ be a sequence of subsets of $X times Y$ in $W$ (trivially
+  constructable from measurable rectangles) such that $union.big_(n=1)^infinity
+  Z_n = X times Y$ and $omega(Z_n) < infinity$ for all $n$. Then,
+  $
+    sect.big_(n=1)^infinity E_n & = union.big_(m=1)^infinity
+                                  underbrace(sect.big_(n=1)^infinity (E_n sect Z_m), A_m) \
+                                & =
+                                  union.sq.big_(m=1)^infinity (A_m without underbrace(
+                                      union.big_(m' != m)
+                                      A_(m'), hat(A)_m
+                                    ))                                                    \
+                                & =
+                                  union.sq.big_(m=1)^infinity (sect.big_(n=1)^infinity ((E_n sect Z_m) without
+                                      hat(A)_m)),
+  $
+  where $union.sq.big$ denotes the disjoint union (implying the sets unioned are
+  disjoint).
+
+  Note that for every $m$, $(E_n sect Z_m) without hat(A)_m)$ is a decreasing
+  sequence of sets with finite measure, so:
+  $
+    omega(sect.big_(n=1)^infinity E_n) & = sum_(m=1)^infinity
+                                         omega(sect.big_(n=1)^infinity ((E_n sect Z_m) without hat(A)_m)) \
+                                       & = sum_(m=1)^infinity (mu times nu)(sect.big_(n=1)^infinity ((E_n sect Z_m)
+                                             without hat(A)_m)).
+  $
+  Since this holds for all $omega$, it must also hold for $omega = mu times nu$
+  as well, so this implies
+  $
+    omega(sect.big_(n=1)^infinity E_n) = (mu times nu)(sect.big_(n=1)^infinity
+      E_n).
   $
 
   Hence, $W$ is a monotone class that contains the algebra of measurable
   rectangles, so it must contain the smallest $sigma$-algebra generated by these
   rectangles, $Sc ox Tc$.
+]
+
+== Iterated Integrals
+
+#problem[
+  + Let $lambda$ denote Lebesgue measure on $[0, 1]$. Show that
+  $
+    integral_[0, 1] integral_[0, 1] (x^2-y^2) / (x^2+y^2)^2 dif lambda (x) dif
+    lambda (y) = pi / 4
+  $
+  and
+  $
+    integral_[0, 1] integral_[0, 1] (x^2-y^2) / (x^2+y^2)^2 dif lambda (y) dif
+    lambda(x) = -pi / 4
+  $
+  + Explain why 1 violates neither Tonelli's Theorem nor Fubini's Theorem.
+]
+
+#solution[
+  (This uses standard Calc-1 notation and ideas)
+  + $
+      integral_[0, 1] (x^2-y^2) / (x^2+y^2)^2 dif lambda (x) & =
+                                                               -(x / (x^2+y^2))|^1_0 = -1 / (y^2+1)
+    $
+    Hence,
+    $
+      integral_[0, 1] integral_[0, 1] (x^2-y^2) / (x^2+y^2)^2 dif lambda (x) dif
+      lambda (y) = -integral_[0, 1] 1 / (y^2+1) dif y = -(arctan(1) - arctan(0)) =
+      pi / 4.
+    $
+    The other result holds due to symmetry.
+  + The integrand is neither non-negative nor absolute integrable:
+    $
+      & integral_([0, 1]^2) abs(x^2-y^2) / (x^2+y^2)^2 dif lambda^2 ((x, y)) \
+      & = 2 integral_[0,1] integral_[0,y] (y^2-x^2) / (x^2+y^2)^2 dif lambda (x) dif
+        lambda (y)                                                           \
+      & = - integral_[0,1] 1 / y dif lambda (y) = infinity.
+    $
+]
+
+#problem[
+  + Give an example of a doubly indexed collection ${x_(m,n): m,n in ZZ^+}$ of
+    real numbers such that
+    $
+      sum_(m=1)^infinity sum_(n=1)^infinity x_(m,n) = 0 "and" sum_(n=1)^infinity
+      sum_(m=1)^infinity x_(m,n) = infinity
+    $
+]
+
+#solution[
+  - Consider the grid:
+    $
+      mat(
+        delim: #none,
+        1, -1, 0, 0, 0, ...;
+        0, 2, -2, 0, 0, ...;
+        0, 0, 3, -3, 0, ...;
+        0, 0, 0, 4, -4, ...;
+        dots.v, dots.v, dots.v, dots.v, dots.v, dots.down
+      )
+    $
+    Each row sums to 0, while each column sums to 1. From this, we can easily
+    construct an example.
+  - Basically the sum doesn't absolutely converge: the sum $sum_((m, n) in
+    (ZZ^+)^2 ) abs(x_(m, n)) = infinity$, and there are both negative and
+    positive entries.
+]
+
+#problem[
+  Suppose $(X, Sc)$ is a measurable space and $f: X -> [0, infinity]$ is a
+  function. let $cal(B)$ denote the $sigma$-algebra of Borel subsets of $(0,
+    infinity)$. Prove that $cal(U)_f in Sc ox cal(B)$ if and only if $f$ is an
+  $Sc$-measurable function.
+]
+
+#solution[
+  One direction is trivial. If $cal(U)_f in Sc ox cal(B)$, then every subsection
+  $[cal(U)_f]^y = {x in X: f(x) > y} = f^(-1) (y, infinity]$ is $Sc$-measurable.
+  Hence $f$ is $Sc$-measurable.
+]
+
+#problem[
+  Suppose $(X, Sc)$ is a measurable space and $f: X -> RR$. Let $"graph"(f)
+  subset.eq X times RR$ denote the graph of $f$:
+  $"graph"(f) = {(x, f(x)): x in X}.$
+  Let $cal(B)$ denote the $sigma$-algebra of Borel subsets of $RR$. Prove that
+  $"graph"(f) in Sc ox cal(B)$ if $f$ is an $Sc$-measurable function.
+]
+
+#solution[
+  Since $g(x, y) = y - f(x)$ is a measurable function on $Sc ox cal(B)$, $g^(-1)
+  ({0})$ must be in $Sc ox cal(B)$. This is precisely $"graph"(f)$.
+]
+
+== Lebesgue Integration on $RR^n$.
+
+#problem[
+  Show that a set $G subset.eq RR^n$ is open in $RR^n$ if and only if for each
+  $(b_1, ..., b_n) in G$, there exists $r>0$ such that:
+  $ { (a_1, ..., a_n) in RR^n : sqrt((a_1-b_1)^2 + ... + (a_n-b_n)^2) < r } in G $
+]
+
+#solution[
+  We will prove a more general statement. If $norm(dot)_1$ and $norm(dot)_2$ are
+  equivalent norms, then a set $G$ open w.r.t. $norm(dot)_1$ is also open w.r.t.
+  $norm(dot)_2$. In MIRA, open sets are defined w.r.t. the $cal(l)_infinity$
+  norm, which is equivalent to the $cal(l)_2$ norm used in the expression above.
+
+  Let $G$ be an open set w.r.t. $norm(dot)_1$. Then, for every $x in G$, there
+  exists some $r > 0$ such that $B(x, r, norm(dot)_1) = {y in RR^n:
+    norm(x - y)_1 <r } subset.eq G$. Since $norm(dot)_1$ and $norm(dot)_2$ is
+  equivalent, there exists some constant $C > 0$ such that:
+  $ norm(x-y)_1 <= C norm(x-y)_2 <= r, forall y in B(x, r/C, norm(dot)_2), $
+  so $B(x, r/C, norm(dot)_2) subset.eq B(x, r, norm(dot)_1) subset.eq G$.
+  Hence, $G$ is open w.r.t. $norm(dot)_2$.
+]
+
+#problem[
+  Show that there wxists a set $E subset.eq RR^2$ (thinking of $RR^2$ as equal
+  to $RR times RR$) such that the cross sections $[E]_a$ and $[E]^b$ are open
+  subsets of $RR$ for every $a in RR$, but $E in.not cal(B)_2$.
+]
+
+#solution[
+  Let $E = {(x, x) in RR^2: x in V}$ for some
+  non-Borel set $V subset.eq RR$. Then, the cross sections of $E$ are singleton
+  sets, which are not open, or an empty set. Clearly, $E$ could not be a Borel set.
+
+  To have a counterexample with the cross sections being open, simply take the
+  complement of $E$. The cross sections of this set is $RR without {a}$ for some
+  $a in RR$, or $RR$, in either case is open.
+  By @prob:borel-pair, if this set is Borel, then so is $E$, which is a
+  contradiction.
+]
+
+#problem[
+  Suppose $(X, Sc), (Y, cal(T))$, and $(Z, cal(U))$ are measurable spaces.
+  We can define $Sc ox Tc ox cal(U)$ to be the smallest $sigma$-algebra on
+  $X times Y times Z$ that contains
+  $ {A times B times C : A in S, B in T , C in U}. $
+  Prove that if we make the obvious identifciations of the
+  products $(X times Y) times Z$ and $X times (Y times Z)$ with $X times Y times
+  Z$, then $ Sc ox Tc ox cal(U) = (Sc ox Tc ) ox cal(U) = Sc ox (Tc ox
+    cal(U)). $
+]
+
+#solution[
+  First, we prove $Sc ox Tc ox cal(U) = (Sc ox Tc ) ox cal(U)$. If $A in Sc, B
+  in Tc, C in cal(U)$, then $A times B in Sc ox Tc$ and $(A times B) times C in
+  (Sc ox Tc) ox cal(U)$. Hence, all generating elements of LHS is in RHS, so LHS
+  must be a subset of RHS. The other direction is slightly complicated: if $A in
+  Sc ox Tc$, $B in cal(U)$, then $A times B in Sc ox Tc ox cal(U)$.
+
+  Fix $B in cal(U)$. Define $Xi = {A in Sc ox Tc: A times B in Sc ox Tc ox
+    cal(U)}$. Clearly, $Xi$ contains all measurable rectangles in $X times Y$.
+  If $A_1, A_2, ... in Xi$, then:
+  $
+    (union.big_(k = 1)^infinity A_k) times B = union.big_(k = 1)^infinity (A_k
+      times B) in Sc ox Tc ox cal(U),
+  $
+  so $Xi$ is closed under countable union.
+
+  Moreover, if $A in Xi$, then:
+  $
+    (X times Y without A) times B = (X times Y times B) without (A times B) in
+    Sc ox Tc ox cal(U),
+  $
+  so $Xi$ is also closed under complementation.
+
+  Hence, $Xi$ is a $sigma$-algebra containing all measurable rectangles of $X
+  times Y$, so it must contains $Sc ox Tc$. Hence, for every $A in Sc ox Tc$ and
+  $B in cal(U)$, $A times B in Sc ox Tc ox cal(U)$, implying $Sc ox Tc ox
+  cal(U) supset.eq (Sc ox Tc) ox cal(U)$, the desired result.
+
+  The other result can be derived similarly.
 ]

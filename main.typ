@@ -3739,7 +3739,7 @@ let $f_I$ denote the average of $f$ on $I$. In other words, $f_I = 1 / abs(I) in
   Show that a set $G subset.eq RR^n$ is open in $RR^n$ if and only if for each
   $(b_1, ..., b_n) in G$, there exists $r>0$ such that:
   $ { (a_1, ..., a_n) in RR^n : sqrt((a_1-b_1)^2 + ... + (a_n-b_n)^2) < r } in G $
-]
+] <prob:open-norms>
 
 #solution[
   We will prove a more general statement. If $norm(dot)_1$ and $norm(dot)_2$ are
@@ -3814,4 +3814,264 @@ let $f_I$ denote the average of $f$ on $I$. In other words, $f_I = 1 / abs(I) in
   cal(U) supset.eq (Sc ox Tc) ox cal(U)$, the desired result.
 
   The other result can be derived similarly.
+]
+
+#problem[
+  Show that Lebesgue measure on $RR^n$ is translation invariant. More precisely,
+  show that if $E in cal(B)_n$ and $a in RR^n$, then $a + E in cal(B)_n$ and
+  $lambda_n (a + E) = lambda_n (E)$.
+]
+
+#solution[
+  Denote $C_m$ as the open cube with side length $m$ centered at the origin.
+  Via induction, we have,
+  $
+    lambda_n (a + A times B) = lambda_(n - 1) (a + A) lambda_1 (a + B) =
+    lambda_(n - 1) (A) lambda_1 (B) = lambda_n (A times B),
+  $
+  for every $A in cal(B)_(n - 1), B in cal(B)_1$.
+
+  Let $Xi_m = {E in cal(B)_n: E subset.eq C_m, a + E in cal(B)_n "and" lambda_n (a
+      + E) = lambda_n (E)}$.
+  Then, $Xi_m$ contains all finite unions of measurable rectangles contained in
+  $C_m$. It is also closed under countable increasing unions and countable
+  decreasing intersection, which means that it is a monotone class and therefore
+  a $sigma$-algebra. Finally,
+  $
+    lambda_n (a + E) = lim_(m->infinity) lambda_n (a + (E sect C_m)) =
+    lim_(m->infinity) lambda_n (E sect C_m) = lambda_n (E).
+  $
+]
+
+#problem[
+  Suppose $f: RR^n -> RR^n$ is $cal(B)_n$-measurable and $t in RR without {0}$.
+  Define $f_t: RR^n -> RR$ by $f_t (x) = f(t x)$.
+  + Prove that $f_t$ is $cal(B)_n$-measurable.
+  + Prove that if $integral_(RR^n) f dif lambda_n$ is defined, then
+    $
+      integral_(RR^n) f_t dif lambda_n = 1/abs(t)^n integral_(RR^n) f dif
+      lambda_n.
+    $
+]
+
+#solution[
+  + If $A in cal(B)_1$, then
+    $
+      f_t^(-1) (A) = {x in RR^n: f(t x) in A} = {x in RR^n: t x in f^(-1)(A)} =
+      1/t f^(-1) (A) in cal(B)_n.
+    $
+  + If $f >= 0$, then let $f_1, f_2, ...$ be increasing simple functions that
+    approximate $f$. Define the dilation $f'_k (x) = f_k (t x)$, and
+    assuming $f_k = sum_(i = 1)^(n_k) c_(i, k) chi_A_(i, k)$, we have
+    $
+      f'_k (x) = sum_(i = 1)^(n_k) c_(i, k) chi_(A_(i, k)) (t x) = sum_(i = 1)^(n_k)
+      c_(i, k) chi_(1/t A_(i, k)) (x).
+    $
+    Then,
+    $
+      integral_(RR^n) f'_k dif lambda_n & = sum_(i = 1)^(n_k) c_(i, k)
+                                          integral_(RR^n) chi_(1/t A_(i, k)) dif lambda_n        \
+                                        & = sum_(i = 1)^(n_k) c_(i, k) lambda_n (1/t A_(i, k))   \
+                                        & = 1/t^n sum_(i = 1)^(n_k) c_(i, k) lambda_n (A_(i, k)) \
+                                        & = 1/t^n integral_(RR^n) f_k dif lambda_n.
+    $
+    Hence, the dilation property works for every $f_k$. Then, by taking the limit
+    and apply MCT, it also works for $f>=0$.
+
+    To handle the general case where $f$ can be negative, we simply split $f =
+    f^+ - f^-$.
+]
+
+#problem[
+  Suppose $lambda$ denotes Lebesgue measure on $(RR, cal(L))$, where $cal(L)$ is
+  the $sigma$-algebra of Lebesgue measurable subsets of $RR$. Show that there
+  exists subsets $E$ and $F$ of $RR^2$ such that
+  - $F in cal(L) ox cal(L)$ and $(lambda times lambda)(F) = 0$;
+  - $E subset.eq F$ but $E in.not cal(L) ox cal(L)$.
+]
+
+#solution[
+  Take $F = {(x, x): x in RR}$ and $E = {(x, x): x in V}$ where $V$ is a
+  non-Lebesgue-measurable set. Then, clearly $(lambda times lambda)(F) = 0$ but
+  $E in.not cal(L) ox cal(L)$.
+]
+
+#problem[
+  Suppose $m in ZZ^+$. Verify that the collection of sets $cal(E)_m$ that
+  appears in the proof of 5.41 (MIRA) is a monotone class.
+]
+
+#solution[
+  If $E_1 subset.eq E_2 subset.eq ...$ and $E_k in cal(E)_m$ for all $k$, then:
+  - $union.big_(k=1)^infinity E_k in cal(B)_n$,
+  - $union.big_(k=1)^infinity E_k subset.eq C_m$, and
+  - $lambda_n (t union.big_(k=1)^infinity E_k) = lim_(k -> infinity) lambda_n (t
+      E_k) = lim_(k->infinity) t^n lambda_n (E_k) = t^n lambda_n
+    (union.big_(k=1)^infinity E_k).$
+  If $E_1 supset.eq E_2 supset.eq ...$ and $E_k in cal(E)_m$ for all $k$, then:
+  - $sect.big_(k=1)^infinity E_k in cal(B)_n$,
+  - $sect.big_(k=1)^infinity E_k subset.eq C_m$, and
+  - $lambda_n (t union.big_(k=1)^infinity E_k) = lim_(k -> infinity) lambda_n (t
+      E_k) = lim_(k->infinity) t^n lambda_n (E_k) = t^n lambda_n
+    (union.big_(k=1)^infinity E_k).$ Note that here, $lambda_n (E_1) <=
+    lambda_n (C_m) < infinity$.
+]
+
+#problem[
+  Show that the open unit ball in $RR^n$ is an open subset of $RR^n$.
+]
+
+#solution[
+  See @prob:open-norms.
+]
+
+#problem[
+  Suppose $G_1$ is a nonempty subset of $RR^m$ and $G_2$ is a nonempty subset of
+  $RR^n$. Prove that $G_1 times G_2$ is an open subset of $RR^m times RR^n$ if
+  and only if $G_1$ is an open subset of $RR^m$ and $G_2$ is an open subset of
+  $RR^n$.
+]
+
+#solution[
+  One direction is trivial. So we focus on the case where $G_1 times G_2$ is
+  open.
+  If so, for every $x_1 in G_1, x_2 in G_2$, there exists some $delta > 0$
+  such that $B((x_1, x_2), delta) subset.eq G_1 times G_2$, which means:
+  $ {y: norm(y - (x_1, x_2))_infinity < delta} subset.eq G_1 times G_2, $
+  or equivalently,
+  $
+    {(y_1, y_2) in RR^m times RR^n: max{norm(y_1 - x_1)_infinity, norm(
+          y_2 -
+          x_2
+        )_infinity}} < delta } subset.eq G_1 times G_2.
+  $
+  This implies that:
+  $
+    {y_1 in RR^m: norm(y_1 - x_1)_infinity < delta} subset.eq G_1 "and"
+    {y_2 in RR^n: norm(y_2 - x_2)_infinity < delta} subset.eq G_2.
+  $
+  This means $B(x_1, delta) subset.eq G_1$, $B(x_2, delta) subset.eq G_2$.
+  Hence, both $G_1$ and $G_2$ are open.
+]
+
+#problem[
+  Suppose $F_1$ is a nonempty subset of $RR^m$ and $F_2$ is a nonempty subset of
+  $RR^n$. Prove that $F_1 times F_2$ is an closed subset of $RR^m times RR^n$ if
+  and only if $F_1$ is an closed subset of $RR^m$ and $F_2$ is an closed subset of
+  $RR^n$.
+]
+
+#solution[
+  + If $F_1, F_2$ are closed, then:
+    $
+      RR^m times RR^n without F_1 times F_2 = ((RR^m without F_1) times RR^n)
+      union (RR^m times (RR^n without F_2)).
+    $
+    The sets $(RR^m without F_1)$, $RR^n$, $RR^m$, $RR^n without F_2$ are all
+    open, hence $RR^m times RR^n without F_1 times F_2$ is also open. Hence, $F_1
+    times F_2$ is closed.
+  + If $F_1 times F_2$ is closed, then pick $x in RR^m without F_1$. Pick any $y
+    in F_2$, since $(x, y) in.not F_1 times F_2$, there must be some $delta > 0$
+    such that $B((x, y), delta) subset.eq RR^m times RR^n without F_1 times
+    F_2$. In other words, $B((x, y), delta) sect (F_1 times F_2) = diameter$.
+    Consider only points $(x', y)$ in this set, clearly they form a neighborhood
+    $B(x, delta)$ and does not intersect $F_1$.
+    This implies that:
+    $B(x, delta) subset.eq RR^m without F_1$, which means $RR^m without F_1$ is
+    open. Hence $F_1$ is closed, and similarly $F_2$ must also be closed.
+]
+
+#problem[
+  Suppose $E$ is a subset of $RR^m times RR^n$ and
+  $ A = {x in RR^m: (x, y) in E "for some" y in RR^n} $
+  + Prove that if $E$ is an open subset of $RR^m times RR^n$, then $A$ is an
+    open subset of $RR^m$.
+  + Prove or give a counterexample: If $E$ is a closed subset of $RR^m times
+    RR^n$, then $A$ is a closed subset of $RR^m$.
+]
+
+#solution[
+  + Pick $x in A$, then there exists some $y in RR^n$ such that $(x, y) in E$.
+    Since $E$ is open, there must exist some $delta > 0$ such that $B((x, y),
+      delta) subset.eq E$. Now, we prove that $forall x' in B(x, delta)$, $x' in
+    A$. Since $norm(x - x')_infinity < delta$, $(x', y) in B((x, y), delta)$.
+    Hence, $(x', y) in E$, and therefore $x' in A$. From this result, we have
+    $B(x, delta) subset.eq A$. Hence, $A$ must be open.
+  + Let $E = {(x, y): x y = 1}$, then $E$ is a closed curve. However, $A = RR
+    without {0}$ is not closed.
+]
+
+#problem[
+  + Prove that $lim_(n -> infinity) lambda_n (B_n) = 0$.
+  + Find the value of $n$ that maximizes $lambda_n (B_n)$.
+]
+
+#solution[
+  + From the recursive formula $lambda_n (B_n) = tau/n lambda_(n - 2) (B_(n -
+      2))$, we can see that
+    $ lambda_n (B_n) < 1/2 lambda_(n - 2) (B_(n - 2)), $
+    for $n > 2 tau$.
+    Hence, for large enough $n$, $lambda_n (B_n)$ decays faster than a geometric
+    progression with common ratio $1/2$. Clearly, $lim_(n -> infinity) lambda_n
+    (B_n) = 0$.
+  + From $n > tau$ onwards, $lambda_n (B_n)$ decreases, so the value of $n$
+    that maximizes this quantity should be bounded below $tau$. A simple
+    exhaustive search gives $n = 5$.
+]
+
+#problem[
+  For readers familiar with the gamma function $Gamma$: Prove that
+  $ lambda_n (B_n) = pi^(n/2)/Gamma(n/2+1). $
+]
+
+#solution[
+  This holds for $n = 1, n = 2$.
+  For larger $n$, we simply need to check whether
+  $ pi^(n/2)/Gamma(n/2+1) = (2 pi)/n pi^((n - 2)/2)/Gamma((n-2)/2+1) $
+  is true. This is equivalent to:
+  $ Gamma(n/2+1) = n/2 Gamma(n/2), $
+  which is a fundamental property of the Gamma function.
+]
+
+#problem[
+  Define $f: RR^2 -> RR$ by
+  $
+    f(x, y) = cases(
+      (x y(x^2-y^2))/(x^2+y^2) "if" (x, y) != (0, 0), 0 "if" (x, y)
+      = (0, 0)
+    ).
+  $
+  + Prove that $D_1 (D_2 f)$ and $D_2 (D_1 f))$ exist everywhere on $RR^2$.
+  + Show that $(D_1(D_2f))(0, 0) != (D_2(D_1 f))(0, 0)$.
+  + Explain why (2) does not violate 5.48 (MIRA).
+]
+
+#solution[
+  + First, we calculate $D_2 f$. If $(x, y) != (0, 0)$, then the derivative
+    completely avoid the problematic region at $(0, 0)$, and we can proceed
+    normally. The derivative there is equal to
+    $ D_2 f (x, y) = (x(x^4-4x^2y^2-y^4))/(x^2+y^2)^2. $
+    Otherwise, we calculate $D_2 f$ at $(0, 0)$, which is equal to:
+    $
+      (D_2 f)(0, 0) = lim_(Delta y -> 0) (f(0, Delta y) - f(0, 0))/(Delta y) =
+      (0 - 0)/(Delta y) = 0.
+    $
+    Hence,
+    $
+      (D_2 f)(x, y) = cases(
+        (x(x^4-4x^2y^2-y^4))/(x^2+y^2)^2 "if" (x, y) != (0,
+          0), 0 "otherwise"
+      ).
+    $
+    Apply the same calculation gives,
+    $
+      (D_1(D_2 f)) (x, y) = cases(
+        (x^6+9x^4y^2-9x^2y^4-y^6)/(x^2+y^2)^3 "if" (x,
+          y) != (0, 0), 1 "otherwise"
+      ).
+    $
+    The other derivative can be calculated similarly.
+  + LHS is $1$, while RHS is $-1$.
+  + This does not violate 5.48 since the second-order derivative expressions are
+    not continuous (at $(0, 0)$).
 ]

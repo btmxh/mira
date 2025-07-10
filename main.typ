@@ -4504,3 +4504,168 @@ let $f_I$ denote the average of $f$ on $I$. In other words, $f_I = 1 / abs(I) in
       Hence, we have proven that every Cauchy sequence $(u^m)$ converges.
       Therefore, $V$ is complete.
 ]
+
+== Vector Spaces
+
+#problem[
+  Show that if $a, b in RR$ with $a+b i != 0$, then
+  $
+    1/(a+b i) = a/(a^2+b^2) - b/(a^2+b^2) i.
+  $
+]
+
+#solution[
+  $ 1/(a+b i) = (a-b i)/(a^2 - b^2) = a/(a^2+b^2) - b/(a^2+b^2) i. $
+]
+
+#problem[
+  Suppose $z in CC$. Prove that
+  $ max{abs(Re z), abs(Im z)} <= abs(z) <= sqrt(2) max {abs(Re z) , abs(Im z) }. $
+]
+
+#solution[
+  This is equivalent to,
+  $ a <= sqrt(a^2+b^2) <= sqrt(2) a, forall 0 <= b <= a. $
+  Squaring all sides,
+  $ a^2 <= a^2 + b^2 <= 2a^2, $
+  which is trivial.
+]
+
+#problem[
+  Suppose $z in CC$. Prove that
+  $ (abs(Re z) + abs(Im z))/sqrt(2) <= abs(z) <= abs(Re z) + abs(Im z) $
+]
+
+#solution[
+  This is equivalent to,
+  $ (a+b)/sqrt(2) <= sqrt(a^2+b^2) <= a + b, forall a, b >= 0. $
+  Squaring all sides,
+  $ (a+b)^2/2 <= a^2 + b^2 <= (a+b)^2, $
+  which is trivial.
+]
+
+#problem[
+  Suppose $w, z in C$. Prove that $abs(w z) = abs(w) abs(z)$ and $abs(w+z) <=
+  abs(w) + abs(z)$.
+]
+
+#solution[
+  If $w=a+b i, z = c+d i$, then:
+  $
+    abs(w z)^2 = (a c - b d)^2+(a d + b c)^2 = a^2c^2+b^2d^2+a^2d^2+b^2c^2\
+    = (a^2+b^2)(c^2+d^2) = (abs(w) abs(z) )^2,
+  $
+  and
+  $
+    abs(w+z)^2 = (a+c)^2+(b+d)^2 = (a^2+b^2) + (c^2+d^2) + 2(a c + b d)\
+    <= abs(w)^2+abs(z)^2 + 2abs(w) abs(z),
+  $
+  where the inequality $a c + b d <= abs(w) abs(z)$ is due to:
+  $ (abs(w) abs(z))^2 - (a c + b d)^2 = (a c - b d)^2 >= 0. $
+]
+
+#problem[
+  Suppose $(X, Sc)$ is a measurable space and $f: X -> CC$ is a complex-valued
+  function. For condition (2) and (3) below, identify $CC$ with $RR^2$. Prove
+  that the following are equivalent:
+  + $f$ is measurable.
+  + $f^(-1)(G) in Sc$ for every open set $G$ in $RR^2$.
+  + $f^(-1)(B) in Sc$ for every Borel set $G$ in $RR^2$.
+]
+
+#solution[
+  - If $f$ is measurable, we will prove that $f^(-1)(G) in Sc$ for every open $G$.
+    Since every $G$ can be written as
+    $ G = union.big_(k = 1)^infinity R_k times I_k, $
+    where $R_k$ and $I_k$ are open intervals in $RR$.
+
+    Then, one can write
+    $
+      f^(-1)(G) & = union.big_(k=1)^infinity f^(-1)(R_k times I_k)                           \
+                & = union.big_(k = 1)^infinity (Re f)^(-1)(R_k) sect (Re f)^(-1)(I_k) in Sc.
+    $
+  - (3) follows from (2) by the fact that every Borel set can be approximated
+    from outside by open sets.
+  - (1) follows from (2) as follows:
+    If $B$ is a Borel subset of $RR$, then $(Re f)^(-1) (B) = f^(-1) (B times
+      RR) in Sc$ and $(Im f)^(-1) (B) = f^(-1)(RR times B) in Sc$. Hence, $Re f$ and
+    $Im f$ are both measurable functions.
+]
+
+#problem[
+  Suppose $(X, Sc)$ is a measurable space and $f, g: X -> CC$ are
+  $Sc$-measurable. Prove that
+  + $f+g, f-g, f g$ are $Sc$-measurable functions;
+  + if $g(x) != 0$ for all $x in X$, then $f/g$ is an $Sc$-measurable function.
+]
+
+#solution[
+  + $Re(f plus.minus g) = Re(f) plus.minus Re(g)$ and $Im(f plus.minus g) =
+    Im(f) plus.minus Im(g)$. For multiplication, $Re(f g) = Re f Re g - Im
+    f Im g$ and $Im (f g) = Re f Im g + Im f Re g$.
+  + A similar formula can be trivially derived for division.
+]
+
+#problem[
+  Suppose $(X, Sc)$ is a measurable space and $f_1, f_2, ...$ is a sequence of
+  $Sc$-measurable functions from $X$ to $CC$. Suppose $lim_(k -> infinity) f_k
+  (x)$ exists for each $x in X$.
+
+  Define $f: X -> CC$ by
+  $ f(x) = lim_(k -> infinity) f_k (x). $
+
+  Prove that $f$ is an $Sc$-measurable function.
+]
+
+#solution[
+  $Re f(x) = lim_(k -> infinity) Re f_k (x)$ and $Im f(x) = lim_(k -> infinity)
+  Im f_k (x)$ are clearly $Sc$-measurable functions.
+]
+
+#problem[
+  Suppose $(X, Sc)$ is a measurable space and $f: X -> CC$ is an $Sc$-measurable
+  function such that $integral abs(f) dif mu < infinity$. Prove that if $alpha
+  in CC$, then
+  $ integral alpha f dif mu = alpha integral f dif mu. $
+]
+
+#solution[
+  $
+    integral alpha f dif mu & = integral Re (alpha f) dif mu + i integral Im
+    (alpha f) dif mu \
+    & = integral (Re alpha Re f - Im alpha Im f) dif mu + i integral (Re alpha Im f + Im alpha Re f) dif mu \
+    & = (Re alpha + i Im alpha) (integral Re f dif mu + i integral Im f dif mu) \
+    & = alpha integral f dif mu.
+  $
+]
+
+#problem[
+  Suppose $V$ is a vector space. Show that the intersection of every collection
+  of subspaces of $V$ is a subspace of $V$.
+]
+
+#solution[
+  Since every subspace of $V$ contains the zero vector, the intersection of
+  every collection of subspaces must also contains that vector and therefore is
+  nonempty.
+
+  If $W = sect.big_(tau in Pi) V_tau$ for subspaces $V_tau subset.eq V, forall
+  tau in Pi$, then if $u, v in W$, $alpha, beta in CC$, we have:
+  $ u, v in V_tau => alpha u + beta v in V_tau, forall tau in Pi. $
+  Hence, $alpha u + beta v in W$, which implies that $W$ is a subspace of $V$.
+]
+
+#problem[
+  Suppose $V$ and $W$ are vector spaces. Define $V times W$ by
+  $ V times W = {(f, g): f in V "and" g in W}. $
+  Define addition and scalar multiplication on $V times W$ by
+  $
+    (f_1, g_1) + (f_2, g_2) = (f_1+f_2, g_1+g_2) "and" alpha (f, g) = (alpha f,
+      alpha g).
+  $
+  Prove that $V times W$ is a vector space with these operations.
+]
+
+#solution[
+  Trivial.
+]

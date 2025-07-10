@@ -4075,3 +4075,432 @@ let $f_I$ denote the average of $f$ on $I$. In other words, $f_I = 1 / abs(I) in
   + This does not violate 5.48 since the second-order derivative expressions are
     not continuous (at $(0, 0)$).
 ]
+
+= Banach Spaces
+
+== Metric Spaces
+
+#problem[
+  Verify that each of the claim metrics in Example 6.2 is indeed a metric.
+]
+
+#solution[
+  Trivial.
+]
+
+#problem[
+  Prove that every finite subset of a metric space is closed.
+]
+
+#let cl(x) = math.overline(x)
+#solution[
+  If $F$ is a finite subset of a metric space, then take any $x in cl(F)$. Then,
+  there exists $x_1, x_2, ... in F$ such that $lim_(k -> infinity) x_k = x$.
+
+  Then, we claim that there exists some $N$ such that $x_k = x$ for every $k >=
+  N$. Assuming otherwise, then there exists a subsequence $x_k_n$ of $x_n$ such
+  that $x_k_n != x$ for all $n >= 1$.
+
+  Hence,
+  $lim_(n -> infinity) x_k_n = x$ implies that $lim_(n->infinity) d(x_k_n, x) =
+  0$. However, we know that $d(x_k_n, x) >= min_(x' in F) d(x, x') > 0$, which
+  is a contradiction. Therefore, $x_k = x$ for large enough $k$, which implies $x in
+  F$.
+]
+
+#problem[
+  Prove that every closed ball in a metric space is closed.
+]
+
+#solution[
+  Consider the closed ball $cl(B(x, r))$ and any point $x' in.not B(x, r)$,
+  which implies $d(x, x') > r$.
+  We
+  Clearly, $B' = B(x', 1/2(d(x,x')-r))$ is a open ball that does not intersect $B(x,
+    r)$. Hence, $cl(B(x, r))$ is closed.
+]
+
+#problem[
+  Suppose $V$ is a metric space.
+  + Prove that the union of each collection of open subsets of $V$ is an open
+    subset of $V$.
+  + Prove that the intersection of each finite collection of open subsets of $V$
+    is a open subset of $V$.
+] <prob:open-union-intersect>
+
+#solution[
+  + If $E_tau$ is open for every $tau in Pi$, $E = union.big_(tau in Pi) E_tau$,
+    $x in E$, then there exists some $tau_0 in Pi$ such that $x in E_(tau_0)$.
+    Since $E_(tau_0)$ is open, there exists some $r > 0$ such that
+    $B(x, r) subset.eq E_(tau_0) subset.eq E$. Hence, $E$ is open.
+  + If $E_tau$ is open for every $tau in Pi$, where $abs(Pi) < infinity$,
+    $E = sect.big_(tau in Pi) E_tau$, $x in E$, then there for every $tau_0 in
+    Pi$, there exists some $r_(tau_0) > 0$ such that
+    $B(x, r_(tau_0)) subset.eq E_(tau_0)$. Let $r = min_(tau in Pi)
+    r_(tau)$, then $B(x, r) subset.eq E_tau$ for all $tau in Pi$, hence $E$ is
+    open.
+]
+
+#problem[
+  Suppose $V$ is a metric space.
+  + Prove that the intersection of each collection of closed subsets of $V$ is
+    an closed subset of $V$.
+  + Prove that the union of each finite collection of closed subsets of $V$
+    is a closed subset of $V$.
+]
+
+#solution[
+  Trivial consequence of @prob:open-union-intersect.
+]
+
+#problem[
+  + Prove that if $V$ is a metric space, $f in V$ and $r > 0$, then $cl(B(x, r))
+    subset.eq cl(B) (x, r)$.
+  + Given an example of a metric space $V$, $f in V$ and $r > 0$ such that
+    $cl(B(f, r)) != cl(B) (f, r)$.
+]
+
+#solution[
+  + If $x in cl(B(f, r))$, then there exists a sequence $x_n in B(f, r)$ such that
+    $lim_(n -> infinity) x_n = x$. Then,
+    $ d(f, x) <= sup_(n in ZZ^+)l d(f, x_n) <= r. $
+    Hence, $x in cl(B)(f, r)$.
+  + Consider the discrete metric on any $V$ with more than 1 element. Then,
+    $ B(x, 1) = {x} => cl(B(x, 1)) = {x} != V = cl(B)(x, 1). $
+]
+
+#problem[
+  Show that each sequence in a metric space has at most one limit.
+]
+
+#solution[
+  If a sequence $x_n$ has two limits $x$ and $y$, then,
+  $ d(x, y) <= sup_(n in ZZ^+) (d(x, x_n) + d(y, x_n)) -> 0, "as" n -> infinity. $
+  Hence, $d(x, y) = 0$, which implies $x = y$.
+]
+
+#problem[
+  Prove 6.9 in MIRA: Suppose $V$ is a metric space and $E subset.eq V$. Then:
+  + $cl(E) = {g in V: exists f_1, f_2, ... in E "s.t." lim_(k -> infinity) f_k =
+      g}$;
+  + $cl(E)$ is the intersection of all closed subsets of $V$ that contain $E$;
+  + $cl(E)$ is a closed subset of $V$;
+  + $E$ is closed if and only if $cl(E) = E$;
+  + $E$ is closed if and only if $E$ contains the limit of every convergent
+    sequence in $E$.
+]
+
+#solution[
+  + If $g in cl(E)$, then for every $epsilon_n -> 0$, $B(g, epsilon_n) sect E
+    != diameter$. Pick any $f_n in B(g, epsilon_n)$ gives a sequence $(f_n)_(n
+    in ZZ^+)$. Then,
+    $ lim_(n -> infinity) d(f_n, g) <= lim_(n -> infinity) epsilon_n = 0, $
+    hence $g = lim_(n->infinity) f_n$.
+
+    For the reverse direction, if $g$ is the limit of $f_n in E$ as $n ->
+    infinity$, then for every $epsilon > 0$, there exists some $n_0$ such that
+    $d(f_n, g) < epsilon, forall n > n_0$. Then, $f_n in B(g, epsilon)$, so
+    $B(g, epsilon) sect E != diameter$. Hence, $g in cl(E)$.
+  + If $F$ is a closed subset that contains $E$, then we aim to prove $cl(E)
+    subset.eq F$. This is equivalent to proving that every $g in cl(E)$ is
+    also in $F$.
+    Assuming $g in.not F$, then $g in V without F$, an open set. Then, there
+    exists some $epsilon > 0$ such that $B(g, epsilon) subset.eq V without F$.
+    Hence, $B(g, epsilon) sect E subset.eq (V without F) sect E = diameter$,
+    which contradicts the definition
+    of $g in cl(E)$. Hence, $g in F$, and therefore $cl(E) subset.eq F$.
+  + Let $g in V without cl(E)$. Assuming $exists.not epsilon > 0$ such that
+    $B(g, epsilon) subset.eq V without cl(E)$, then $forall epsilon > 0, B(g,
+      epsilon) sect cl(E) != diameter$. However, this implies $g in cl(E)$, a
+    contradiction. Hence, there always exists $epsilon > 0$ such that $B(g,
+      epsilon) subset.eq V without cl(E)$, so $V without cl(E)$ is open, hence
+    $cl(E)$ is closed.
+  + If $cl(E) = E$ then $E = cl(E)$ is clearly closed. Assuming $E$ is closed,
+    then $cl(E)$ is contained in every closed $F supset.eq E$. Taking $F = E$
+    gives $cl(E) subset.eq E$. But since $E subset.eq cl(E)$ from definition, we
+    must have $E = cl(E)$.
+  + This is a trivial consequence of the first and fourth statements.
+]
+
+#problem[
+  Prove that each open subset of a metric space $V$ is the union of some
+  sequence of closed subsets of $V$.
+]
+
+#solution[
+  #let dist = math.op("dist")
+  Let $E subset.eq V$ be an open set. Define:
+  $ F_n = { x in E: dist(x, V without E) >= 1/n }, $
+  where $dist(x, Y) = inf_(y in Y) d(x, y)$ is the distance from $x$ to a set
+  $Y$.
+
+  Then, if $x in E$, there must be some $epsilon > 0$ such that $B(x, epsilon)
+  subset.eq E$. Hence, $dist(x, V without E) >= epsilon > 0$. That way, there
+  exists some $n in ZZ^+$ such that $dist(x, V without E) >= 1/n$, hence $x in
+  F_n$. Hence, we can see that:
+  $ union.big_(n = 1)^infinity F_n = E. $
+
+  Now, it suffices to prove that $F_n$ are closed for every $n$.
+  Let $f_k$ be a convergent sequence in $F_n$ with limit $f$. Then,
+  note that for every $x, y in V, Y subset.eq V$, we have:
+  $ abs(dist(x, V) - dist(y, V)) <= d(x, y). $
+  To see this, denote $d_1 = dist(x, Y), d_2 = dist(y, V)$, then for every
+  $epsilon > 0$, there exists
+  sequences $a_epsilon in Y$ such that:
+  $ d(x, a_epsilon) <= d_1 + epsilon $
+  Then,
+  $ d(x, y) >= d(x, a_epsilon) + d(a_epsilon, y) >= d_1- d_2 + epsilon. $
+  Similarly,
+  $ d(x, y) >= d_2 - d_1 + epsilon. $
+  Since both inequalities hold for every $epsilon > 0$, we have:
+  $ d(x, y) >= abs(d_1 - d_2) = abs(dist(x, Y) - dist(y, Y)). $
+
+  With this, $dist(x, Y)$ is continuous w.r.t. $x$, so we have:
+  $
+    dist(f, V without E) = lim_(k -> infinity) dist(f_k, V without E) <=
+    1/n.
+  $
+  Hence, $f in F_n$, which means $F_n$ is closed.
+
+  Therefore, $E$ is the union of closed sets.
+]
+
+#problem[
+  Prove or give a counterexample: If $V$ is a metric space and $U, W$ are
+  subsets of $V$, then $cl(U) union cl(V) = cl(U union V)$.
+]
+
+#solution[
+  $U union W$ is the smallest closed set that contains $U$ and $W$. We will
+  prove that $cl(U) union cl(V)$ also has that property.
+
+  If some closed $F supset.eq U union W$, then clearly $cl(U), cl(W) subset.eq
+  F$. Then, $cl(U) union cl(W) subset.eq F$.
+]
+
+#problem[
+  Prove or give a counterexample: If $V$ is a metric space and $U, W$ are
+  subsets of $V$, then $cl(U) sect cl(V) = cl(U sect V)$.
+]
+
+#solution[
+  Take $V$ as $RR$ with the usual metric, $U = (0, 1), W = (1, 2)$.
+]
+
+#problem[
+  Suppose $(U, d_U), (V, d_V), (W, d_W)$ are metric spaces. Suppose also that
+  $T: U -> V$ and $S: V -> W$ are continuous functions.
+  + Using the definition of continuity, show that $S compose T: U -> W$ is
+    continuous
+  + Using the equivalence of 6.11(a) and 6.11(b), show that $S compose T: U ->
+    W$ is continuous.
+  + Using the equivalence of 6.11(a) and 6.11(c), show that $S compose T: U ->
+    W$ is continuous.
+]
+
+#solution[
+  + For $epsilon > 0$, there exists $delta > 0$ such that:
+    $ d_W (S(f'), S(g')) < epsilon, forall f', g' in V: d_V (f', g') < delta. $
+    Then, there also exists $delta' > 0$ such that:
+    $ d_V (T(f), T(g)) < delta, forall f, g in V: d_U (f, g) < delta'. $
+    Combining the two results (letting $f'=T(f), g'=T(g)$) gives,
+    $
+      d_W ((S compose T)(f), (S compose T)(g)) < epsilon, forall f, g in V: d_U
+      (f, g) < delta'.
+    $
+  + $lim_(k -> infinity) f_k = f => lim_(k -> infinity) T(f_k) = T(f) => lim_(k
+    -> infinity) S(T(f_k)) = S(T(f)).$
+  + $(S compose T)^(-1) (G) = (T^(-1) compose S^(-1))(G)$ is open for every open
+    $G subset.eq W$.
+]
+
+#problem[
+  Prove the parts of 6.11 that were not proved in the text.
+]
+
+#solution[
+  - (c) is equivalent to (a):
+    - If $T$ is continuous, and $G$ is an open set,
+      we will prove that $T^(-1)$ is also open. Let $x in
+      T^(-1) (G)$, then $T(x) in G$, and there exists
+      some $epsilon > 0$ such that $B(T(x), epsilon) subset.eq G$, and $delta > 0$ such
+      that $d(T(x), T(x')) < epsilon$, or equivalently, $T(x') in B(T(x), epsilon))
+      subset.eq G$, for every $x' in B(x, delta)$. Hence, $B(x, delta) subset.eq
+      T^(-1) (G)$, which implies $T^(-1) (G)$ is open.
+    - If $T^(-1) (G)$ is open for every open $G$, then for every $f in V,
+      epsilon > 0$, $T^(-1) (B(T(f), epsilon))$ is open. Hence, there exists
+      $delta > 0$ such that $B(f, delta) subset.eq T^(-1) (B(T(f), epsilon))$, which
+      implies $d(T(f), T(g)) < epsilon, forall g in V, d(f, g) < delta$.
+  - (a) implies (b): Let $f_n in V$ be a convergent sequence with limit $f$.
+    Then, since $T$ is continuous, for every $epsilon > 0$, there exists $delta
+    > 0$ such that $d(T(f), T(g)) < epsilon, forall g in B(f, delta)$. Since
+    $f_n -> f$ as $n -> infinity$, there exists $k$ such that $d(f_n, f) < delta,
+    forall n > k$. Then, $d(T(f), T(f_n)) < epsilon, forall n > k$. Hence,
+    $lim_(n -> infinity) T(f_n) = T(f)$.
+]
+
+#problem[
+  Suppose a Cauchy sequence in a metric space has a convergent subsequence.
+  Prove that the Cauchy sequence converges.
+] <prob:cauchy-converge-subseq>
+
+#solution[
+  Let $x_n$ be a Cauchy sequence with a convergent subsequence $x_n_k$ with
+  limit $x^*$. Then, for every $epsilon > 0$, there exists $N, K$ such that:
+  $
+    d(x_n_k, x^*) < epsilon/2, forall k > K, "and" d(x_m, x_n) < epsilon/2,
+    forall m, n > N.
+  $
+  Then, take any $K' > K$ such that $n_(K') > N$, we have:
+  $ d(x_n, x^*) <= d(x_n, x_n_(K')) + d(x_n_(K'), x^*) < epsilon, forall n > N. $
+  Hence, clearly $x_n -> x^*$ as $n -> infinity$.
+]
+
+#problem[
+  Verify that all five of the metric spaces in Example 6.2 (MIRA) are complete
+  metric spaces.
+]
+
+#solution[
+  - If $x_n$ is a Cauchy sequence, then $d(x_m, x_n) < 1/2, forall m, n >= N$ for
+    some $N$. This is equivalent to $x_m = x_n, forall m, n >= N$, so $x_n ->
+    x_N$ as $n -> infinity$.
+  - This is an elementary result from Real Analysis. For large $n$, $x_n$ is
+    bounded in some $B(x_N, epsilon)$. Then, $x_n$ has a convergent subsequence.
+    By @prob:cauchy-converge-subseq, $x_n$ must be convergent.
+  - If $x^m$ is a Cauchy sequence (use superscript to avoid the subscripts for
+    the index of each vector), then $x^m_k$ is a Cauchy sequence (fix $n$ and
+    let $k in [n]$). Then, we can let each component be the real number limit of
+    its respective component sequence, if that makes sense.
+  - If $f_n$ is a Cauchy sequence, then $f_n (x)$ is also a Cauchy sequence in
+    the usual $RR$ metric space. Hence, $lim_(n -> infinity) f_n (x)$ exists,
+    and therefore $f_n$ converges to some $f$ pointwise. But since $f_n$ are
+    uniformly continuous on $[0, 1]$, $f$ must be continuous on $[0, 1]$, so $f in
+    C([0, 1])$.
+  - If $a^k$ is a Cauchy sequence (of sequences in $cal(l)^1$, and we use
+    superscript to avoid the subscripts for the index of each sequence), then
+    every $a^k_n$ (fix $n$ and let $k in ZZ^+$) is a Cauchy sequence. Hence, we
+    can define the pointwise limit $a$ of $a^k$. Now, for all large $k$, we have:
+    $
+      d(a^k_n, a) < "some" epsilon => sum_(n=1)^infinity abs(a_n) <= sum_(n=1)^infinity
+      abs(a^k_n) + sum_(n=1)^infinity abs(a_n - a^k_n) < infinity,
+    $
+    so $a$ is in our $cal(l)^1$ space.
+]
+
+#problem[
+  Suppose $(U, d)$ is a metric space. Let $W$ denote the set of all Cauchy
+  sequences of elements of $U$.
+  + For $(f_1, f_2, ...)$ and $(g_1, g_2, ...)$ in $W$, define $(f_1, f_2, ...)
+    equiv (g_1, g_2, ...)$ to mean that
+    $ lim_(k -> infinity) d(f_k, g_k) = 0. $
+    Show that $equiv$ is an equivalence relation on $W$.
+  + Let $V$ denot the set of equivalence classes of elements of $W$ under the
+    equivalence relation above. For $(f_1, f_2, ...) in W$, let $(f_1, f_2, ...)
+    hat$ denote the equivalence class of $(f_1, f_2, ...)$. Define $d_V: V times
+    V -> [0, infinity)$ by
+    $
+      d_V ((f_1, f_2, ...)hat - (g_1, g_2, ...)hat) = lim_(k -> infinity) d(f_k,
+        g_k) = 0.
+    $
+    Show that this definition of $d_V$ makes sense and that $d_V$ is a metric on
+    $V$.
+  + Show that $(V, d_V)$ is a complete metric space.
+  + Show that the map from $U$ to $V$ that takes $f in U$ to $(f,f,f)hat$
+    preserves distances, meaning that
+    $
+      d(f, g) = d_V ((f, f, ...)hat - (g, g, ...)hat)
+    $
+    for all $f, g in U$.
+  + Explain why (4) shows that every metric space is a subset of some complete
+    metric space.
+]
+
+#solution[
+  The last two statements are just the creams of the crop and extremely trivial.
+  We will only prove the first 3 statements.
+  + If $f equiv g$ and $f equiv h$, then:
+    $ d(g_k, h_k) <= d(f_k, g_k) + d(f_k, h_k) 0 "as" k -> infinity, $
+    so $g equiv h$.
+  + This proof has three subsections:
+    - First, we will prove that the limit exists for. Define:
+      $ f(k) = sup_(m, n >= k) d(f_m, f_n). $
+      Then, we have:
+      $
+        d(f_k, g_k) <= d(f_k, f_K) + d(g_k, g_K) + d(f_K, g_K) <= f(K) + g(K) +
+        d(f_K, g_K),
+      $
+      for all $k >= K$. Hence $d(f_k, g_k)$ is closed, therefore it has a
+      convergent subsequence $d(f_k_n, g_k_n) -> d$. Replace $K$ by $k_n$ and letting
+      $n -> infinity$ gives
+      $ d(f_k, g_k) <= f(k_n) + g(k_n) + d(f_k_n, g_k_n) -> d. $ <eq:asdf1>
+      Moreover, we have:
+      $ d(f_k, g_k) >= d(f_k_n, g_k_n) - (f(k) + g(k)) $
+      Letting $n -> infinity$ gives
+      $ d(f_k, g_k) >= d - (f(k) + g(k)), $
+      and $k -> infinity$ gives
+      $ liminf_(k->infinity) d(f_k, g_k) >= d. $ <eq:asdf2>
+      From @eq:asdf1 and @eq:asdf2, we have $lim_(k -> infinity) d(f_k, g_k) = d$.
+
+    - We will then prove that $d_V$ is well defined: if $v, v' in hat(v), w, w' in
+      hat(w)$ for some $hat(v), hat(w) in V$, then
+      $ lim_(k -> infinity) d(v_k, w_k) = lim_(k -> infinity) d(v'_k, w'_k). $
+      WLOG assuming $w = w'$ (why?). What we need to prove is simply,
+      $ lim_(k->infinity) abs(d(v_k,w_k)-d(v'_k,w_k)) = 0, $
+      which is true since the limit term is bounded above by $abs(d(v_k,v'_k))$.
+
+    - Now, we prove that $d$ defined this way is a metric space, of which the
+      nontrivial part is the triangle inequality. However, note that if $u, v, w
+      in U$, then:
+      $
+        d_V (u hat, v hat) & = lim_(k -> infinity) d(u_k, v_k)          \
+                           & <= liminf_(k ->
+                             infinity) (d(u_k, w_k) + d(v_k, w_k))      \
+                           & = d_V (u hat, w hat) + d_V (v hat, w hat).
+      $
+  + If $u^n hat in U$ is a Cauchy sequence, i.e.
+    $
+      lim_(N -> infinity) underbrace(
+        sup_(m, n >= N) lim_(k -> infinity)
+        d(u^m_k, u^n_k), g(N)
+      ) = 0,
+    $
+    then since every $u^n$ is a Cauchy sequence, there exists $K_n$ such that
+    $ d(u^n_i, u^n_j) < 1/n, forall i, j >= K_n. $
+    Define $ u_n = u^n_K_n, $
+    then we will prove that:
+    - $u_n$ is a Cauchy sequence: Let $epsilon > 0$, there exists $K$ such that
+      $d_V (u^m, u^n) < epsilon/3, forall m, n > K$. Then, there exists $K'$
+      such that $d(u^m_k, u^n_k) < epsilon/3, forall k > K'$.
+
+      Then, for any $k > max{K', K_m, K_n}$, we have:
+      $
+        d(u_m, u_n) & = d(u^m_K_m, u^n_K_n)      \
+                    & <= d(u^m_K_m, u^m_k) + d(u^n_K_n,
+                        u^n_k) + d(u^m_k, u^n_k) \
+                    & <= 1/m + 1/n + epsilon/3.
+      $
+
+      Adding an additional constraint that $m, n > 3/epsilon$ gives $d(u_m, u_n)
+      < epsilon$. Hence, if $m, n > max{K, 3/epsilon}$, then $d(u_m, u_n) <
+      epsilon$, so $u$ is a Cauchy sequence.
+    - $u^m$ converges to $u$. This is equivalent to proving $ lim_(m ->
+      infinity) d_V (u^m, u) = lim_(m -> infinity) lim_(n -> infinity) d
+      (u^m_n, u_n) = lim_(m -> infinity) lim_(n -> infinity) d
+      (u^m_n, u^n_K_n) = 0. $
+      We have
+      $
+        d(u^m_n, u^n_K_n) & <= d(u^m_n, u^m_K_n) + d(u^m_K_n, u^n_K_n) \
+                          & <= 1/n + d_V (u^m, u^n),
+      $
+      so
+      $
+        d_V (u^m, u) <= sup_(n >= m) (1/n + d_V (u^m, u^n)) = sup_(n >= m)
+        d_V (u^m, u^n).
+      $
+      But since $u$ is a Cauchy sequence, we must have:
+      $ lim_(m -> infinity) sup_(n >= m) d_V (u^m, u^n) = 0, $
+      which gives us the desired result.
+      Hence, we have proven that every Cauchy sequence $(u^m)$ converges.
+      Therefore, $V$ is complete.
+]

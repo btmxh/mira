@@ -2579,7 +2579,7 @@
   + Give an example showing that the inequality in @eq-fatou can be a strict
     inequality even when $mu(X) < infinity$ and the family of functions
     ${f_k}_(k in ZZ^+)$ is uniformly bounded.
-]
+] <prob:fatou>
 
 #solution[
   + $f(x) = lim_(k -> infinity) inf_(m >= k) f_m (x)$ clearly is
@@ -4092,9 +4092,9 @@ let $f_I$ denote the average of $f$ on $I$. In other words, $f_I = 1 / abs(I) in
   Prove that every finite subset of a metric space is closed.
 ]
 
-#let cl(x) = math.overline(x)
+#let cs(x) = math.overline(x)
 #solution[
-  If $F$ is a finite subset of a metric space, then take any $x in cl(F)$. Then,
+  If $F$ is a finite subset of a metric space, then take any $x in cs(F)$. Then,
   there exists $x_1, x_2, ... in F$ such that $lim_(k -> infinity) x_k = x$.
 
   Then, we claim that there exists some $N$ such that $x_k = x$ for every $k >=
@@ -4113,11 +4113,11 @@ let $f_I$ denote the average of $f$ on $I$. In other words, $f_I = 1 / abs(I) in
 ]
 
 #solution[
-  Consider the closed ball $cl(B(x, r))$ and any point $x' in.not B(x, r)$,
+  Consider the closed ball $cs(B(x, r))$ and any point $x' in.not B(x, r)$,
   which implies $d(x, x') > r$.
   We
   Clearly, $B' = B(x', 1/2(d(x,x')-r))$ is a open ball that does not intersect $B(x,
-    r)$. Hence, $cl(B(x, r))$ is closed.
+    r)$. Hence, $cs(B(x, r))$ is closed.
 ]
 
 #problem[
@@ -4154,19 +4154,19 @@ let $f_I$ denote the average of $f$ on $I$. In other words, $f_I = 1 / abs(I) in
 ]
 
 #problem[
-  + Prove that if $V$ is a metric space, $f in V$ and $r > 0$, then $cl(B(x, r))
-    subset.eq cl(B) (x, r)$.
+  + Prove that if $V$ is a metric space, $f in V$ and $r > 0$, then $cs(B(x, r))
+    subset.eq cs(B) (x, r)$.
   + Given an example of a metric space $V$, $f in V$ and $r > 0$ such that
-    $cl(B(f, r)) != cl(B) (f, r)$.
+    $cs(B(f, r)) != cs(B) (f, r)$.
 ]
 
 #solution[
-  + If $x in cl(B(f, r))$, then there exists a sequence $x_n in B(f, r)$ such that
+  + If $x in cs(B(f, r))$, then there exists a sequence $x_n in B(f, r)$ such that
     $lim_(n -> infinity) x_n = x$. Then,
     $ d(f, x) <= sup_(n in ZZ^+)l d(f, x_n) <= r. $
-    Hence, $x in cl(B)(f, r)$.
+    Hence, $x in cs(B)(f, r)$.
   + Consider the discrete metric on any $V$ with more than 1 element. Then,
-    $ B(x, 1) = {x} => cl(B(x, 1)) = {x} != V = cl(B)(x, 1). $
+    $ B(x, 1) = {x} => cs(B(x, 1)) = {x} != V = cs(B)(x, 1). $
 ]
 
 #problem[
@@ -4181,17 +4181,17 @@ let $f_I$ denote the average of $f$ on $I$. In other words, $f_I = 1 / abs(I) in
 
 #problem[
   Prove 6.9 in MIRA: Suppose $V$ is a metric space and $E subset.eq V$. Then:
-  + $cl(E) = {g in V: exists f_1, f_2, ... in E "s.t." lim_(k -> infinity) f_k =
+  + $cs(E) = {g in V: exists f_1, f_2, ... in E "s.t." lim_(k -> infinity) f_k =
       g}$;
-  + $cl(E)$ is the intersection of all closed subsets of $V$ that contain $E$;
-  + $cl(E)$ is a closed subset of $V$;
-  + $E$ is closed if and only if $cl(E) = E$;
+  + $cs(E)$ is the intersection of all closed subsets of $V$ that contain $E$;
+  + $cs(E)$ is a closed subset of $V$;
+  + $E$ is closed if and only if $cs(E) = E$;
   + $E$ is closed if and only if $E$ contains the limit of every convergent
     sequence in $E$.
 ]
 
 #solution[
-  + If $g in cl(E)$, then for every $epsilon_n -> 0$, $B(g, epsilon_n) sect E
+  + If $g in cs(E)$, then for every $epsilon_n -> 0$, $B(g, epsilon_n) sect E
     != diameter$. Pick any $f_n in B(g, epsilon_n)$ gives a sequence $(f_n)_(n
     in ZZ^+)$. Then,
     $ lim_(n -> infinity) d(f_n, g) <= lim_(n -> infinity) epsilon_n = 0, $
@@ -4200,25 +4200,25 @@ let $f_I$ denote the average of $f$ on $I$. In other words, $f_I = 1 / abs(I) in
     For the reverse direction, if $g$ is the limit of $f_n in E$ as $n ->
     infinity$, then for every $epsilon > 0$, there exists some $n_0$ such that
     $d(f_n, g) < epsilon, forall n > n_0$. Then, $f_n in B(g, epsilon)$, so
-    $B(g, epsilon) sect E != diameter$. Hence, $g in cl(E)$.
-  + If $F$ is a closed subset that contains $E$, then we aim to prove $cl(E)
-    subset.eq F$. This is equivalent to proving that every $g in cl(E)$ is
+    $B(g, epsilon) sect E != diameter$. Hence, $g in cs(E)$.
+  + If $F$ is a closed subset that contains $E$, then we aim to prove $cs(E)
+    subset.eq F$. This is equivalent to proving that every $g in cs(E)$ is
     also in $F$.
     Assuming $g in.not F$, then $g in V without F$, an open set. Then, there
     exists some $epsilon > 0$ such that $B(g, epsilon) subset.eq V without F$.
     Hence, $B(g, epsilon) sect E subset.eq (V without F) sect E = diameter$,
     which contradicts the definition
-    of $g in cl(E)$. Hence, $g in F$, and therefore $cl(E) subset.eq F$.
-  + Let $g in V without cl(E)$. Assuming $exists.not epsilon > 0$ such that
-    $B(g, epsilon) subset.eq V without cl(E)$, then $forall epsilon > 0, B(g,
-      epsilon) sect cl(E) != diameter$. However, this implies $g in cl(E)$, a
+    of $g in cs(E)$. Hence, $g in F$, and therefore $cs(E) subset.eq F$.
+  + Let $g in V without cs(E)$. Assuming $exists.not epsilon > 0$ such that
+    $B(g, epsilon) subset.eq V without cs(E)$, then $forall epsilon > 0, B(g,
+      epsilon) sect cs(E) != diameter$. However, this implies $g in cs(E)$, a
     contradiction. Hence, there always exists $epsilon > 0$ such that $B(g,
-      epsilon) subset.eq V without cl(E)$, so $V without cl(E)$ is open, hence
-    $cl(E)$ is closed.
-  + If $cl(E) = E$ then $E = cl(E)$ is clearly closed. Assuming $E$ is closed,
-    then $cl(E)$ is contained in every closed $F supset.eq E$. Taking $F = E$
-    gives $cl(E) subset.eq E$. But since $E subset.eq cl(E)$ from definition, we
-    must have $E = cl(E)$.
+      epsilon) subset.eq V without cs(E)$, so $V without cs(E)$ is open, hence
+    $cs(E)$ is closed.
+  + If $cs(E) = E$ then $E = cs(E)$ is clearly closed. Assuming $E$ is closed,
+    then $cs(E)$ is contained in every closed $F supset.eq E$. Taking $F = E$
+    gives $cs(E) subset.eq E$. But since $E subset.eq cs(E)$ from definition, we
+    must have $E = cs(E)$.
   + This is a trivial consequence of the first and fourth statements.
 ]
 
@@ -4267,20 +4267,20 @@ let $f_I$ denote the average of $f$ on $I$. In other words, $f_I = 1 / abs(I) in
 
 #problem[
   Prove or give a counterexample: If $V$ is a metric space and $U, W$ are
-  subsets of $V$, then $cl(U) union cl(V) = cl(U union V)$.
+  subsets of $V$, then $cs(U) union cs(V) = cs(U union V)$.
 ]
 
 #solution[
   $U union W$ is the smallest closed set that contains $U$ and $W$. We will
-  prove that $cl(U) union cl(V)$ also has that property.
+  prove that $cs(U) union cs(V)$ also has that property.
 
-  If some closed $F supset.eq U union W$, then clearly $cl(U), cl(W) subset.eq
-  F$. Then, $cl(U) union cl(W) subset.eq F$.
+  If some closed $F supset.eq U union W$, then clearly $cs(U), cs(W) subset.eq
+  F$. Then, $cs(U) union cs(W) subset.eq F$.
 ]
 
 #problem[
   Prove or give a counterexample: If $V$ is a metric space and $U, W$ are
-  subsets of $V$, then $cl(U) sect cl(V) = cl(U sect V)$.
+  subsets of $V$, then $cs(U) sect cs(V) = cs(U sect V)$.
 ]
 
 #solution[
@@ -4359,7 +4359,7 @@ let $f_I$ denote the average of $f$ on $I$. In other words, $f_I = 1 / abs(I) in
 #problem[
   Verify that all five of the metric spaces in Example 6.2 (MIRA) are complete
   metric spaces.
-]
+] <prob:verify-complete>
 
 #solution[
   - If $x_n$ is a Cauchy sequence, then $d(x_m, x_n) < 1/2, forall m, n >= N$ for
@@ -4414,7 +4414,7 @@ let $f_I$ denote the average of $f$ on $I$. In other words, $f_I = 1 / abs(I) in
     for all $f, g in U$.
   + Explain why (4) shows that every metric space is a subset of some complete
     metric space.
-]
+] <prob:6a16>
 
 #solution[
   The last two statements are just the creams of the crop and extremely trivial.
@@ -4668,4 +4668,437 @@ let $f_I$ denote the average of $f$ on $I$. In other words, $f_I = 1 / abs(I) in
 
 #solution[
   Trivial.
+]
+
+== Normed Vector Spaces
+
+#problem[
+  Showt that the map $f |-> norm(f)$ from a normed vector space $V$ to $FF$ is
+  continuous (where the norm on $FF$ is the usual absolute value).
+]
+
+#solution[
+  For every $epsilon > 0$, we have:
+  $
+    abs(norm(f) - norm(g)) <= norm(f-g) < epsilon, forall f, g in V: norm(f-g)
+    < epsilon.
+  $
+  This implies that $f |-> norm(f)$ is continuous.
+]
+
+#problem[
+  Prove that if $V$ is a normed vector space, $f in V$ and $r > 0$, then
+  $ cs(B(f, r)) = cs(B)(f, r). $
+]
+
+#solution[
+  We know that $cs(B(f, r)) subset.eq cs(B)(f, r)$, so it suffices to prove that
+  for every $y in cs(B)(f, r)$, $y in cs(B(f, r))$. Since $y in cs(B)(f, r)$,
+  $norm(x-y) <= r$. Define $y_n = x + (y - x) (1 - 1/n)$, then
+  $ norm(x-y_n) = (1-1/n) norm(x-y) < r, forall n > 0. $
+  Hence, $y_n in B(f, r)$ for every $n in ZZ^+$, which implies its limit,
+  $ lim_(n -> infinity) y_n = y in cs(B(f, r)). $
+  Hence, $cs(B(f, r)) supset.eq cs(B)(f, r)$.
+]
+
+#problem[
+  Show that the functions defined in the last two bullet points of Example 6.35
+  (MIRA) are not norms.
+]
+
+#solution[
+  + Clearly,
+    $
+      norm(k(a_1, ..., a_n)) = sum_(i=1)^(n) abs(k a_i)^(1/2) = sqrt(abs(k))
+      sum_(i=1)^(n) abs(k a_i)^(1/2) = sqrt(abs(k)) norm((a_1, ..., a_n)),
+    $
+    which is different from $abs(k) norm((a_1, ..., a_n))$ in general.
+  + Let $n = 2$ and consider $a = (0, 1), b = (1, 0)$, then
+    $ norm(a) = norm(b) = 1, "but" norm(a + b) = 2. $
+]
+
+#problem[
+  Prove that each Cauchy sequence in a normed vector space is bounded.
+]
+
+#solution[
+  If $u_n$ is a Cauchy sequence, then for every $epsilon > 0$, there exists $K$
+  such that
+  $ norm(u_m - u_n) < epsilon, forall m, n >= K, $
+  which implies
+  $ norm(u_m) < epsilon + norm(u_K), forall m >= K. $
+  Hence, we have:
+  $ norm(u_m) < max{max_(n < K) norm(u_n), epsilon + norm(u_K)} < infinity, $
+  which implies $u_n$ is bounded.
+]
+
+#problem[
+  Show that if $n in ZZ^+$, then $FF^n$ is a Banach space with both the norms
+  used in the first bullet point of Example 6.34.
+]
+
+#solution[
+  This result is a proven result as in @prob:verify-complete.
+]
+
+#problem[
+  Suppose $X$ is a nonempty set and $b(X)$ is the vector space of bounded
+  functions from $X$ to $FF$. Prove that if $norm(dot)$ is defined on $b(X)$ by
+  $norm(f) = sup_X abs(f)$, then $b(X)$ is a Banach space.
+]
+
+#solution[
+  For $f, g in b(X)$, we have:
+  $
+    norm(f + g) = sup_X abs (f + g) <= sup_X abs(f) + sup_X abs(g) = norm(f) +
+    norm(g).
+  $
+
+  To prove completeness, consider a Cauchy sequence of bounded functions $f_n$.
+  For every $x in X$, we have:
+  $
+    abs(f_m (x) - f_n (x)) <= sup_(x in X) abs(f_m (x) - f_n (x)) =
+    norm(f_m-f_n).
+  $
+  Hence, $f_m (x)$ is a Cauchy sequence in $FF$ (with fixed $x$), so there
+  exists a limit
+  $ f(x) = lim_(n -> infinity) f_n (x). $
+
+  Clearly, $f$ defined this way is the limit of $f_n$. Then, it suffices to
+  prove that $f in b(X)$. First, note that:
+  $ norm(f) <= norm(f_n) + norm(f - f_n), forall n in ZZ^+. $
+  For large $n$, we have $norm(f-f_n)$ is finite, and since $f_n in b(X)$, its
+  norm must also be finite. Hence $norm(f) < infinity$.
+]
+
+#problem[
+  Show that $cal(l)^1$ with the norm defined by $norm((a_1, a_2, ...)) = sup_(k
+  in ZZ^+) abs(a_k)$ is not a Banach space.
+]
+
+#solution[
+  Consider $a^m_n = (q_m)^(-n)$, then the $a^m in cal(l)^1$ when $0 < q_m < 1$.
+  However, if we pick some $q_m in (0, 1)$ that converges to $1$, then
+  this is a Cauchy sequence, but the
+  pointwise limit of $a^m$ is the sequence $a^*_n = 1^(-n) = 1$ for all $n$.
+  Clearly, this sequence is not in $cal(l)^1$
+]
+
+#problem[
+  Show that $cal(l)^1$ with the norm defined by $norm((a_1, a_2, ...)) = sum_(k
+  = 1)^infinity abs(a_k)$ is a Banach space.
+]
+
+#solution[
+  If $a^m$ is a Cauchy sequence, then the pointwise limit $a^*$ exists. Using
+  @prob:fatou with the counting measure $mu$, we must have:
+  $
+    norm(a^*) = integral a^* dif mu <= liminf_(k -> infinity) integral a^k dif
+    mu = liminf_(k -> infinity) norm(a^k).
+  $
+  The right-most limit is finite, since
+  $
+    norm(a^k) <= norm(a^m) + epsilon, forall k >= m, m "chosen s.t."
+    norm(a^m-a^n) < epsilon, forall n >= m.
+  $
+]
+
+#problem[
+  Show that the vector space $C([0,1])$ of continuous functions from $[0,1]$ to
+  $FF$ with the norm defined by $norm(f) = integral_0^1 abs(f)$ is not a
+  Banach space.
+]
+
+// https://math.stackexchange.com/questions/156904/showing-that-the-space-c0-1-with-the-l-1-norm-is-incomplete?noredirect=1&lq=1
+#solution[
+  Define
+  $
+    f_n (x) = cases(
+      0 "if" 1/2+1/n <= x <= 1, 1 - n(x - 1/2) "if"
+      1/2<=x<=1/2+1/n, 1 "otherwise"
+    ),
+  $
+  then $norm(f_n - f_m) <= 1/n$ for all $m >= n$. Clearly $f_n$ is a Cauchy sequence,
+  so assume it converges to $f in C([0, 1])$, then we have:
+  $
+    integral_0^(1/2) abs(f_n - f) <= integral_0^1 abs(f_n - f) -> 0,
+    integral_(1/2)^1 abs(f_n - f) <= integral_0^1 abs(f_n - f) -> 0,
+  $
+  as $n -> infinity$.
+
+  However, $f_n = 0$ on $[1/2+1/n, 1]$   and $f_n = 1$   on $[0, 1/2]$, so this
+  implies $f = 0$ on $(1/2, 1]$ and $f = 1$ on $[0, 1/2]$. Clearly, such a
+  function can't be continuous.
+]
+
+#problem[
+  Suppose $U$ is a subspace of a normed vector space $V$ such that some open
+  ball of $V$ is contained in $U$. Prove that $U = V$.
+]
+
+#solution[
+  If $n = dim V$, then any open ball of $V$ has $n$ dimensions. Since some open
+  ball is contained in $U$, $dim U >= n = dim V$. Hence $U = V$.
+]
+
+#problem[
+  Prove that the only subsets of a normed vector space $V$ that are both open
+  and closed are $diameter$ and $V$.
+]
+
+#solution[
+  Assuming $U$ is a nonempty, proper subset of $V$ that is both closed and open.
+  Take $x in U$ and $y in V without U$. Aside from some trivial cases, we can
+  always pick these two points. Consider some convex combination of them:
+  $ f(lambda) = x + lambda (y - x), $
+
+  Now, denote
+  $ lambda_1 = sup {lambda in [0, 1]: f(lambda) in U}, $
+  then $lambda_1$ exists since $f(0) = x in U$. However, note that we can always
+  construct a sequence of $lambda$ values in the set mentioned above that
+  approaches $lambda_1$, so by the closedness of $U$, we must have $f(lambda_1)
+  in U$.
+
+  Consider an open ball centered at $f(lambda_1)$. Clearly we can see this set
+  intersect both $U$ and $V without U$, so $f(lambda_1)$ belongs to the boundary
+  of $U$. But since $U$ is open, it must not have any boundary, a contradiction!
+]
+
+#problem[
+  Suppose $V$ is a normed vector space. Prove that the closure of each subspace
+  of $V$ is a subspace of $V$.
+]
+
+#solution[
+  Let $U$ be a subspace of $V$.
+  If $u, v in cs(U), alpha, beta in FF$, then
+  $
+    exists u_n -> u, v_n -> v "as" n -> oo
+    => alpha u + beta v = lim_(n -> oo) underbrace(alpha u_n + beta v_n, w_n) in
+    cs(U),
+  $
+  since $w_n in U$ for every $n$.
+]
+
+#problem[
+  Suppose $U$ is a normed vector space. Let $d$ be the metric on $U$ defined by
+  $d(f, g) = norm(f-g)$ for $f, g in U$. Let $V$ be the complete metric space
+  constructed in @prob:6a16.
+  + Show that the set $V$ is a vector space under natural operations of
+    addition and scalar multiplication.
+  + Show that there is a natural way to make $V$ into a normed vector space and
+    that with this norm, $V$ is a Banach space.
+  + Explain why $(2)$ shows that every normed vector space is a subspace of some
+    Banach space.
+]
+
+#solution[
+  + Trivial.
+  + Define the norm of $u hat$ as $d(u hat, 0)$. This is a Banach space as a
+    result of the results in @prob:6a16.
+  + Trivial.
+]
+
+#problem[
+  Suppose $U$ is a subspace of a normed vector space $V$. Suppose also that $W$
+  is a Banach space and $S: U -> W$ is a bounded linear map.
+
+  + Prove that there exists a unique continuous function $T: cs(U) -> W$ such
+    that $T|_U = S$.
+  + Prove that the function $T$ in part (1) is a bounded linear map from
+    $cs(U)$ to $W$ and $norm(T) = norm(S)$.
+  + Give an example to show that part (1) can fail if the assumption that $W$ is
+    a Banach space is replaced by the assumption that $W$ is a normed vector
+    space.
+]
+
+#solution[
+  + For every $u in cs(U)$, there exists sequences $u^n -> u$ as $n -> infinity$.
+    Then, define $T(u)$ as $lim_(n -> infinity) S(u^n)$.
+    Since $S$ is bounded, this is a Cauchy sequence, and since $W$ is a Banach
+    space, the limit exists. Moreover, $T$ is well-defined and is continuous on
+    $cs(U)$.
+  + We have
+    $
+      norm(T) = sup_(u in cs(U)) norm(T(u))/norm(u) = sup_(u in ceil(U))
+      lim_(n -> infinity) underbrace(norm(S(u^n))/norm(u), <= norm(S)) <= norm(S),
+    $
+    where $u^n -> u$ as $n->infinity$.
+    Equality can be trivially pointed out from this.
+  + Pick $V$ as the vector space of bounded sequences,
+    $U = W$ as the vector spaces of bounded sequences with finite support
+    and $S = id$, and the norm we are using is the supremum norm. Then,
+    if we pick a sequence of sequences $u^n$ that converges to a sequence with
+    infinite support (e.g. sequence 1 has one 1 followed by infinite 0s, sequence
+    2 has two 1 followed by infinite 0s, etc.), we must have
+    $u^n -> u = (1, 1, 1, ...) in.not U$. Then, since if we can extend $S$ to $T$,
+    then $T = id$ and $T(u) = u in.not W$, a contradiction.
+]
+
+#let qt = "/"
+#problem[
+  For readers familiar with the quotient of a vector space and a subspace:
+  Suppose $V$ is a normed vector space and $U$ is a subspace of $V$. Define
+  $norm(dot)$ on $V qt U$ by
+  $ norm(f + U) = inf {norm(f + g): g in U }, $
+
+  + Prove that $norm(dot)$ is a norm on $V$ without $U$ if and only if $U$ is a
+    closed subspace of $V$.
+  + Prove that if $V$ is a Banach space and $U$ is a closed subspace of $V$,
+    then $V qt U$ (with the norm defined above) is a Banach space.
+  + Prove that if $U$ is a Banach space (with the norm it inherits from $V$)
+    and $V qt U$ is a Banach space (with the norm defined above), then $V$
+    is a Banach space.
+]
+
+#solution[
+  + Homogeneity is trivial, so we only need to care about the triangle
+    inequality and positive definiteness.
+    We have the triangle equality:
+    $
+      inf_(h in U) norm(f + g + h) & = inf_(h_1, h_2 in U) (norm(f + h_1) +
+        norm(g+h_2)) \
+      & <= inf_(h_1 in U) norm(f + h_1) + inf_(h_2 in U) norm(f + h_2)
+      &= norm(f + U) + norm(g + U) .
+    $
+
+    Now, consider positive definiteness. If $norm(f + U) = 0$, then there exists
+    $g_1, g_2, ... in U$  such that $norm(f + g_n) -> 0$ as $n -> infinity$.
+    This implies $g_n -> -f$ as $n -> infinity$. Then, $f + U = U$ only if $f$
+    actually belongs to $U$,  which must happen when $U$ is closed.
+
+    Now, assuming $U$ is not closed, so where can pick $f in cs(U) without U$,
+    and there exists a sequence $g_n in U$ such that $norm(f + g_n) -> 0$ as
+    $n -> infinity$. Then, we have $f + U != U$, but $norm(f + U) = 0$, a
+    contradiction.
+  + Let $f_n + U$ be a sequence such that:
+    $ sum_(n=1)^infinity norm(f_n + U) < infinity , $
+    then we aim to prove that:
+    $ sum_(n=1)^infinity (f_n + U) = sum_(n=1)^(infinity) f_n + U "converges". $
+    Now, observe that:
+    $
+      norm(f_n + U) = inf_(u in U) norm(f_n + u),
+    $
+    so we can pick $u_(m, n) in U$ such that:
+    $ norm(f_n + u_(m,n)) <= norm(f_n + U) + 1/2^m, forall m, n in ZZ^+. $
+
+    Then, we have:
+    $
+      sum_(n = 1)^infinity norm(f_n + u_(n, n)) <= sum_(n=1)^(infinity) norm(
+        f_n +
+        U
+      ) + 1 < infinity .
+    $
+    By this, we have $g_n = f_n + u_(n, n)$ such that $sum_(n=1)^(infinity)
+    g_n < infinity$.
+
+    But since $u_(n, n) in U$, we have $f_n + U = g_n + U$. Then,
+    $
+      sum_(n=1)^(infinity) (f_n + U) = sum_(n=1)^(infinity) (g_n + U) =
+      sum_(n=1)^(infinity) g_n + U.
+    $
+    Hence, the series $sum_(n=1)^(infinity) (f_n + U)$ converges, which implies
+    $V qt U$ is a Banach space.
+  + Let $f_n in V$ be a Cauchy sequence on $V$, then $f_n + U$ is also Cauchy on
+    $V qt U$:
+    $
+      norm((f_n+U)-(f_m+U)) & = norm((f_n - f_m) + U)                     \
+                            & = inf_(u in U) norm(
+                                f_n -
+                                f_m + u
+                              )                                           \
+                            & <= inf_(u in U) (norm(f_n - f_m) + norm(u)) \
+                            & = norm(f_n - f_m) .
+    $
+    Hence, $f_n + U$ converges to some $f + U$ in $V qt U$. Then,
+    $ norm((f_n + U) - (f + U)) = inf_(u in U) norm((f_n - f) + u). $
+    so there exists $v_n in U$ such that:
+    $ norm((f_n - f) + v_n) < 1/n, forall n in ZZ^+. $
+
+    Take any $epsilon > 0$, we have:
+    $
+      norm(v_n - v_m) & <= norm(v_n + (f_n - f)) + norm(v_m + (f_m - f)) +
+                        norm(f_n - f_m)                 \
+                      & <= 1/n + 1/m + norm(f_n - f_m).
+    $
+
+  Hence, if we take $m, n > K$ such that $1/n + 1/m + norm(f_n - f_m)$, we can
+  have $norm(v_n-v_m) < epsilon$. Hence, $v_n$ is a Cauchy sequence, therefore
+  converges to some $v in U$. Then, we have:
+  $ norm((f_n - f) + v) <= norm((f_n - f) + v_n) + norm(v_n - v) -> 0, $
+  as $n -> infinity$. Hence, $f_n$ converges to $f - v$.
+]
+
+#problem[
+  Suppose $V$ and $W$ are normed vector spaces with $V != {0}$ and $T: V -> W$ is a
+  linear map.
+  + Show that $norm(T) = sup{norm(T f): f in V "and" norm(f) < 1 }.$
+  + Show that $norm(T) = sup{norm(T f): f in V "and" norm(f) = 1 }.$
+  + Show that $norm(T) = inf{c in [0, infinity): norm(T norm(f)) <= c f, forall f in V}.$
+  + Show that $norm(T) = sup{norm(T f)/norm(f): f in V, f != 0 }.$
+]
+
+#solution[
+  By the definition of $norm(T)$, there exists a sequence $f_n in cs(B)(0, 1)$
+  such that: $norm(T f_n) -> norm(T)$ as $n -> infinity$. Then,
+  + The sequence $f'_n = f_n (1 - 1/n) in B(0, 1)$ also satisfies the same
+    limit. Hence, $norm(T) = lim_(n -> infinity ) norm(T f_n) <= "RHS"_1.$
+    Clearly $norm(T) <= "RHS"_1$, so we are done.
+  + The sequence $ f'_n = cases(f_n/norm(f_n) "if" f_n != 0, 0 "otherwise")
+    in partial B(0, 1) $ also satisfies the same
+    limit. Hence, $norm(T) = lim_(n -> infinity ) norm(T f_n) <= "RHS"_2.$
+    Clearly $norm(T) <= "RHS"_2$, so we are done.
+  + Clearly every $c >= norm(T)$ belongs in $"RHS"_3$. Assuming $"RHS"_3$
+    contains some $c < norm(T)$, then from the definition of $norm(T)$, there
+    exists some $f$ such that $c norm(f) < norm(T f)$, which is a
+    contradiction.
+  + $"RHS"_4$ is exactly the same set as $"RHS"_2$.
+]
+
+#problem[
+  Suppose $U, V$ and $W$ are normed vector spaces and $T: U -> V$ and $S: V ->
+  W$ are linear. Prove that
+  $ norm(S compose T) <= norm(S) norm(T). $
+]
+
+#solution[
+  If $f in U$, we have:
+  $ norm(T f) <= norm(T) norm(f) "and" norm(S T f) <= norm(S) norm(T f). $
+  Combining this gives,
+  $ norm((S compose T) f) <= norm(T) norm(S) norm(f). $
+  Then, trivially,
+  $ norm(S compose T) <= norm(T) norm(S). $
+]
+
+#problem[
+  Suppose $V$ and $W$ are normed vector spaces and $T: V -> W$ is a linear map.
+  Prove that the following are equivalent:
+  + $T$ is bounded.
+  + There exists $f in V$ such that $T$ is continuous at $f$.
+  + $T$ is uniformly continuous (which means that for every $epsilon > 0$ there
+    exists $delta > 0$ such that $norm(T f - T g) < epsilon$ for all $f, g in V$
+    with $norm(f-g) < delta$).
+  + $T^(-1)(B(0, r))$ is an open subset of $V$ for some $r > 0$.
+]
+
+#solution[
+  + By linearity, (3) is equivalent to for every $epsilon > 0$, there exists
+    $delta > 0$ such that $norm(T f) < epsilon, forall f in V: norm(f) < delta.$
+    This is equivalent to that $T$ is continuous at $0$.
+  + If $T$ is continuous at a point $f$, then since:
+    $ T g = T f + T (g - f), $
+    $T$ must also be continuous at $g$ for all $g in V$. Hence, (2) and (3) are
+    equivalent.
+  + If $T$ is bounded, then $T$ is continous:
+    $
+      norm(T f) <= norm(T) norm(f), forall f in V\
+      => forall epsilon > 0: norm(T f - T g) < epsilon, forall f, g in V: B(f, g) <
+      epsilon/norm(T).
+    $
+    Moreover, if $T$ is continuous (at $0$, WLOG), then since for every $epsilon
+    > 0$, there exists $delta > 0$ such that $norm(T f) < epsilon, forall f in
+    B(0, delta)$, we can take $M = epsilon / delta$, and by the previous
+    exercise, $M = norm(T)$. Hence, (1) is equivalent to (2).
+  + Equivalence between (1) and (4) is already proven in 6.11 MIRA.
+
 ]

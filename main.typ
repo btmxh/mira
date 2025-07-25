@@ -5100,5 +5100,141 @@ let $f_I$ denote the average of $f$ on $I$. In other words, $f_I = 1 / abs(I) in
     B(0, delta)$, we can take $M = epsilon / delta$, and by the previous
     exercise, $M = norm(T)$. Hence, (1) is equivalent to (2).
   + Equivalence between (1) and (4) is already proven in 6.11 MIRA.
+]
 
+== Linear functionals
+
+#problem[
+  Suppose $V$ is a normed vector space and $phi$ is a linear functional on $V$.
+  Suppose $alpha in FF without {0}$. Prove that the following are euqivalent:
+  + $phi$ is a bounded linear functional.
+  + $phi^(-1)(alpha)$ is a closed subset of $V$.
+  + $overline(phi^(-1)(alpha)) != V$.
+]
+
+#let null = math.op("null")
+#solution[
+  If $phi^(-1)(alpha) = diameter$ then clearly $phi(x) = 0$ for all $x in V$, so
+  $phi$ is bounded.
+
+  Otherwise, $exists f in V: phi(f) = alpha$, so we can write:
+  $ phi^(-1)(alpha) = f + null phi. $
+
+  Clearly, $phi^(-1)(alpha)$ is closed if and only if $null phi$ is closed, and
+  $overline(phi^(-1)(alpha)) != V <=> f + overline(null phi) != V <=>
+  overline(null phi) != V.$
+
+  Hence, this problem is equivalent to MIRA 6.52.
+]
+
+#problem[
+  Suppose $phi$ is a linear functional on a vector space $V$. Prove that if $U$
+  is a subspace of $V$ such that $null phi subset.eq U$, then $U = null phi$ or
+  $U = V$.
+]
+
+#solution[
+  Assuming otherwise $null phi subset.neq U subset.neq V$, then there exists $f
+  in V without U, g in U without null phi$. Then, clearly $phi(f), phi(g) != 0$,
+  so: $x = f - phi(f)/phi(g) g => phi(x) = 0.$
+  Then, $x in null phi$.
+
+  However, $f in.not U$ and $g in U$ implies that $x in.not U$, which implies $x
+  in.not null phi$, a contradiction.
+]
+
+#problem[
+  Suppose $phi$ and $psi$ are linear functionals on the same vector space. Prove that
+  $
+    null phi subset.eq null psi
+  $
+  if and only if there exists $alpha in FF$ such that $psi = alpha phi$.
+]
+
+#let span = math.op("span")
+#solution[
+  The reverse direction is trivial.
+
+  Assuming both $phi$ and $psi$ are not identically $0$,
+  then we can pick some $x in V$ such that
+  $phi(x) != 0$. Then, define $alpha = psi(x)/phi(x)$, and we clearly have:
+  $ null (psi - alpha phi) supset.eq span (null phi union {x}) != null phi. $
+  By the previous exercise, this implies that $null (psi - alpha phi) = V$,
+  which means $psi = alpha phi$.
+]
+
+For the next two exercises, $FF^n$ should be endowed with the norm
+$norm(dot)_infinity$ as defined in Example 6.34.
+
+#problem[
+  Suppose $n in ZZ^+$ and $V$ is a normed vector space. Prove that every linear
+  map from $FF^n$ to $V$ is continuous.
+]
+
+#solution[
+  Let $(e_k)_(k in [n])$ be the canonical basis of $FF^n$. Then, clearly,
+  $
+    norm(phi(x)) = abs(phi(sum_(k=1)^(n) x_k e_k)) = abs(
+      sum_(k=1)^(n) x_k
+      phi(e_k)
+    ) <= norm(x) sum_(k=1)^n norm(phi(e_k)).
+  $
+  for every $x = sum_(k=1)^(n) x_k e_k in FF^n$ and linear map $phi$. Clearly
+  this implies that $phi$ is bounded, therefore continuous.
+]
+
+#problem[
+  Suppose $n in ZZ^+$, $V$ is a normed vector space and $T: FF^n -> V$ is a
+  linear map that is one-to-one and onto $V$.
+  + Show that $ inf {norm(T x): x in FF^n "and" norm(x) = 1 } > 0. $
+  + Prove that $T^(-1): V -> FF^n$ is a bounded linear map.
+]
+
+#solution[
+  + If there exists $x_1, x_2, ...$ such that $norm(T x_k) -> 0$ while
+    $norm(x_k) = 1, forall k in ZZ^+$.
+    Since the set $partial B(0, 1)$ (with respect to the norm
+    $norm(dot)_infinity$) is compact, there exists a convergent subsequence
+    $x_k_n$ with $lim_(n -> infinity ) x_k_n = x^* => T(x^*) = 0$. This implies
+    that $x^* = 0$, contradicting $norm(x_k) = 1$ for all $k$.
+  + We have:
+    $
+      sup_(norm(y) = 1) norm(T^(-1) (y)) & = sup {norm(x): x in V, norm(T x) = 1} \
+                                         & = sup {norm(x)/norm(T x): x in V,
+                                             norm(T x) = 1 }                      \
+                                         & = sup {norm(x)/norm(T x): x in V,
+                                             norm(x) = 1 }                        \
+                                         & = 1/inf{norm(T x): x in V, norm(x) =
+                                             1} .
+    $
+    From the result of the first part, we know $sup_(norm(y) = 1) norm(
+      T^(-1)
+      (y)
+    )$ is bounded, so $T^(-1)$ is bounded.
+]
+
+#problem[
+  Suppose $n in ZZ^+$.
+  + Prove that all norms on $FF^n$ have the same convergent sequences, the same
+    open sets, and the same closed sets.
+  + Prove that all norms on $FF^n$ make $FF^n$ into a Banach space.
+]
+
+#solution[
+  Basically we need to prove all norms on $FF^n$ are equivalent. One direction
+  is trivial enough:
+  $
+    x = sum_(k=1)^(n) x_k e_k in FF^n => norm(x) <= sum_(k=1)^(n)
+    abs(x_k) norm(e_k) <= norm(x)_infinity sum_(k=1)^n norm(e_k), forall x in
+    FF^n.
+  $
+  This also implies that $norm(dot)$ is continuous w.r.t. the $cal(l)_infinity$
+  norm. This implies that there is some $x_0 in partial B(0, 1)$ such that:
+  $ 0 < norm(x_0) <= norm(x), forall x in partial B(0, 1). $
+  Then, we have:
+  $
+    norm(x) = norm(x)_infinity norm(x/norm(x)_infinity) >= norm(x)_infinity
+    norm(x_0), forall x in FF^n without {0}.
+  $
+  This gives the remaining direction we need.
 ]

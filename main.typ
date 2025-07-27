@@ -5169,7 +5169,7 @@ $norm(dot)_infinity$ as defined in Example 6.34.
 #problem[
   Suppose $n in ZZ^+$ and $V$ is a normed vector space. Prove that every linear
   map from $FF^n$ to $V$ is continuous.
-]
+] <prob:cont>
 
 #solution[
   Let $(e_k)_(k in [n])$ be the canonical basis of $FF^n$. Then, clearly,
@@ -5188,7 +5188,7 @@ $norm(dot)_infinity$ as defined in Example 6.34.
   linear map that is one-to-one and onto $V$.
   + Show that $ inf {norm(T x): x in FF^n "and" norm(x) = 1 } > 0. $
   + Prove that $T^(-1): V -> FF^n$ is a bounded linear map.
-]
+] <prob:inv-cont>
 
 #solution[
   + If there exists $x_1, x_2, ...$ such that $norm(T x_k) -> 0$ while
@@ -5218,7 +5218,7 @@ $norm(dot)_infinity$ as defined in Example 6.34.
   + Prove that all norms on $FF^n$ have the same convergent sequences, the same
     open sets, and the same closed sets.
   + Prove that all norms on $FF^n$ make $FF^n$ into a Banach space.
-]
+] <prob:equiv>
 
 #solution[
   Basically we need to prove all norms on $FF^n$ are equivalent. One direction
@@ -5237,4 +5237,302 @@ $norm(dot)_infinity$ as defined in Example 6.34.
     norm(x_0), forall x in FF^n without {0}.
   $
   This gives the remaining direction we need.
+]
+
+#problem[
+  Suppose $V$ and $W$ are normed vector spcaes and $V$ is finite-dimensional.
+  Prove that every linear map from $V$ to $W$ is continuous.
+]
+
+#solution[
+  Consider a linear map $f: V -> W$.
+
+  Since $V$ is finite-dimensional, i.e. of dimension $n$, we can pick a
+  one-to-one mapping $phi$ from $V$ and onto $FF^n$ ($FF$ is the scalar field of $V$).
+  By @prob:cont and @prob:inv-cont, this mapping and its inverse is continuous.
+
+  Now, all that remains is to construct a mapping $psi$ from $FF^n$ to $W$,
+  which can be constructed as $psi = f compose phi^(-1)$. This is clearly
+  continuous (by @prob:cont).
+]
+
+#problem[
+  Prove that every finite-dimensional normed vector space is a Banach space.
+]
+
+#solution[
+  Consider a linear map $L$ from the finite-dimensional normed vector space $V$ to
+  $FF^n$, where $n = dim V$.
+
+  Since $L$ is bounded, a Cauchy sequence $x_n$ in $V$ is mapped to a Cauchy
+  sequence in $FF^n$, which must converge to some $x in FF^n$.
+  Then, since $L$ is onto, there exists some $y in V$ such that $L(y) = x$. This
+  $x$ is the limit of the original Cauchy sequence $x_n$.
+]
+
+#problem[
+  Prove that every finite-dimensional subspace of each normed vector space is
+  closed.
+]
+
+#solution[
+  Construct a homomorphism between the finite-dimensional subspace $U$ and the
+  scalar vector space $FF^n$, where $n = dim U$. Then, any sequences in $U$ that
+  converges to some $v$ (might not be in $U$), must be a Cauchy sequence in the
+  original normed vector space, which can be mapped to a Cauchy sequence
+  in $FF^n$ (w.r.t. the norm induced by the vector space, but this is irrelevant
+  as all norms on $FF^n$ are equivalent, as in @prob:equiv),
+  so it must converge to some $v^* in FF^n$.
+  Then, if we define $v$ as the inverse image of $v^*$, we have $v in U$, so the
+  sequence converges in $U$.
+]
+
+#problem[
+  Give a concrete example of an infinite-dimensional normed vector space and a
+  basis of that normed vector space.
+]
+
+#solution[
+  Consider the vector space $FF^infinity$ with finite support, i.e.
+  $ FF^infinity = FF^1 union FF^2 union ..., $
+  where additions and multiplications are defined pointwise, and the norm is
+  defined as the sup-norm.
+
+  Then, a basis of this vector space would be the union of the respective bases
+  of $FF^k$, for $k in ZZ^+$.
+]
+
+#problem[
+  Show that the collection $A = {k ZZ : k = 2, 3, 4, ...}$
+  of subsets of $ZZ$ satisfies the hypothesis of Zorn’s Lemma.
+]
+
+#solution[
+  Any chain $C = {k ZZ: k in C_k} subset.eq A$ has the union of all sets as
+  simply $(min C_k) ZZ$ (the minimum element exists as $NN$ is well-defined).
+]
+
+#problem[
+  Prove that every linearly independent family in a vector space can be extended
+  to a basis of that vector space.
+]
+
+#solution[
+  This follows from the result that bases exists in MIRA, only with a correction
+  to only consider linearly independent sets containing the given family.
+]
+
+#problem[
+  Suppose $V$ is a normed vector space, $U$ is a subspace of $V$, and $psi: U ->
+  RR$ is a bounded linear functional. Prove that $psi$ has a unique extension
+  to a bounded linear functional $phi$ on $V$ with $norm(phi) = norm(psi)$ if
+  and only if
+  $
+    sup_(f in U) (-norm(psi) norm(f + h) - psi(f) ) = inf_(g in U) (norm(psi)
+      norm(g + h) - psi(g) )
+  $
+  for every $h in V without U$.
+]
+
+#solution[
+  If equality does not hold, then we can easily construct two distinct
+  extensions as in the extension lemma.
+
+  For the reverse direction, assuming there are two extensions $phi$ and $phi'$
+  that differs at some vector $h in V without U$. Then, clearly $phi$ and $phi'$
+  must have the form given in the proof of the extension lemma on the vector
+  space $span(U union {h})$. However, since equality holds, there is only one
+  choice for the value of $c$, so $phi$ and $phi'$ should be identical, a
+  contradiction.
+]
+
+#problem[
+  Show that there exists a linear functional $phi: cal(l)^infinity -> FF$ such
+  that
+  $ abs(phi(a_1, a_2, ...)) <= norm((a_1, a_2, ...))_infinity $
+  for all $(a_1, a_2, ...) in cal(l)^infinity$ and
+  $ phi(a_1, a_2, ...) = lim_(k -> infinity ) a_k $
+  for all $(a_1, a_2, ...) in cal(l)^infinity$ such that the limit above on the
+  right exists.
+]
+
+#solution[
+  This is a simply a consequence of the Hahn-Banach theorem applied to the
+  $cal(l)^infinity$ normed vector space.
+]
+
+#problem[
+  Suppose $B$ is an open ball in a normed vector space $V$ such that $0 in.not
+  B$. Prove that there exists $phi in V'$ such that
+  $ Re phi(f) > 0 $
+  for all $f in B$.
+]
+
+#solution[
+  Assuming $B = B(x_0, r)$. Then, take any bounded linear functional $psi in
+  V'$. We have:
+  $ N = sup_{f in B} abs(psi(f)) < infinity, $
+  Then,
+  $ abs(psi(x_0) - psi(x)) <= N norm(x_0 - x) < N r, forall x in B. $
+  Hence, it suffices to pick $f$ such that:
+  $ phi(x) = psi(x) + (N r - psi(x_0)) $
+  to get the desired result.
+]
+
+#problem[
+  Show that the dual space of each infinite-dimensional normed vector space is
+  infinite-dimensional.
+]
+
+#solution[
+  Consider any finite linearly independent subset $B = {b_1, b_2, ..., b_n}$
+  of the primal vector space. We can define the respective basis of the dual
+  vector space, which implies that the dual space has at least $n$ dimensions.
+  However, since this construction can be done for any $n in ZZ^+$, the dual
+  space must be infinite-dimensional.
+]
+
+#problem[
+  Suppose $V$ is a separable normed vector space. Explain how the Hahn–Banach
+  Theorem (MIRA 6.69) for $V$ can be proved without using any results (such as Zorn’s
+  Lemma) that depend upon the Axiom of Choice.
+]
+
+// https://math.stackexchange.com/questions/1623210/hahn-banach-theorem-for-separable-spaces-without-zorns-lemma
+#solution[
+  Let $C = {x_1, x_2, ...}$ be a countable dense subset of $V$ and $f$ be a
+  bounded linear functional on some subspace $U$. Then, we can
+  inductively construct a sequence of linear functionals $(f_n)$
+  via the Extension Lemma:
+  $
+    f_n: A_n = span (U union {x_1, ..., x_n}) -> FF,\
+    f_n "agrees with" f_(n-1) "on" A_(n-1), norm(f_n) = norm(f_(n-1)).
+  $
+
+  Taking the pointwise limit of this sequence, we can define a linear functional
+  $
+    tilde(f) -> A = union_(n=1)^infinity A_n -> FF,\
+    tilde(f)(x) = lim_(n -> infinity) f_n (x)
+  $
+  on a dense subspace $A$ of $V$.
+
+  Finally, by denseness, we can extend this functional to the whole space $V$,
+  via:
+  $ hat(f)(x) = tilde(f)(a_n), "for any" a_n -> x, a_n in A. $
+  The only non-trivial thing left is proving that this construction is
+  well-defined, i.e. if $a_n, b_n -> x$ for some sequences $a_n, b_n in A$, then
+  the limits must coincide:
+  $ lim_(n -> infinity) tilde(f)(a_n) = lim_(n -> infinity) tilde(f)(b_n). $
+  This clearly holds as:
+  $
+    abs(tilde(f)(a_n) - tilde(f)(b_n)) = abs(tilde(f)(a_n - b_n)) <= M norm(
+      a_n
+      - b_n
+    ),
+  $
+  for some constant $M$. The right-hand side goes to $0$ as $n -> infinity$, so
+  the limits coincide and our definition of $hat(f)$ is well-defined.
+]
+
+#problem[
+  Suppose $V$ is a normed vector space such that the dual space $V'$ is
+  separable Banach space. Prove that $V$ is separable.
+]
+
+#solution[
+  Let $B$ be a dense, countable subset of the unit sphere in $V'$. Then, for each
+  $f in B$, take $x in V$ such that $f(x) > 1/2, norm(x) = 1$.
+  We will prove that the set $X$ of all $x$ constructed this way is
+  a dense subset of $V$.
+
+  If not, then there is a vector $x in V without overline(X)$. By a similar
+  construction to that in the Extension Lemma, we can construct a linear
+  bounded functional with $f(y) = 0, forall y in X$ and $f(x) = 1$. Extend this
+  map to the whole space $V$ via Hanh-Banach theorem, which gives us a bounded
+  linear functional $phi$ on $V$ with norm 1.
+
+  Then,
+  $
+    norm(phi - f) >= abs(phi(x) - f(x)) >= abs(f(x)) = 1/2,
+  $
+  where $f in B$, $x$ is the element in $X$ such that $f(x) > 1/2$.
+
+  This contradicts the fact that $B$ is dense in $V'$.
+]
+
+#problem[
+  Prove that the dual of the Banach space $C([0, 1])$ is not separable; here the
+  norm on $C([0, 1])$ is defined by $norm(f) = sup_([0, 1]) abs(f)$.
+]
+
+#solution[
+  Consider the point evaluation functionals $phi_x: C([0, 1])' -> FF$ defined by
+  $phi_x (f) = f(x)$ for all $f in C([0, 1])$ and $x in [0, 1]$.
+
+  Then, the family $Phi = {phi_x: x in [0, 1]}$ is uncountable, with
+  $
+    forall phi_x, phi_y in Phi, x!=y: norm(phi_x - phi_y) = sup_(f in C([0,1]),
+    norm(f) = 1) abs(f(x) - f(y)) = 2,
+  $
+  for some $epsilon > 0$
+  since we can easily construct a continuous
+  piecewise-linear function that maximizes $abs(f(x)-f(y))$ to a value of 2 for
+  every pair $(x, y)$.
+
+  Now, assuming that the dual space $C([0, 1])'$ is separable, then there exists
+  a dense countable subset $S subset.eq C([0, 1])'$. For every $s in S$, define:
+  $ N_s = {phi_x in Phi: norm(phi_x - s) < 1}. $
+  If $phi_x, phi_y in N_s$, then we have:
+  $ norm(phi_x - phi_y) <= norm(phi_x - s) + norm(phi_y - s) < 2, $
+  which implies $x = y$. Hence, $N_s$ is a singleton at most, so
+  $ N = union.big_(s in S) N_s $
+  is at most countable. Hence, $S$ is not dense in $Phi$, a contradiction.
+]
+
+#problem[
+  Define $Phi: V -> V''$ by
+  $ (Phi f)(phi) = phi(f) $
+  for $f in V$ and $phi in V'$. Show that $norm(Phi f) = norm(f)$ for every $f
+  in V$.
+  (_The map $Phi$ defined above is called the_ canonical isometry _of $V$ into
+  $V''$_)
+]
+
+#solution[
+  We have:
+  $ norm(Phi f) = sup_(phi in V', norm(phi) = 1) norm(phi(f)) <= norm(f), $
+  since $norm(phi) = 1 => norm(phi(f)) <= norm(phi) norm(f) = norm(f)$.
+
+  For the reverse inequality, we need to pick some $phi$ such that $norm(phi(f))
+  = norm(f)$. $phi$ can be easily constructed by the Hahn-Banach theorem from
+  the identity linear map on the subspace $U = span{f}$.
+]
+
+#problem[
+  Suppose $V$ is an infinite-dimensional normed vector space. Show that there is
+  a convex subset $U$ of $V$ such that $overline(U) = V$ and such that the
+  complement $V without U$ is also a convex subset of $V$ with $overline(
+    V
+    without U
+  ) = V$.
+]
+
+#solution[
+  Let $f$ be an unbounded linear functional from $V$ to $RR$. For any convex $C
+  subset.eq RR$, consider $S = f^(-1)(C)$. We have:
+  - $S$ is convex: if $x, y in S$, then $z = lambda x + (1 - lambda) y in S$
+    since $f(z) = lambda f(x) + (1 - lambda) f(y) in C$.
+  - $S$ is dense in $V$ (assuming that $S$ is non-empty): take some $y in V$.
+    Then, we
+    want to find some $x in S$ such that $norm(y-x) < epsilon$ for any given
+    $epsilon > 0$. This is equivalent to finding $z = y - x$ such that $f(z) =
+    f(y) - f(x) = c$ (here we fix $f(x) = t$ for some $t in C$) and $norm(z) <
+    epsilon$.
+
+    Since $f$ is unbounded, we can find $w$ with $norm(w) = 1$ and $f(w) > M$.
+    Rescaling gives a $u$ with $norm(u) < epsilon$ and $f(u) > c$. Defining $v =
+    c/f(u) u$ gives the desired value for $z$.
+
+  Finally, simply letting $U = f^(-1)((0, infinity))$ (the complement $V without
+  U = f^(-1)((-infinity, 0])$) gives the desired result.
 ]

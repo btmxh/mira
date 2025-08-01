@@ -5536,3 +5536,22 @@ $norm(dot)_infinity$ as defined in Example 6.34.
   Finally, simply letting $U = f^(-1)((0, infinity))$ (the complement $V without
   U = f^(-1)((-infinity, 0])$) gives the desired result.
 ]
+
+== Consequences of Baire's Theorem
+
+#problem[
+  Suppose $U$ is a subset of a metric space $V$. Show that $U$ is dense in $V$
+  if and only if every nonempty open subset of $V$ contains at least one element
+  of $U$.
+]
+
+#solution[
+  - If $U$ is dense in $V$ and $G$ is an open subset of $V$, then,
+    $ f in G => exists r > 0: B(f, r) subset.eq G $
+    Since $f in V = overline(U)$, by definition, we have:
+    $ forall r' > 0: B(f, r') sect U != diameter. $
+    Letting $r = r'$ gives $diameter != B(f, r) sect U subset.eq G sect U$.
+  - If the reverse condition holds, then for every $f in V$ and $r > 0$, the
+    open set $B(f, r)$ contains some $g in U$. Thus $f in overline(U)$, and
+    therefore $overline(U) = V$.
+]

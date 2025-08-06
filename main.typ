@@ -5273,7 +5273,7 @@ $norm(dot)_infinity$ as defined in Example 6.34.
 #problem[
   Prove that every finite-dimensional subspace of each normed vector space is
   closed.
-]
+] <prob:fin-subspace-closed>
 
 #solution[
   Construct a homomorphism between the finite-dimensional subspace $U$ and the
@@ -5554,4 +5554,177 @@ $norm(dot)_infinity$ as defined in Example 6.34.
   - If the reverse condition holds, then for every $f in V$ and $r > 0$, the
     open set $B(f, r)$ contains some $g in U$. Thus $f in overline(U)$, and
     therefore $overline(U) = V$.
+]
+
+#problem[
+  Suppose $U$ is a subset of a metric space $V$. Show that $U$ has an empty
+  interior if and only if $V without U$ is dense in $V$.
+]
+
+#let int = math.op("int")
+#solution[
+  By the previous exercise, $V without U$ is dense if and only if every nonempty
+  open subset of $V$ contains at least one element of $V without U$. Then,
+  - If $V without U$ is dense in $V$, then assuming there exists some $f in int U$,
+    it follows that $exists r > 0: B(f, r) subset.eq U$ and $B(f, r) sect (V
+      without U) = diameter$, a contradiction to the claim above.
+  - If $U$ has empty interior, then assuming that $V without U$ is not dense in
+    $V$, so there exists some nonempty open set $G$ such that $G sect (V without U)
+    = diameter$, which is equivalent to that $G subset.eq U$. This implies that
+    every $f in G$ must be in $int U$, so $int U != diameter$.
+]
+
+#problem[
+  Prove or give a counterexample: If $V$ is a metric space and $U, W$ are
+  subsets of $V$, then $(int U) union (int W) = int (U union W)$.
+]
+
+#solution[
+  Consider $U = [1, 2]$ and $W = [2, 3]$ in $RR$ with the usual metric. Then,
+  $ int U = (1, 2), int W = (2, 3), int (U union W) = (1, 3), $
+  but $ (1, 2) union (2, 3) != (1, 3). $
+]
+
+#problem[
+  Prove or give a counterexample: If $V$ is a metric space and $U, W$ are
+  subsets of $V$, then $(int U) sect (int W) = int (U sect W)$.
+]
+
+#solution[
+  If $x in int (U sect W)$, then clearly $x in int U$ and $x in int W$.
+
+  If $x in (int U) sect (int W)$, then there exists $r_1, r_2 > 0$ such that
+  $ B(x, r_1) subset.eq U, B(x, r_2) subset.eq W. $
+  Then,
+  $ B(x, min{r_1, r_2}) in (U sect W), $
+  which implies that $x in int (U sect W)$.
+
+  Hence, the two sets are equal.
+]
+
+#problem[
+  Suppose
+  $ X = {0} union union.big_(k=1)^infinity {1/k} $
+
+  and $d(x, y) = abs(x - y)$ for $x, y in X$.
+
+  + Show that $(X, d)$ is a complete metric space.
+  + Each set of the form ${x}$ for $x in X$ is a closed subset of $RR$ that has
+    an empty interior as a subset of $RR$. Clearly $X$ is a countable union of
+    such sets. Explain why this does not violate the statement of Baire's Theorem
+    that a complete metric space is not the countable union of closed subset with
+    empty interior.
+]
+
+#solution[
+  + The metric space part is trivial. To prove completeness, consider the Cauchy
+    seuence $x_n$ in $X$. Let the limit (in $RR$) of $x_n$ be $x^*$. Then,
+    either $x^* = 0$ or $x_n > x^* - epsilon > 0$ for large enough $n$.
+    For the first case, we have $x^* in X$, so we are done. For the second case,
+    we simply consider the sequence $y_n = 1/x_n$, which converges to $1/x^*$.
+    However, $y_n$ is a natural number for every $n$, so the limit $1/x^*$ must
+    also be a natural number, which means $1/x^* in ZZ^+ => x^* in X$.
+  + Each set ${x}$ with $x in X$ has itself as the interior in the metric space
+    $(X, d)$, since one can always pick a value $r$ small enough to make $B_X
+    (x, r) = {x}$ (i.e. $r > inf_(x' in X) abs(x-x')$).
+]
+
+#problem[
+  Give an example of a metric space that is the countable union of closed subset
+  with empty interior.
+]
+
+#solution[
+  Consider the metric space of rational numbers. Clearly we can write the whole
+  space as a countable union of all singleton sets ${q}$ for $q in QQ$.
+]
+
+#problem[
+  + Define $f: RR -> RR$ as follows:
+    $
+      f(a) = cases(
+        0 & "if" a "is irrational",
+        1/n & "if" a "is rational and" n "is the smallest positive integer" \
+            & "such that" a = m/n "for some integer m"
+      )
+    $
+    At which numbers in $RR$ is $f$ continuous?
+  + Show that there does not exist a countable collection of open subsets of
+    $RR$ whose intersection equals $QQ$.
+  + Show that there does not exist a function $f: RR -> RR$ such that $f$ is
+    continuous at each element of $QQ$ and discontinuous at each element of $RR
+    without QQ$.
+]
+
+#solution[
+  + We can show that $f$ is continuous at only irrational values of $a$. The
+    idea is that for every $epsilon > 1/n > 0$, we can easily pick $delta$ so
+    that $B(a, delta)$ does not contains any element of $NN/1, NN/2, ..., NN/n$.
+    At any rational value, since the irrational numbers are dense in $RR$, we
+    any neighborhood of a rational number contains irrational numbers with a
+    value of $f$ equal $0$, so $f$ can't be continuous at any rational point.
+  + If there exists a countable collection of open subsets $U_k$ such that
+    $sect.big_(k=1)^infinity U_k = QQ$, then every $U_k$ must be dense in $RR$.
+    Then, this clearly violate Baire's theorem, as $RR$ is a complete metric
+    space.
+  + The set of points where $f$ is continuous at can be written as:
+    $ C = sect.big_(n=1)^infinity G_n, $
+    where
+    $
+      G_n = {x in RR: exists delta > 0: abs(f(y)-f(z)) < 1/n, forall y, z in
+        B(x, delta)}.
+    $
+    For each $x in G_n$, then there exists some $delta > 0$ such that
+    $ abs(f(y)-f(z)) < 1/n, forall y, z in B(x, delta). $
+    Then, we will prove that $B(x, delta/2) subset.eq G_n$. This is true, since
+    for every $x' in B(x, delta/2)$, we have $B(x', delta/2) subset.eq B(x,
+      delta)$, so
+    $ abs(f(y)-f(z)) < 1/n, forall y, z in B(x', delta/2). $
+    Hence, $x' in G_n$, and therefore $B(x, delta) subset.eq G_n$.
+
+    To conclude, since $C$ is a countable intersection of open subsets of $RR$,
+    its intersection can't be $QQ$. Hence, such a function $f$ could not exist.
+]
+
+#problem[
+  Suppose $(X, d)$ is a complete metric space and $G_1, G_2, ...$ is a sequence
+  of dense open subsets of $X$. Prove that $inter.big_(k=1)^infinity G_k$ is a
+  dense subset of $X$.
+]
+
+#solution[
+  Denote $F_k = X without G_k$. Then, the problem is equivalent to proving
+  $ F = union.big_(k=1)^infinity F_k $
+  is a subset of $X$ with empty interior.
+
+  Assuming otherwise, then there exists some $f in int F$, which implies
+  $exists r > 0: B(f, r) subset.eq F$.
+
+  To conclude, simply consider:
+  $ F'_k = F_k sect B(f, r) $
+  in the complete metric space $(B(f, r), d)$. We have:
+  $ B(f, r) = F sect B(f, r) = union.big_(k=1)^infinity F'_k, $
+  while each $F'_k$ is a closed subset of $B(f, r)$ with empty interior (in this
+  new metric space). This contradicts Baire's theorem.
+]
+
+#problem[
+  Prove that there does not exist an infinite-dimensional Banach space with a
+  countable basis.
+]
+
+#solution[
+  If $B = {b_1, b_2, ...}$ is a countable basis of an infinite-dimensional
+  Banach space $V$, then we have:
+  $ V = union.big_(k=1)^infinity underbrace(span {b_1, ..., b_k}, V_k), $
+  where each $V_k$ is closed (@prob:fin-subspace-closed) and has empty interior
+  (which we'll prove here).
+
+  Assuming $V_k$ has an interior point $x$, then we can easily construct some
+  $y_t = x + t v$ such that $y in.not V_k, forall t != 0$, by, for example,
+  taking $v = b_(k + 1)$. The existence of such $y_t$ clearly contradicts the
+  interior point assumption, so $V_k$ has empty interior.
+
+  Then, we clearly have a contradiction to Baire's theorem, so $B$ could not
+  exist.
 ]

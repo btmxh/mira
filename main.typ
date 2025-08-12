@@ -5496,7 +5496,7 @@ $norm(dot)_infinity$ as defined in Example 6.34.
   in V$.
   (_The map $Phi$ defined above is called the_ canonical isometry _of $V$ into
   $V''$_)
-]
+] <prob:canon-isometry>
 
 #solution[
   We have:
@@ -5727,4 +5727,194 @@ $norm(dot)_infinity$ as defined in Example 6.34.
 
   Then, we clearly have a contradiction to Baire's theorem, so $B$ could not
   exist.
+]
+
+#problem[
+  Given an example of a Banach space $V$, a normed vector space $W$, a bounded
+  linear map $T$ of $V$ onto $W$, and an open subset $G$ of $V$ such that $T(G)$
+  is not an open subset of $W$.
+] <prob:omt-counter1>
+
+#solution[
+  Consider $V = W = C([0, 1])$ with $norm(dot)_V = norm(dot)_infinity$,
+  $norm(dot)_W =
+  norm(dot)_1$ and $T$ be the identity map. Then, we can see that $T$ is
+  surjective and bounded (operator norm is at most 1). Clearly $W$ is not a
+  Banach space.
+
+  Now, we will prove that $G = B_infinity (0, 1)$ is not open in $W$. Assuming
+  thst $0$ is
+  an interior point of $G$, then there exists some $r > 0$ such that $B_1 (0, r)
+  subset.eq G = B_infinity (0, 1)$. This implies that $norm(dot)_1$ and
+  $norm(dot)_infinity$ are equivalent, so by this logic, $W$ must be a Banach
+  space, a contradiction.
+]
+
+#problem[
+  Given an example of a normed vector space $V$, a Banach space $W$, a bounded
+  linear map $T$ of $V$ onto $W$, and an open subset $G$ of $V$ such that $T(G)$
+  is not an open subset of $W$.
+] <prob:omt-counter2>
+
+#solution[
+  Consider any Banach space $W$ and a normed vector space $V$ with the norm:
+  $ norm(x)_V = norm(x)_W + abs(omega(x)), $
+  for some discontinuous linear functional $omega$ on $W$.
+
+  Once again, take $T$ as the identity map, which is surjective.
+  Then, since $norm(x)_V <= norm(x)_W$ for all $x in W$, $T$ has operator norm
+  at most 1, hence bounded.
+
+  To conclude, we simply take $G = B_V (0, 1)$, which is open in $V$. We simply
+  want to prove that $G$ is not open in $W$. Assuming that $B_W (0, r) subset.eq
+  B_V (0, 1)$, then for every $x in W, norm(x)_W < r$, we must have:
+  $ norm(x)_V = norm(x)_W + abs(omega(x)) < 1. $
+
+  Now, it suffices to find some $x in B_W (0, r)$ such that $abs(omega(x)) >=
+  1$, or $x in W$ such that $abs(omega(x)) >= 2 dot norm(x)/r$, by
+  normalization. Clearly, this is achievable as $omega$ is unbounded.
+]
+
+*A linear map $T : V -> W$ from a normed vector space $V$ to a normed vector
+space $W$
+is called bounded below if there exists $c in (0, infinity)$ such that $norm(f) ≤c
+norm(T f)$ for all $f in V$.*
+
+#problem[
+  Suppose $T: V -> W$ is a bounded linear map from a Banach space $V$ to a
+  Banach space $W$. Prove that $T$ is bounded below if and only if $T$ is
+  injective and the range of $T$ is a closed subspace of $W$.
+]
+
+#solution[
+  - If $T$ is bounded below, then $norm(T x) > 0$ for every $x != 0$. This
+    implies that $T x = 0$ only when $x = 0$, so $T$ is injective. Assuming that
+    there is a sequence $T(x_1), T(x_2), ...$ in some subspace $S$ that
+    converges to some $y^* in W$, then we will prove that $y^* in S$. Note that
+    $ norm(T(x_i) - T(x_j)) >= 1/c norm(x_i - x_j), $
+    so if $T(x_n)$ (is a Cauchy sequence and therefore) converges, then so does $x_i$.
+    Then, we can see that $y^* = T(lim_(n -> infinity ) (x_n)) in S$.
+  - If $T$ is injective and the range of $T$ is a closed subspace of $W$, then
+    by taking the inverse of $T$ on the range, we get a bounded linear map
+    $T^(-1)$ (by the Bounded Inverse Theorem). Then, we have:
+    $
+      norm(x) = norm(T^(-1)(T(x))) <= norm(T^(-1)) norm(T(x)).
+    $
+    This implies that $T$ is bounded below.
+]
+
+#problem[
+  Give an example of a Banach space $V$, a normed vector space $W$ and a
+  one-to-one bounded linear map $T$ of $V$ onto $W$ such that $T^(-1)$ is not a
+  bounded linear map of $W$ onto $V$.
+]
+
+#solution[
+  We use the same spaces as in @prob:omt-counter1. Clearly if $T$ is the
+  identity map, then $T$ is bijective and bounded by at most 1. However,
+  $T^(-1)$ is unbounded, as if we fix $norm(f)_W = integral_0^1 abs(f) = 1$,
+  $norm(f)_V = sup_(t in [0, 1]) abs(f(t))$ can still be arbitrarily large.
+
+]
+
+#problem[
+  Give an example of a normed space $V$, a Banach space $W$ and a
+  one-to-one bounded linear map $T$ of $V$ onto $W$ such that $T^(-1)$ is not a
+  bounded linear map of $W$ onto $V$.
+]
+
+#solution[
+  We use the same structure as in @prob:omt-counter2. Consider a normed space
+  $V = W$ with the norm $norm(dot)_V$:
+  $ norm(f)_V = norm(f)_W + abs(omega(f)), $
+  where $omega$ is a discontinuous linear functional on $W$.
+
+  Then, take $T$ as the identity map, which is clearly one-to-one and bounded,
+  as $norm(f)_W <= norm(f)_V$ for all $f in V$.
+  However, the inverse map $T^(-1)$ is not bounded, as we can see:
+  $ norm(f)_V/norm(f)_W = 1 + abs(omega(f))/norm(f)_W $
+  can be arbitrarily large as $f$ is unbounded on $W$.
+]
+
+#problem[
+  Prove 6.84 (MIRA)
+]
+
+#solution[
+  Trivial.
+]
+
+#problem[
+  Suppose $V$ is a Banach space with norm $norm(dot)$ and that $phi: V -> FF$ is
+  a linear functional. Define another norm $norm(dot)_phi$ on $V$ by
+  $ norm(f)_phi = norm(f) + abs(phi(f)). $
+  Prove that if $V$ is a Banach space with respect to the norm $norm(dot)_phi$,
+  then $phi$ is a continuous linear functional on $V$ (with the original norm).
+]
+
+#solution[
+  See @prob:omt-counter2.
+]
+
+#problem[
+  Suppose $V$ is a Banach space, $W$ is a normed vector space, and $T_1, T_2,
+  ...$ is a sequence of bounded linear maps from $V$ to $W$ such that $lim_(k ->
+  infinity ) T_k f$ exists for each $f in V$. Define $T: V -> W$ by
+  $ T f = lim_(k -> infinity ) T_k f $
+  for $f in V$. Prove that $T$ is a bounded linear map from $V$ to $W$.
+]
+
+#solution[
+  Consider the family $cal(A) = {T_1, T_2, ...}$. Fix $f in V, epsilon > 0$,
+  then $exists N in ZZ^+$ such that for all $k >= N$, we have:
+  $ norm(T_k f - T f) < epsilon => sup_(k >= N) norm(T_k f) < infinity. $
+  Hence,
+  $ sup {norm(T f): T in cal(A) } = sup_(k in ZZ^+) norm(T_k f) < infinity. $
+  By the Principal of Uniform Boundedness, we have that $sup {norm(T): T in
+    cal(A)} = sup_(k in ZZ^+) norm(T_k) < infinity$.
+
+  Clearly, by definition of $T$, we have:
+  $ norm(T) <= sup_(k in ZZ^+) norm(T_k) < infinity, $
+  hence $T$ is bounded.
+]
+
+#problem[
+  Suppose $V$ is a normed vector space and $B$ is a subset of $V$ such that
+  $ sup_(f in B) abs(phi(f)) < infinity $
+  for every $phi in V'$. Prove that $sup_(f in B) norm(f) < infinity$.
+]
+
+#solution[
+  Consider each $f in V$ as a linear functional from $V'$ to $FF$. Since $V'$ is
+  a Banach space, the condition $sup_(f in B) abs(phi(f)) < infinity, forall
+  phi in V'$ implies $ sup_(f in B) norm(f)_(V'') < infinity, $
+  where $norm(dot)_(V'')$ denotes the operator norm on the dual space $V''$.
+  By @prob:canon-isometry, we have that $norm(f)_(V'') = norm(f)_V$, so we are
+  done.
+]
+
+#problem[
+  Suppose $T: V -> W$ is a linear map from a Banach space $V$ to a Banach space
+  $W$ such that
+  $ phi compose T in V' "for all" phi in W'. $
+  Prove that $T$ is a bounded linear map.
+]
+
+#solution[
+  Consider the map $S: W' -> V'$ defined by $S(phi) = phi compose T$. Then, we
+  can see that the graph of $S$ is closed, i.e. if $phi_n -> phi, S(phi_n) ->
+  psi$, then $psi = S(phi)$. This is true, as for every $f in W$ with $norm(f)
+  <= 1$,
+  $
+    psi(f) = lim_(n -> infinity) S(phi_n) (f) = lim_(n -> infinity) phi_n (T f)
+    = phi(T f) = S(phi)(f).
+  $
+  Hence, $S$ is a bounded linear map.
+  Then, for any $f in V$, we have:
+  $
+    norm(T f) & = sup {abs(phi(T f)), phi in W', norm(phi) = 1 } \
+              & = sup {S(phi) (f), phi in W', norm(phi) = 1 }    \
+              & <= norm(S) norm(f).
+  $
+  Hence, $T$ is bounded.
 ]
